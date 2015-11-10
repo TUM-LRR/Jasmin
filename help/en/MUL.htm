@@ -1,0 +1,24 @@
+
+			<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+			<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+			<head>
+			<title>MUL.htm</title>
+			</head>
+			<body>
+			<div style="font-family:Helvetica,Arial,sans-serif;font-size:11px;">
+			<strong>Command:</strong> MUL-Unsigned Multiplication of AL or AX<br>
+			<strong>Arguments:</strong> DEST: any 8, 16 or 32 bit memory location or register<br>
+			<strong>Usage:</strong> MUL DEST<br>
+			<strong>Effects:</strong> MUL performs unsigned multiplication.
+
+A byte operand is multiplied by AL; the result is left in AX. The carry and overflow flags are set to 0 if AH is 0; otherwise, they areset to 1.
+
+A word operand is multiplied by AX; the result is left in DX:AX. DX contains the high-order 16 bits of the product. The carry and overflow flags are set to 0 if DX is 0; otherwise, they are set to 1.
+
+A doubleword operand is multiplied by EAX and the result is left in EDX:EAX. EDX contains the high-order 32 bits of the product. The carry and overflow flags are set to 0 if EDX is 0; otherwise, they are set to 1.
+<br>
+			<strong>Flags&nbsp;to&nbsp;be&nbsp;set:</strong> OF and CF as described; SF, ZF, AF, PF, and CF are undefined
+			
+			</body>
+			</html>
+			

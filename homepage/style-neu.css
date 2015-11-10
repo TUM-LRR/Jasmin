@@ -1,0 +1,101 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	background: #FFFFFF center top no-repeat;
+	font-size: 14px;
+	line-height: 1.5;
+	text-align: center;
+}
+
+table {
+	width: 100%;
+}
+#master {
+	width:825px;
+}
+
+p {
+	text-align: left;
+}
+
+.logo {
+	text-align:center;
+	vertical-align:middle;
+}
+
+.text {
+	padding: 10px 50px 0 50px;
+	text-align:left;
+	vertical-align:top;
+}
+
+.participants {
+	padding: 20px 0 10px 0;
+	color: #0075CF;
+	font-size: 22px;
+	text-align:left;
+}
+
+.copy{
+	color: #0075CF;
+	padding: 20px;
+	clear: both;
+}
+
+#lrrheader {
+	text-align: center;
+	padding: 6px 0 0 0;
+}
+
+#lrrheader h1 {
+	font-size: 24px;
+	display: block;
+}
+
+#lrrheader h2 {
+	font-size: 14px;
+	padding: 0;
+	margin: 0;
+}
+
+#lrrheader h1 a, #lrrheader h2 a {
+	color: #666;
+	font-weight: normal;
+}
+
+#lrrheader h1 a span {
+	color: #0075CF;
+}
+
+#lrrheader p, #lrrheader p a {
+	color: #0075CF;
+	margin: 0;
+}
+
+#lrrheader #fakinfo {
+	font-size: 17px;
+}
+
+#nav {
+	font-size: 18px;
+	height: 40px;
+	margin: 120px 10px 10px 90px;
+	list-style: none;
+}
+#nav td {
+	padding:5px;
+}
+
+a {
+	color: #BC3EA7;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+

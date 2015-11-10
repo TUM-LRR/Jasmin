@@ -1,0 +1,17 @@
+body { font-family:Verdana; font-size:14pt; background-color:#ffffff; margin:0px; padding:0px; }
+td { text-align:center; }
+h1 { font-family:Verdana; font-size:24pt; font-weight:bold; color:#800060; }
+a { font-weight: bold; color: #BC3EA7; text-decoration: none; }
+table { width:100%; }
+.rand { width:20%; height: 100%; text-align:right; vertical-align:top; /*background-color:#ffe0f0;*/ }
+.main { background-color:#ffffff; height:100%;}
+.configtable { width:100%; padding:20px; border-style:solid; border-width:3px; border-color: #F7C5EA; font-size:12pt; }
+.authors { color: #0075CF; text-align:left; vertical-align:top; }
+.text { text-align:left; vertical-align:top; }
+.tumblau { color: #0075CF; }
+.jasminrosa { color: #BC3EA7; }
+
+.col1 { width:20%; text-align:left; }
+.col2 { width:30%; text-align:left; }
+.col3 { width:30%; text-align:left; }
+.col4 { width:20%; text-align:left; }

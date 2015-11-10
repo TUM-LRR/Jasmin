@@ -1,0 +1,20 @@
+
+			<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+			<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+			<head>
+			<title>DIV.htm</title>
+			</head>
+			<body>
+			<div style="font-family:Helvetica,Arial,sans-serif;font-size:11px;">
+			<strong>Command:</strong> DIV - Unsigned Divide<br>
+			<strong>Arguments:</strong> SRC: Register or memory location (8, 16 or 32 Bit)<br>
+			<strong>Usage:</strong> DIV SRC<br>
+			<strong>Effects:</strong> 8Bit SRC: AL:=AX / SRC AH:=Rest
+16Bit SRC: AX:=DX:AX / SRC DX:=Rest
+32Bit SRC: EAX:=EDX:EAX / SRC EDX:=Rest
+Divedes (unsigned) the value in the pair of registers as  your can see above (according to the size of SRC) by SRC. The result of the division is saved in the lower part of the pair, the remainder is saved in the upper part of the pair.<br>
+			<strong>Flags&nbsp;to&nbsp;be&nbsp;set:</strong> The CF, OF, SF, ZF, AF, and PF flags are undefined.
+			<br><strong>Misc:</strong> Non-integral results are truncated towards 0.</div>
+			</body>
+			</html>
+			

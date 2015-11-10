@@ -1,0 +1,209 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	background: #FFF url("header.jpg") center top no-repeat;
+	font-size: 14px;
+	line-height: 1.5;
+	text-align: center;
+}
+
+h1 {
+	display: none;
+}
+
+#wrapper {
+	width: 750px;
+	text-align: left;
+	margin: 0 auto;
+}
+
+#nav {
+	height: 40px;
+	margin: 120px 10px 10px 90px;
+	list-style: none;
+}
+
+#nav li {
+	float: left;
+	margin: 0;
+	padding: 0 0 0 20px;
+	line-height: 40px;
+	height: 40px;
+	font-size: 18px;
+}
+
+#download {
+	float: right;
+	width: 200px;
+	background: url("download.jpg") left top no-repeat;
+	height: 50px;
+	margin: 0 -22px 10px 20px;
+	text-indent: -999em;
+	position: relative;
+	top: -20px;
+}
+
+#download a {
+	display: block;
+	height: 120px;
+	width: 200px;
+}
+
+#lrrheader {
+	text-align: center;
+	padding: 6px 0 0 0;
+}
+
+#lrrheader h1 {
+	font-size: 24px;
+	display: block;
+}
+
+#lrrheader h2 {
+	font-size: 14px;
+	padding: 0;
+	margin: 0;
+}
+
+#lrrheader h1 a, #lrrheader h2 a {
+	color: #666;
+	font-weight: normal;
+}
+
+#lrrheader h1 a span {
+	color: #0075CF;
+}
+
+#lrrheader p, #lrrheader p a {
+	color: #0075CF;
+	margin: 0;
+}
+
+#lrrheader #fakinfo {
+	font-size: 17px;
+}
+
+#left, #right {
+	width: 320px;
+	float: left;
+}
+
+#footer {
+	color: #0075CF;
+	padding: 20px;
+	clear: both;
+}
+
+p, li, h2, h3 {
+	margin-left: 35px;
+	margin-right: 30px;
+}
+
+p {
+	clear: left;
+}
+
+h2 {
+	color: #0075CF;
+	font-size: 22px;
+}
+
+h3 {
+	font-size: 19px;
+}
+
+h4 {
+	font-size: 16px;
+}
+
+h5 {
+	font-size: 13px;
+	color: #0075CF;
+}
+
+h2, h3, h4, h5, h6 {
+	margin: 10px 30px 5px 35px;
+}
+
+p, pre {
+	margin: 0 30px 14px 35px;
+}
+
+pre {
+	padding: 2px;
+}
+
+p.image {
+	text-align: center;
+}
+
+span.comment {
+	color: #0075CF;
+}
+
+span.label {
+	color: #BC3EA7;
+}
+
+ul, ol {
+	margin: 5px 0 15px 0;
+}
+
+ol.roman {
+	list-style: upper-roman;
+}
+
+ol.roman a {
+	color: #000;
+}
+
+ol.none {
+	list-style: none;
+}
+
+li {
+	margin: 3px 30px 3px 75px;
+}
+
+ol.none li {
+	margin: 3px 30px 3px 55px;
+}
+
+table {
+	width: 700px;
+	margin: 0 30px 14px 35px;
+	border-right: 1px solid #BC3EA7;
+	border-bottom: 1px solid #BC3EA7;
+	border-collapse: collapse;
+}
+
+th {
+	text-align: center;
+	font-size: 14px;
+	background: #EEE;
+}
+
+th, td {
+	width: 16.66%;
+	padding: 2px;
+	border-top: 1px solid #BC3EA7;
+	border-left: 1px solid #BC3EA7;
+}
+
+a {
+	color: #BC3EA7;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+code {
+	background: #EEE;
+	display: block;
+}
