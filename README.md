@@ -15,6 +15,10 @@ Please use the issue tracker for bug reporting. You can reach the current mainta
 
 # Contributors
 
+## Current Maintainer
+
+* Marcel Meyer
+
 ## Initial Development
 
 ### Programming
@@ -35,7 +39,7 @@ Please use the issue tracker for bug reporting. You can reach the current mainta
 # License
 
 > Jasmin - Java Assembler Interpreter
-> Copyright (C) 2006-2015 
+> Copyright (C) 2006-2016 
 > Chair of Computer Architecture at Technical University of Munich
 > 
 > This program is free software; you can redistribute it and/or modify
