@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * Encapsulates a set of arguments, in order to pass them from the Parser to the commands.
  * Also contains several often-used methods concerning fetching, storing and checking
  * of arguments.
- *
+ * 
  * @author Jakob Kummerow
  */
 public class Parameters {
@@ -43,12 +43,12 @@ public class Parameters {
 	
 	public ParseError consistentSizes() {
 		return ((size(0) & size(1) & size(2)) != 0) ? null : new ParseError(wholeLine, argument(1),
-																			"Size mismatch");
+			"Size mismatch");
 	}
 	
 	public void set(String wholeCodeLine, String command, ArrayList<FullArgument> args,
-					int defaultOperationSize,
-					boolean signedAccessToRegMem) {
+			int defaultOperationSize,
+			boolean signedAccessToRegMem) {
 		wholeLine = wholeCodeLine;
 		mnemo = command;
 		numArguments = args.size();
@@ -116,12 +116,12 @@ public class Parameters {
 		if (Op.matches(argument(argumentIndex).address.type, Op.MEM)) {
 			if (dataType == Fpu.FLOAT) {
 				switch (size(argumentIndex)) {
-					case 4: {
-						return Float.intBitsToFloat((int) a);
-					}
-					case 8: {
-						return Double.longBitsToDouble(a);
-					}
+				case 4: {
+					return Float.intBitsToFloat((int) a);
+				}
+				case 8: {
+					return Double.longBitsToDouble(a);
+				}
 				}
 			}
 			if (dataType == Fpu.INTEGER) {
@@ -156,14 +156,14 @@ public class Parameters {
 			if (dataType == Fpu.FLOAT) {
 				long longvalue = 0;
 				switch (size(argumentIndex)) {
-					case 4: {
-						longvalue = Float.floatToRawIntBits((float) value);
-						break;
-					}
-					case 8: {
-						longvalue = Double.doubleToRawLongBits(value);
-						break;
-					}
+				case 4: {
+					longvalue = Float.floatToRawIntBits((float) value);
+					break;
+				}
+				case 8: {
+					longvalue = Double.doubleToRawLongBits(value);
+					break;
+				}
 				}
 				dsp.put(longvalue, argument[argumentIndex].address, null);
 			} else if (dataType == Fpu.PACKEDBCD) {
@@ -186,7 +186,6 @@ public class Parameters {
 	
 	public void pop(Address a) {
 		long newESP = dsp.ESP.getShortcut() + a.size;
-		
 		// get value from stack and write it to destination
 		Address stack = dsp.Stack(a.size);
 		dsp.put(dsp.getUpdate(stack, false), a, dsp.memInfo(stack));
@@ -200,15 +199,14 @@ public class Parameters {
 	
 	public long pop(int size) {
 		long newESP = dsp.ESP.getShortcut() + size;
-		
 		// get current stack address
 		Address stack = dsp.Stack(size);
 		// increase stack pointer
 		dsp.put(newESP, dsp.ESP, null);
+		// get the value from the stack and return it
 		if (newESP > dsp.EBP.getShortcut()) {
 			return 0;
 		}
-		// get the value from the stack and return it
 		return dsp.getUpdate(stack, false);
 	}
 	
@@ -238,7 +236,7 @@ public class Parameters {
 	public ParseError numericDestOK() {
 		if (!Op.matches(type(0), Op.REG | Op.MEM)) {
 			return new ParseError(wholeLine, argument(0),
-								  "Invalid parameter. Must specify a register or a memory address as destination.");
+				"Invalid parameter. Must specify a register or a memory address as destination.");
 		}
 		return null;
 	}
@@ -256,7 +254,7 @@ public class Parameters {
 		
 		if (!Op.matches(type(1), Op.REG | Op.MEM | Op.IMM | Op.CHARS | Op.VARIABLE | Op.LABEL | Op.CONST)) {
 			return new ParseError(wholeLine, argument(1),
-								  "Invalid parameter. Must specify a register, a memory address or an immediate as operand.");
+				"Invalid parameter. Must specify a register, a memory address or an immediate as operand.");
 		}
 		
 		if (Op.matches(type(1), Op.IMM) && (size(1) == -1)) {
@@ -279,7 +277,7 @@ public class Parameters {
 	public ParseError firstRegMemSecondReg() {
 		if (!Op.matches(type(0), Op.REG | Op.MEM)) {
 			return new ParseError(wholeLine, argument(0),
-								  "First argument must be a register or memory address");
+				"First argument must be a register or memory address");
 		}
 		if (!Op.matches(type(1), Op.REG)) {
 			return new ParseError(wholeLine, argument(1), "Second argument must be a register");
@@ -332,12 +330,12 @@ public class Parameters {
 						argument[i].address.value = dsp.getInitial(argument(i), signed);
 					} else {
 						return new ParseError(wholeLine, argument[i], "Operand must be at least " + minSize
-											  + " byte" + (minSize != 1 ? "s" : "") + " large");
+							+ " byte" + (minSize != 1 ? "s" : "") + " large");
 					}
 				}
 				if (size > maxSize) {
 					return new ParseError(wholeLine, argument[i], "Operand must not be larger than "
-										  + maxSize + " byte" + (maxSize != 1 ? "s" : ""));
+						+ maxSize + " byte" + (maxSize != 1 ? "s" : ""));
 				}
 				this.size = Math.max(this.size, size(i));
 				this.size = Math.max(this.size, size);
@@ -365,7 +363,7 @@ public class Parameters {
 	
 	/**
 	 * checks whether the FPU register ST0 is contained in the arguments list
-	 *
+	 * 
 	 * @return true if ST0 is contained in the arguments list
 	 */
 	public ParseError st0contained() {
