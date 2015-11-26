@@ -186,27 +186,27 @@ public class Parameters {
 	
 	public void pop(Address a) {
 		long newESP = dsp.ESP.getShortcut() + a.size;
-		if (newESP > dsp.EBP.getShortcut()) {
-			dsp.setAddressOutOfRange();
-			return;
-		}
 		// get value from stack and write it to destination
 		Address stack = dsp.Stack(a.size);
 		dsp.put(dsp.getUpdate(stack, false), a, dsp.memInfo(stack));
 		// increase stack pointer
+		if (newESP > dsp.EBP.getShortcut()) {
+			dsp.setAddressOutOfRange();
+			return;
+		}
 		dsp.put(newESP, dsp.ESP, null);
 	}
 	
 	public long pop(int size) {
 		long newESP = dsp.ESP.getShortcut() + size;
-		if (newESP > dsp.EBP.getShortcut()) {
-			return 0;
-		}
 		// get current stack address
 		Address stack = dsp.Stack(size);
 		// increase stack pointer
 		dsp.put(newESP, dsp.ESP, null);
-		// get the value from the sack and return it
+		// get the value from the stack and return it
+		if (newESP > dsp.EBP.getShortcut()) {
+			return 0;
+		}
 		return dsp.getUpdate(stack, false);
 	}
 	
