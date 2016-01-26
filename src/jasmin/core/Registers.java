@@ -6,7 +6,7 @@ package jasmin.core;
 import java.util.Hashtable;
 
 /**
- * @author Jakob Kummerow
+ * @author Jakob Kummerow, Florian Dollinger
  */
 public class Registers {
 	
