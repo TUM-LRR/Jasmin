@@ -11,7 +11,7 @@ import java.awt.Color;
 import javax.swing.JTextField;
 
 /**
- * @author Kai Orend
+ * @author Kai Orend, Florian Dollinger
  */
 public class RegisterPanel extends javax.swing.JPanel {
 	
@@ -83,52 +83,66 @@ public class RegisterPanel extends javax.swing.JPanel {
 		update();
 	}
 	
+	
 	public void update() {
 		
 		value = register.aE.getShortcut();
 		jTextField9.setText(DataSpace.getString(value, 4, mode));
 
-                boolean dirty = data.isDirty(register.aE, doc.getLastStepCount());
-
-		if (dirty) {
-                        // If the Register is touched (not necessarily changed), the Font is set to BOLD 
-			jTextField9.setFont(jTextField9.getFont().deriveFont(java.awt.Font.BOLD));
-		} else {
-			jTextField9.setFont(jTextField9.getFont().deriveFont(java.awt.Font.PLAIN));
-		}
-                
+                // Was the whole extended register touched?
+                boolean dirtyE = data.isDirty(register.aE, doc.getLastStepCount());
                 
                 // Update the subregisters (e.g.: AL, AH, ... for EAX)
-                // We want to know which Part is really touched, therefore we need some more information                
+                // We want to know which Part is really touched
+                
+                // Are the low-, high- or x-parts touched?
+                boolean dirtyL;
+                boolean dirtyH;
+                boolean dirtyX;
 
-                boolean dirtyX = false;
+                // If there is a x-part, ...
                 if(register.aX != null){
-                    dirtyX = data.isDirty(register.aX, doc.getLastStepCount());
+                	// ... we can see directly if it was touched or not.
+        		dirtyX = data.isDirty(register.aX, doc.getLastStepCount());
                 } else {
-                    dirtyX = dirty;
+                	// Otherwise we just copy the state of the next wider register (E_X).
+			dirtyX = dirtyE;
                 }
                 
-                boolean dirtyL = false;
+                
                 if(register.aL != null){
-                    dirtyL = (data.isDirty(register.aL, doc.getLastStepCount()) | dirtyX);
+                	dirtyL = (data.isDirty(register.aL, doc.getLastStepCount()) | dirtyX);
                 } else {
-                    dirtyL = dirtyX;
+                	dirtyL = dirtyX;
                 }
                 
-                boolean dirtyH = false;
+                
                 if(register.aH != null){
-                    dirtyH = (data.isDirty(register.aH, doc.getLastStepCount()) | dirtyX);
+                	dirtyH = (data.isDirty(register.aH, doc.getLastStepCount()) | dirtyX);
                 } else {
-                    dirtyH = dirtyX;
+        		dirtyH = dirtyX;
                 }
                 
+                // Was any one of the registers touched?
+                boolean dirtyAny = dirtyH | dirtyL | dirtyE;
                 
-		update(jTextField7, value & 0xFFL, dirtyL);
+                // Collapsed View
+                if (dirtyAny) {
+                        // If the Register is touched, the Font of the collapsed Registers is set to BOLD 
+			jTextField9.setFont(jTextField9.getFont().deriveFont(java.awt.Font.BOLD));
+		} else {
+			// Otherwise it is displayed PLAIN
+			jTextField9.setFont(jTextField9.getFont().deriveFont(java.awt.Font.PLAIN));
+		}
+
+        	// Expanded View
+		update(jTextField7, value & 0xFFL, dirtyL);		// LSB
 		update(jTextField5, (value >> 8) & 0xFFL, dirtyH);
-		update(jTextField2, (value >> 16) & 0xFFL, dirty);
-		update(jTextField1, (value >> 24) & 0xFFL, dirty);
+		update(jTextField2, (value >> 16) & 0xFFL, dirtyE);
+		update(jTextField1, (value >> 24) & 0xFFL, dirtyE);	// MSB
 		
 	}
+	
 	
 	private void update(JTextField field, long value, boolean dirty) {
 		if (dirty) {
