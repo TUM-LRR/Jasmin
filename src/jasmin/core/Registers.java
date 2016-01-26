@@ -109,23 +109,22 @@ public class Registers {
                 // X:        mask: 0xFFFF, shift: 0
                 
                 // low is dirty
-                if(address.rshift == 0 && address.mask == 0xFF){
+                if(address.rshift == 0 && address.mask == 0xFFL){
                     this.dirtyParts[address.address] = 0b0001;
                 }
                 
                 // high is dirty
-                if(address.rshift == 8 && address.mask == 0xFF00){
+                if(address.rshift == 8 && address.mask == 0xFF00L){
                     this.dirtyParts[address.address] = 0b0010;
                 }
                 
                 // X is dirty
-                if(address.rshift == 0 && address.mask == 0xFFFF){
+                if(address.rshift == 0 && address.mask == 0xFFFFL){
                     this.dirtyParts[address.address] = 0b0011;
                 }
                 
                 // E is dirty
-                // TODO: 0xFFFFFFFF as constant is -1 ?!
-                if(address.rshift == 0 && address.mask == Long.decode("0xFFFFFFFF")){
+                if(address.rshift == 0 && address.mask == 0xFFFFFFFFL){
                     this.dirtyParts[address.address] = 0b1111;
                 }
 
