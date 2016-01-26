@@ -87,15 +87,9 @@ public class RegisterPanel extends javax.swing.JPanel {
 		
 		value = register.aE.getShortcut();
 		jTextField9.setText(DataSpace.getString(value, 4, mode));
-		
+
                 boolean dirty = data.isDirty(register.aE, doc.getLastStepCount());
-                // TODO
-                // Funktioniert nur mit der Adresse des Extended: aE
-                // Würde es mit aL und aH auch funktionieren, so könnte man einfach unten bei den updates
-                // die dirty jeweils anpassen (sprich nur als dirty angeben wenn es auch nicht aktuelle ist)
-                // boolean blub = data.isDirty(register.aL, doc.getLastStepCount());
-                
-                
+
 		if (dirty) {
                         // If the Register is touched (not necessarily changed), the Font is set to BOLD 
 			jTextField9.setFont(jTextField9.getFont().deriveFont(java.awt.Font.BOLD));
@@ -103,21 +97,31 @@ public class RegisterPanel extends javax.swing.JPanel {
 			jTextField9.setFont(jTextField9.getFont().deriveFont(java.awt.Font.PLAIN));
 		}
                 
+                
                 // Update the subregisters (e.g.: AL, AH, ... for EAX)
-                // We want to know which Part is really touched, therefore we need some more information
-                // perhaps by the paramters?
-                
-                
-                // Problem: AL wird auch dirty gesetzt wenn nur AH geändert wurde?!
-                boolean dirtyH = false;
-                if(register.aH != null){
-                   dirtyH = data.isDirty(register.aH, doc.getLastStepCount());
+                // We want to know which Part is really touched, therefore we need some more information                
+
+                boolean dirtyX = false;
+                if(register.aX != null){
+                    dirtyX = data.isDirty(register.aX, doc.getLastStepCount());
+                } else {
+                    dirtyX = dirty;
                 }
                 
                 boolean dirtyL = false;
                 if(register.aL != null){
-                   dirtyL = data.isDirty(register.aL, doc.getLastStepCount());
+                    dirtyL = (data.isDirty(register.aL, doc.getLastStepCount()) | dirtyX);
+                } else {
+                    dirtyL = dirtyX;
                 }
+                
+                boolean dirtyH = false;
+                if(register.aH != null){
+                    dirtyH = (data.isDirty(register.aH, doc.getLastStepCount()) | dirtyX);
+                } else {
+                    dirtyH = dirtyX;
+                }
+                
                 
 		update(jTextField7, value & 0xFFL, dirtyL);
 		update(jTextField5, (value >> 8) & 0xFFL, dirtyH);
