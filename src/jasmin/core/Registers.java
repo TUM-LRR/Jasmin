@@ -18,6 +18,7 @@ public class Registers {
 	 * the dirty tag / works like a time stamp
 	 */
 	private int dirty[];
+        private int dirtyParts[];
 	
 	/**
 	 * the "timestamp" which goes up on every call to updateDirty()
@@ -28,9 +29,11 @@ public class Registers {
 	public Registers() {
 		reg = new LongWrapper[9];
 		dirty = new int[NUMREG];
+                dirtyParts = new int[NUMREG];
 		for (int i = 0; i < NUMREG; i++) {
 			reg[i] = new LongWrapper();
 			dirty[i] = Integer.MIN_VALUE;
+                        dirtyParts[i] = 0;
 		}
 		dirtyTimeStamp = Integer.MIN_VALUE + 2;
 		// addressedListeners = new LinkedList[NUMREG];
@@ -95,10 +98,40 @@ public class Registers {
 	}
 	
 	public void set(Address address, long value) {
+
 		value <<= address.rshift;
 		address.shortcut.value = (address.shortcut.value & ~address.mask) | (value & address.mask);
 		this.dirty[address.address] = dirtyTimeStamp;
-		// notifyListeners(address, (int) value);
+                
+                // low:      mask: 0xFF,   shift: 0
+                // high:     mask: 0xFF00, shift: 8
+                // extended: mask: 0xFFFFFFFF, shift: 0
+                // X:        mask: 0xFFFF, shift: 0
+                
+                // low is dirty
+                if(address.rshift == 0 && address.mask == 0xFF){
+                    this.dirtyParts[address.address] = 0b0001;
+                }
+                
+                // high is dirty
+                if(address.rshift == 8 && address.mask == 0xFF00){
+                    this.dirtyParts[address.address] = 0b0010;
+                }
+                
+                // X is dirty
+                if(address.rshift == 0 && address.mask == 0xFFFF){
+                    this.dirtyParts[address.address] = 0b0011;
+                }
+                
+                // E is dirty
+                // TODO: 0xFFFFFFFF as constant is -1 ?!
+                if(address.rshift == 0 && address.mask == Long.decode("0xFFFFFFFF")){
+                    this.dirtyParts[address.address] = 0b1111;
+                }
+
+                // notifyListeners(address, (int) value);
+
+
 	}
 	
 	/**
@@ -123,7 +156,33 @@ public class Registers {
 	 * @return if the byte has been changed in the last given steps
 	 */
 	public boolean isDirty(Address address, int steps) {
-		return ((dirtyTimeStamp - dirty[address.address]) <= steps);
+            
+            if((dirtyTimeStamp - dirty[address.address]) <= steps){
+
+                // low is dirty
+                if(address.rshift == 0 && address.mask == 0xFF){
+                    return (this.dirtyParts[address.address] & 0b0001) == 0b0001;
+                }
+                
+                // high is dirty
+                if(address.rshift == 8 && address.mask == 0xFF00){
+                    return (this.dirtyParts[address.address] & 0b0010) == 0b0010;
+                }
+                
+                // X is dirty
+                if(address.rshift == 0 && address.mask == 0xFFFF){
+                    return (this.dirtyParts[address.address] & 0b0011) == 0b0011;
+                }
+                
+                // E is dirty
+                if(address.rshift == 0 && address.mask == Long.decode("0xFFFFFFFF")){
+                    return (this.dirtyParts[address.address] & 0b1111) == 0b1111;
+                }
+            }
+            
+            return false;
+
+                
 	}
 	
 	/**
