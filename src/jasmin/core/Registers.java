@@ -97,39 +97,62 @@ public class Registers {
 		return register;
 	}
 	
+        /*
+        * @param reg
+        * @return returns the name of the given registerpart (L: LOW, H: HIGH, X: LOW and HIGH, E: EXTENDED)
+        */
+        public char registerType(Address reg){
+
+            // LOW or HIGH
+            if(reg.type == Op.R8){
+                // LOW
+                    if(reg.rshift == 0){
+                            return 'L';
+                    // HIGH
+                    } else if(reg.rshift == 8){
+                            return 'H';
+                    }
+
+            // X
+            } else if(reg.type == Op.R16){
+                return 'X';
+
+            // EXTENDED
+            } else if(reg.type == Op.R32){
+                return 'E';
+            }
+
+            return 'U'; // Unknown
+        }
+        
+	
 	public void set(Address address, long value) {
 
+                // Set the value
 		value <<= address.rshift;
 		address.shortcut.value = (address.shortcut.value & ~address.mask) | (value & address.mask);
+                
+                // Set the "time" of last change
 		this.dirty[address.address] = dirtyTimeStamp;
                 
-                // low:      mask: 0xFF,   shift: 0
-                // high:     mask: 0xFF00, shift: 8
-                // extended: mask: 0xFFFFFFFF, shift: 0
-                // X:        mask: 0xFFFF, shift: 0
-                
-                // low is dirty
-                if(address.rshift == 0 && address.mask == 0xFFL){
-                    this.dirtyParts[address.address] = 0b0001;
+                // Set the parts that are changed
+                switch(registerType(address)){
+                    case 'L':
+                        this.dirtyParts[address.address] = 0b0001;
+                        break;
+                    case 'H':
+                        this.dirtyParts[address.address] = 0b0010;
+                        break;
+                    case 'X':
+                        this.dirtyParts[address.address] = 0b0011;
+                        break;
+                    case 'E':
+                        this.dirtyParts[address.address] = 0b1111;
+                        break;
+                    default:
                 }
-                
-                // high is dirty
-                if(address.rshift == 8 && address.mask == 0xFF00L){
-                    this.dirtyParts[address.address] = 0b0010;
-                }
-                
-                // X is dirty
-                if(address.rshift == 0 && address.mask == 0xFFFFL){
-                    this.dirtyParts[address.address] = 0b0011;
-                }
-                
-                // E is dirty
-                if(address.rshift == 0 && address.mask == 0xFFFFFFFFL){
-                    this.dirtyParts[address.address] = 0b1111;
-                }
-
-                // notifyListeners(address, (int) value);
-
+		
+		// notifyListeners(address, (int) value);
 
 	}
 	
@@ -151,37 +174,32 @@ public class Registers {
 	}
 	
 	/**
+	 * @param address
 	 * @param steps
 	 * @return if the byte has been changed in the last given steps
 	 */
 	public boolean isDirty(Address address, int steps) {
             
             if((dirtyTimeStamp - dirty[address.address]) <= steps){
-
-                // low is dirty
-                if(address.rshift == 0 && address.mask == 0xFF){
-                    return (this.dirtyParts[address.address] & 0b0001) == 0b0001;
+                
+                switch(registerType(address)){
+                    
+                    case 'L':
+                        return (this.dirtyParts[address.address] & 0b0001) == 0b0001;
+                    case 'H':
+                        return (this.dirtyParts[address.address] & 0b0010) == 0b0010;
+                    case 'X':
+                        return (this.dirtyParts[address.address] & 0b0011) == 0b0011;
+                    case 'E':
+                        return (this.dirtyParts[address.address] & 0b1111) == 0b1111;
+                    default:
+                        return false;
+                    
                 }
                 
-                // high is dirty
-                if(address.rshift == 8 && address.mask == 0xFF00){
-                    return (this.dirtyParts[address.address] & 0b0010) == 0b0010;
-                }
-                
-                // X is dirty
-                if(address.rshift == 0 && address.mask == 0xFFFF){
-                    return (this.dirtyParts[address.address] & 0b0011) == 0b0011;
-                }
-                
-                // E is dirty
-                if(address.rshift == 0 && address.mask == Long.decode("0xFFFFFFFF")){
-                    return (this.dirtyParts[address.address] & 0b1111) == 0b1111;
-                }
             }
-            
-            return false;
 
-                
+            return false;
 	}
 	
 	/**
