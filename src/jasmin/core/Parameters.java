@@ -71,6 +71,7 @@ public class Parameters {
 			if (argument[i].address.dynamic) {
 				argument[i].calculateAddress(dsp);
 			} else {
+				argument[i].address.size = size;
 				argument[i].address.value = dsp.getInitial(argument[i], signed);
 			}
 		}
