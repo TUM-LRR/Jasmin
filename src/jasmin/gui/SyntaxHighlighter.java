@@ -434,9 +434,13 @@ public class SyntaxHighlighter extends DefaultStyledDocument {
 		// highlight everything with default style
 		setCharacterAttributes(startOffset, length, normal, true);
 		
+		String lineWithoutCommand = line;
+		int startOffsetAfterCommand = startOffset;
 		// highlight commands
 		if (pr.mnemo != null) {
 			applyStyle(pr.mnemo, command, line, startOffset);
+			lineWithoutCommand = line.substring(pr.mnemo.length());
+			startOffsetAfterCommand += pr.mnemo.length();
 		}
 		
 		// highlight registers
@@ -450,7 +454,7 @@ public class SyntaxHighlighter extends DefaultStyledDocument {
 			highlightLabel(pr.label, line, startOffset);
 		}
 		for (String labelstring : pr.usedLabels) {
-			highlightLabel(labelstring, line, startOffset);
+			highlightLabel(labelstring, lineWithoutCommand, startOffsetAfterCommand);
 		}
 		
 		// highlight errors
