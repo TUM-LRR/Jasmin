@@ -45,7 +45,7 @@ public class Op {
 	public static final int CONST = 0b100000000000000000000000000;
 	
 	public static final int PARAM = 0b110110001111111111111111100;
-	
+
 	public static int getDefinition(int type, int size) {
 		switch (type) {
 			case MEM:
@@ -64,7 +64,6 @@ public class Op {
 						return ERROR;
 				}
 			case REG:
-			case IMM:
 				switch (size) {
 					case 1:
 						return R8;
@@ -74,6 +73,19 @@ public class Op {
 						return R32;
 					case 8:
 						return R64;
+					default:
+						return ERROR;
+				}
+			case IMM:
+				switch (size) {
+					case 1:
+						return I8;
+					case 2:
+						return I16;
+					case 4:
+						return I32;
+					case 8:
+						return I64;
 					default:
 						return ERROR;
 				}
