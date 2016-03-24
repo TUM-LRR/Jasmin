@@ -64,7 +64,6 @@ public class Op {
 						return ERROR;
 				}
 			case REG:
-			case IMM:
 				switch (size) {
 					case 1:
 						return R8;
@@ -76,6 +75,19 @@ public class Op {
 						return R64;
 					default:
 						return ERROR;
+				}
+			case IMM:
+				switch (size) {
+				case 1:
+					return I8;
+				case 2:
+					return I16;
+				case 4:
+					return I32;
+				case 8:
+					return I64;
+				default:
+					return ERROR;
 				}
 		}
 		return ERROR;
