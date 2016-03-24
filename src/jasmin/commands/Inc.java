@@ -18,19 +18,24 @@ public class Inc extends JasminCommand {
 	
 	public void execute(Parameters p) {
 		p.a = p.get(0);
-		
-		if (p.mnemo.equals("INC")) {
-			p.b = 1;
-			p.result = p.a + p.b;
-		} else if (p.mnemo.equals("DEC")) {
-			p.b = -1;
-			p.result = p.a + p.b;
-		} else if (p.mnemo.equals("NEG")) {
-			p.b = -p.a;
-			p.a = 0;
-			p.result = p.a + p.b;
-		} else if (p.mnemo.equals("NOT")) {
-			p.result = ~p.a;
+
+		switch (p.mnemo) {
+			case "INC":
+				p.b = 1;
+				p.result = p.a + p.b;
+				break;
+			case "DEC":
+				p.b = -1;
+				p.result = p.a + p.b;
+				break;
+			case "NEG":
+				p.b = -p.a;
+				p.a = 0;
+				p.result = p.a + p.b;
+				break;
+			case "NOT":
+				p.result = ~p.a;
+				break;
 		}
 		
 		if (!p.mnemo.equals("NOT")) {
@@ -38,11 +43,7 @@ public class Inc extends JasminCommand {
 		}
 		
 		if (p.mnemo.equals("NEG")) {
-			if (p.result == 0) {
-				dataspace.fCarry = false;
-			} else {
-				dataspace.fCarry = true;
-			}
+			dataspace.fCarry = p.result != 0;
 		}
 		p.put(0, p.result, null);
 	}

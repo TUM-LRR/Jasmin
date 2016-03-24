@@ -101,7 +101,7 @@ public class HelpBrowser extends javax.swing.JPanel {
 		int index = 0;
 		while (iter.hasNext()) {
 			
-			String l = iter.next().toString();
+			String l = iter.next();
 			languageModel.addElement(l);
 			if (l.equalsIgnoreCase(mframe.getProperty("language"))) {
 				select = index;
@@ -329,7 +329,7 @@ public class HelpBrowser extends javax.swing.JPanel {
 	 *        the Event that triggered this action
 	 */
 	private void memorySizeChooserStateChanged(javax.swing.event.ChangeEvent evt) {// GEN-FIRST:event_memorySizeChooserStateChanged
-		mframe.putProperty("memory", ((Integer) memorySizeChooser.getValue()).intValue());
+		mframe.putProperty("memory", (Integer) memorySizeChooser.getValue());
 	}// GEN-LAST:event_memorySizeChooserStateChanged
 	
 	/**
@@ -337,7 +337,7 @@ public class HelpBrowser extends javax.swing.JPanel {
 	 *        the Event that triggered this action
 	 */
 	private void fontSizeChooserStateChanged(javax.swing.event.ChangeEvent evt) {// GEN-FIRST:event_fontSizeChooserStateChanged
-		mframe.putProperty("font.size", ((Integer) fontSizeChooser.getValue()).intValue());
+		mframe.putProperty("font.size", (Integer) fontSizeChooser.getValue());
 	}// GEN-LAST:event_fontSizeChooserStateChanged
 	
 	/**

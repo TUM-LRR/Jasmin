@@ -20,10 +20,7 @@ public class Loop extends JasminCommand {
 	}
 	
 	public boolean testCondition(String command) {
-		if (command.equals("LOOP")) {
-			return true;
-		}
-		return testCC(command.substring(4));
+		return command.equals("LOOP") || testCC(command.substring(4));
 	}
 	
 	@Override

@@ -21,17 +21,22 @@ public class Cbw extends JasminCommand {
 	}
 
 	public void execute(Parameters p) {
-		if (p.mnemo.equals("CBW")) {
-			p.put(dataspace.AX, p.get(dataspace.AL), null);
-		} else if (p.mnemo.equals("CWDE")) {
-			p.put(dataspace.EAX, p.get(dataspace.AX), null);
-		} else if (p.mnemo.equals("CWD")) {
-			p.a = p.get(dataspace.AX) >> 16;
-			p.a &= 0xFFFF;
-			p.put(dataspace.DX, p.a, null);
-		} else if (p.mnemo.equals("CDQ")) {
-			p.a = p.get(dataspace.EAX) >> 32;
-			p.put(dataspace.EDX, p.a, null);
+		switch (p.mnemo) {
+			case "CBW":
+				p.put(dataspace.AX, p.get(dataspace.AL), null);
+				break;
+			case "CWDE":
+				p.put(dataspace.EAX, p.get(dataspace.AX), null);
+				break;
+			case "CWD":
+				p.a = p.get(dataspace.AX) >> 16;
+				p.a &= 0xFFFF;
+				p.put(dataspace.DX, p.a, null);
+				break;
+			case "CDQ":
+				p.a = p.get(dataspace.EAX) >> 32;
+				p.put(dataspace.EDX, p.a, null);
+				break;
 		}
 	}
 

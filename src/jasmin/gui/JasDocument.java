@@ -97,14 +97,14 @@ public final class JasDocument extends javax.swing.JPanel implements Runnable {
 		model = new MemoryTableModel(data, this);
 		jTable1.setModel(model);
 		jTable1.setDefaultRenderer(String.class, new MemoryTableRenderer(model));
-		registerPanels = new LinkedList<RegisterPanel>();
+		registerPanels = new LinkedList<>();
 		RegisterSet[] regs = data.getRegisterSets();
-		for (int i = 0; i < regs.length; i++) {
-			RegisterPanel gp = new RegisterPanel(regs[i], this);
+		for (RegisterSet reg : regs) {
+			RegisterPanel gp = new RegisterPanel(reg, this);
 			jPanel3.add(gp);
 			registerPanels.add(gp);
 		}
-		lineNumbers = new ArrayList<LineNumber>();
+		lineNumbers = new ArrayList<>();
 		lineNumbersUpdating = new Semaphore(1);
 		lastHeight = 3;
 		
@@ -114,7 +114,7 @@ public final class JasDocument extends javax.swing.JPanel implements Runnable {
 		jPanel13.add(fpuPanel);
 		
 		// initialisation of GUI output modules. just add any new modules to this list:
-		modules = new LinkedList<IGuiModule>();
+		modules = new LinkedList<>();
 		
 		modules.add(new SevenSegment());
 		modules.add(new StripLight());
@@ -533,9 +533,7 @@ public final class JasDocument extends javax.swing.JPanel implements Runnable {
 	public void updateAll() {
 		updateExecutionMark();
 		model.updateChanged();
-		Iterator<RegisterPanel> iter = registerPanels.iterator();
-		while (iter.hasNext()) {
-			RegisterPanel rp = iter.next();
+		for (RegisterPanel rp : registerPanels) {
 			rp.update();
 		}
 		for (IGuiModule mod : modules) {
@@ -557,9 +555,7 @@ public final class JasDocument extends javax.swing.JPanel implements Runnable {
 	 * update highlighting of registers and the memory cells they are pointing to
 	 */
 	public void updateMemoryHighlight(boolean highlight) {
-		Iterator<RegisterPanel> iter = registerPanels.iterator();
-		while (iter.hasNext()) {
-			RegisterPanel rp = iter.next();
+		for (RegisterPanel rp : registerPanels) {
 			rp.setHighlight(highlight);
 			rp.update();
 		}
@@ -573,20 +569,15 @@ public final class JasDocument extends javax.swing.JPanel implements Runnable {
 	public Color getRegisterColor(Address register) {
 		if (register == data.EAX) {
 			return new Color(255, 200, 190);
-		}
-		if (register == data.EBX) {
+		} else if (register == data.EBX) {
 			return new Color(250, 250, 200);
-		}
-		if (register == data.ECX) {
+		} else if (register == data.ECX) {
 			return new Color(200, 240, 200);
-		}
-		if (register == data.EDX) {
+		} else if (register == data.EDX) {
 			return new Color(200, 200, 240);
-		}
-		if (register == data.ESI) {
+		} else if (register == data.ESI) {
 			return new Color(250, 230, 180);
-		}
-		if (register == data.EDI) {
+		} else if (register == data.EDI) {
 			return new Color(240, 200, 240);
 		}
 		return null;
@@ -610,9 +601,7 @@ public final class JasDocument extends javax.swing.JPanel implements Runnable {
 	}
 	
 	private void setRegisterMode(int mode) {
-		Iterator<RegisterPanel> iter = registerPanels.iterator();
-		while (iter.hasNext()) {
-			RegisterPanel rp = iter.next();
+		for (RegisterPanel rp : registerPanels) {
 			rp.setMode(mode);
 		}
 		jToggleButton5.setSelected(false);
@@ -631,7 +620,6 @@ public final class JasDocument extends javax.swing.JPanel implements Runnable {
 	}
 	
 	public void executeLineNumber(int lineNumber, boolean cached) {
-		
 		ParseError error = highlighter.executeLine(lineNumber, cached);
 		if (error != null) {
 			ErrorLabel.setText(error.errorMsg);

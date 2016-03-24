@@ -445,8 +445,8 @@ public class SyntaxHighlighter extends DefaultStyledDocument {
 		
 		// highlight registers
 		String[] rlist = DataSpace.getRegisterList();
-		for (int i = 0; i < rlist.length; i++) {
-			applyStyle(rlist[i], register, line, startOffset);
+		for (String aRlist : rlist) {
+			applyStyle(aRlist, register, line, startOffset);
 		}
 		
 		// highlight labels, variables, constants

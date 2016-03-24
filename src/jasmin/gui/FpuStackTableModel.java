@@ -17,14 +17,14 @@ import javax.swing.table.TableModel;
  */
 public class FpuStackTableModel implements TableModel {
 	
-	Fpu fpu = null;
+	private Fpu fpu = null;
 	private LinkedList<TableModelListener> listener = null;
-	JasDocument doc = null;
+	private JasDocument doc = null;
 	
 	/** Creates a new instance of FpuStackTableModel */
 	public FpuStackTableModel(Fpu fpu, JasDocument doc) {
 		this.fpu = fpu;
-		listener = new LinkedList<TableModelListener>();
+		listener = new LinkedList<>();
 		this.doc = doc;
 	}
 	

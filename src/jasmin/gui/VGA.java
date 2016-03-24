@@ -389,7 +389,7 @@ public class VGA extends javax.swing.JPanel implements IGuiModule, IListener {
 		int address_temp = 0;
 		if (newAddress != null) {
 			try {
-				address_temp = new Integer(Parser.hex2dec(newAddress.toUpperCase())).intValue();
+				address_temp = new Integer(Parser.hex2dec(newAddress.toUpperCase()));
 			} catch (Exception ex) {
 				JOptionPane.showMessageDialog(null, "The entered value was not valid!");
 			}
@@ -411,7 +411,7 @@ public class VGA extends javax.swing.JPanel implements IGuiModule, IListener {
 		int digits_temp = 0;
 		if (newDigits != null) {
 			try {
-				digits_temp = new Integer(newDigits).intValue();
+				digits_temp = new Integer(newDigits);
 			} catch (Exception ex) {
 				JOptionPane.showMessageDialog(null, "The entered value was not valid!");
 			}
@@ -430,7 +430,7 @@ public class VGA extends javax.swing.JPanel implements IGuiModule, IListener {
 		int digits_temp = 0;
 		if (newDigits != null) {
 			try {
-				digits_temp = new Integer(newDigits).intValue();
+				digits_temp = new Integer(newDigits);
 			} catch (Exception ex) {
 				JOptionPane.showMessageDialog(null, "The entered value was not valid!");
 			}
@@ -497,9 +497,9 @@ public class VGA extends javax.swing.JPanel implements IGuiModule, IListener {
 					y = j;
 				}
 			}
-			for (int x = 0; x < polys.length; x++) {
-				if (polys[x][y].poly.contains(evt.getPoint())) {
-					polys[x][y].invertBit(data);
+			for (PolygonObject[] poly : polys) {
+				if (poly[y].poly.contains(evt.getPoint())) {
+					poly[y].invertBit(data);
 				}
 			}
 		}

@@ -38,8 +38,7 @@ public class CommandLoader {
 	 */
 	static String classPath() {
 		String classPath = System.getProperty("java.class.path");
-		String ret = classPath.split(File.pathSeparator)[0];
-		return ret;
+		return classPath.split(File.pathSeparator)[0];
 	}
 	
 	/**
@@ -68,7 +67,7 @@ public class CommandLoader {
 		this.dataspace = newdataspace;
 		this.type = type;
 		this.defaultpackage = defaultpackage;
-		this.commands = new Hashtable<String, Object>();
+		this.commands = new Hashtable<>();
 		System.out.println("CommandLoader loading...");
 		URL url = getClass().getResource("../../" + defaultpackage.replace(".", "/"));
 		File file = null;
@@ -134,7 +133,7 @@ public class CommandLoader {
 		url = new URL[1];
 		try {
 			url[0] = file.toURI().toURL();
-		} catch (MalformedURLException e) {
+		} catch (MalformedURLException ignored) {
 		}
 		
 		URLClassLoader loader = new URLClassLoader(url);
@@ -177,7 +176,7 @@ public class CommandLoader {
 	 * @return an array of strings which are potential command classes
 	 */
 	private String[] getJarEntries(File file) {
-		ArrayList<String> entries = new ArrayList<String>();
+		ArrayList<String> entries = new ArrayList<>();
 		String packagename = defaultpackage.replace(".", "/") + "/";
 		try {
 			JarInputStream jis = new JarInputStream(new BufferedInputStream(new FileInputStream(file)));
@@ -220,7 +219,7 @@ public class CommandLoader {
 	 * checks if a mnemo exist
 	 */
 	public boolean commandExists(String mnemo) {
-		return (commands.get(mnemo) == null) ? false : true;
+		return commands.get(mnemo) != null;
 	}
 	
 	/**

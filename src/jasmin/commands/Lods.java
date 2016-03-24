@@ -19,10 +19,7 @@ public class Lods extends JasminCommand {
 	
 	@Override
 	public boolean overrideMaxMemAccess(String mnemo) {
-		if (mnemo.startsWith("MOVS") || mnemo.startsWith("CMPS")) {
-			return true;
-		}
-		return false;
+		return mnemo.startsWith("MOVS") || mnemo.startsWith("CMPS");
 	}
 	
 	@Override
@@ -121,11 +118,7 @@ public class Lods extends JasminCommand {
 	}
 	
 	private boolean testCondition(String prefix) {
-		if (prefix.equals("REP")) {
-			return true;
-		} else {
-			return testCC(prefix.substring(3));
-		}
+		return prefix.equals("REP") || testCC(prefix.substring(3));
 	}
 	
 	@Override

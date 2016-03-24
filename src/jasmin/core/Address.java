@@ -14,30 +14,36 @@ public class Address {
 	public boolean dynamic = false;
 	
 	// special stuff for registers
-	public LongWrapper shortcut;
+	public long shortcut;
 	public int rshift;
 	public long mask;
-	
-	public boolean equals(Address a) {
-		return (a.type == this.type) && (a.size == this.size) && (a.address == this.address)
-			&& (a.mask == this.mask);
+
+	@Override
+	public boolean equals(Object other) {
+		if (other instanceof Address) {
+			Address a = (Address) other;
+			return (a.type == this.type) && (a.size == this.size) && (a.address == this.address)
+					&& (a.mask == this.mask);
+		}
+		return false;
 	}
 	
-	public Address(int aType, int aSize, int aAddress) {
-		type = aType;
-		size = aSize;
-		address = aAddress;
-		if (Op.matches(aType, Op.MEM | Op.REG | Op.FPUREG)) {
+	public Address(int type, int size, int address) {
+		this.type = type;
+		this.size = size;
+		this.address = address;
+		if (Op.matches(type, Op.MEM | Op.REG | Op.FPUREG)) {
 			dynamic = true;
 		}
 	}
 	
-	public Address(int aType, int aSize, long aValue) {
-		type = aType;
-		size = aSize;
-		value = aValue;
+	public Address(int type, int size, long value) {
+		this.type = type;
+		this.size = size;
+		this.value = value;
 	}
-	
+
+	@Override
 	public Address clone() {
 		Address a = new Address(type, size, address);
 		a.datatype = datatype;
@@ -51,7 +57,7 @@ public class Address {
 	}
 	
 	public long getShortcut() {
-		return (shortcut.value & mask) >> rshift;
+		return (shortcut & mask) >> rshift;
 	}
 	
 }

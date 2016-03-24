@@ -35,7 +35,7 @@ public class HelpLoader {
 	public HelpLoader(String language) {
 		System.out.println("HelpLoader loading...");
 		this.language = language;
-		this.helpcache = new Hashtable<String, String>();
+		this.helpcache = new Hashtable<>();
 		init();
 		System.out.println("... done\n");
 	}
@@ -57,7 +57,7 @@ public class HelpLoader {
 		}
 		helpcache.clear();
 		this.language = language;
-		this.helpcache = new Hashtable<String, String>();
+		this.helpcache = new Hashtable<>();
 		init();
 		System.out.println("... done\n");
 	}
@@ -121,9 +121,8 @@ public class HelpLoader {
 			initJar(local);
 		}
 		LinkedList<String> l = getLanguages();
-		Iterator<String> i = l.iterator();
-		while (i.hasNext()) {
-			System.out.println("language found: " + i.next());
+		for (String aL : l) {
+			System.out.println("language found: " + aL);
 		}
 		
 	}
@@ -198,8 +197,7 @@ public class HelpLoader {
 				
 				System.out.println("+ " + String.valueOf(counter) + "\thelp text(s) from:\t"
 					+ file.getCanonicalPath());
-			} catch (FileNotFoundException e) {
-			} catch (IOException e) {
+			} catch (IOException ignored) {
 			}
 		}
 	}
@@ -213,14 +211,14 @@ public class HelpLoader {
 	 *        the name for the text file
 	 */
 	private void addToCache(JarInputStream fis, String mnemo) {
-		String text = new String();
+		String text = "";
 		byte[] buf = new byte[4096];
 		int i = 0;
 		try {
 			while ((i = fis.read(buf)) != -1) {
 				text += new String(buf, 0, i);
 			}
-		} catch (IOException e) {
+		} catch (IOException ignored) {
 		}
 		helpcache.put(mnemo, text);
 	}
@@ -246,7 +244,7 @@ public class HelpLoader {
 			System.out.println("Warning! File '" + file + "' not found!");
 			return;
 		}
-		String text = new String();
+		String text = "";
 		byte[] buf = new byte[4096];
 		int i = 0;
 		try {
@@ -254,7 +252,7 @@ public class HelpLoader {
 				text += new String(buf, 0, i);
 			}
 			fis.close();
-		} catch (IOException e) {
+		} catch (IOException ignored) {
 		}
 		helpcache.put(mnemo, text);
 	}
@@ -268,8 +266,9 @@ public class HelpLoader {
 	public void createHelpText(CommandLoader cl) {
 		File dir = new File((getClass().getResource("..").getPath()));
 		dir = new File(dir, language);
-		if (!dir.exists()) {
-			dir.mkdirs();
+		if (!dir.exists() && !dir.mkdirs()) {
+			System.out.println("Failed to create " + dir.getAbsolutePath());
+			return;
 		}
 		for (String mnemo : cl.getMnemoList()) {
 			if (!exists(mnemo)) {

@@ -99,8 +99,7 @@ public class MainFrame extends javax.swing.JFrame {
 	 * @param key
 	 */
 	public String getProperty(String key) {
-		String result = properties.getProperty(key);
-		return result;
+		return properties.getProperty(key);
 	}
 	
 	public int getProperty(String key, int oldvalue) {
@@ -1359,7 +1358,7 @@ public class MainFrame extends javax.swing.JFrame {
 				try {
 					super.undo();
 					checkButtonStates();
-				} catch (Exception ex) {
+				} catch (Exception ignored) {
 					
 				}
 			}
@@ -1368,7 +1367,7 @@ public class MainFrame extends javax.swing.JFrame {
 				try {
 					super.redo();
 					checkButtonStates();
-				} catch (Exception ex) {
+				} catch (Exception ignored) {
 					
 				}
 			}

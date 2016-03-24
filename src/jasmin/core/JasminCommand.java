@@ -124,48 +124,28 @@ public abstract class JasminCommand {
 	 */
 	protected void setFlags(Parameters p, int flags) {
 		if ((flags & ZF) == ZF) {
-			if ((p.result & ((((long) 1) << (p.size * 8)) - 1)) == 0) {
-				dataspace.fZero = true;
-			} else {
-				dataspace.fZero = false;
-			}
+			dataspace.fZero = (p.result & ((((long) 1) << (p.size * 8)) - 1)) == 0;
 		}
 		if ((flags & SF) == SF) {
-			if ((p.result >> p.size * 8 - 1 & 1) == 1) {
-				dataspace.fSign = true;
-			} else {
-				dataspace.fSign = false;
-			}
+			dataspace.fSign = (p.result >> p.size * 8 - 1 & 1) == 1;
 		}
 		if ((flags & PF) == PF) {
 			// parity flag = even number of 1s in lowest byte?
 			long temp = (p.result & 1) + (p.result >> 1 & 1) + (p.result >> 2 & 1) + (p.result >> 3 & 1)
 				+ (p.result >> 4 & 1)
 				+ (p.result >> 5 & 1) + (p.result >> 6 & 1) + (p.result >> 7 & 1);
-			if (temp % 2 == 0) {
-				dataspace.fParity = true;
-			} else {
-				dataspace.fParity = false;
-			}
+			dataspace.fParity = temp % 2 == 0;
 		}
 		if ((flags & CF) == CF) {
 			// carry flag = (n+1)th bit
-			if (((p.result >> p.size * 8) & 1) == 1) {
-				dataspace.fCarry = true;
-			} else {
-				dataspace.fCarry = false;
-			}
+			dataspace.fCarry = ((p.result >> p.size * 8) & 1) == 1;
 		}
 		if ((flags & OF) == OF) {
 			// overflow flag = incorrect sign
 			boolean aSign = ((p.a >> p.size * 8 - 1 & 1) == 1);
 			boolean bSign = ((p.b >> p.size * 8 - 1 & 1) == 1);
 			boolean resultSign = ((p.result >> p.size * 8 - 1 & 1) == 1);
-			if ((aSign == bSign) && (resultSign != aSign)) {
-				dataspace.fOverflow = true;
-			} else {
-				dataspace.fOverflow = false;
-			}
+			dataspace.fOverflow = (aSign == bSign) && (resultSign != aSign);
 		}
 		if ((flags & AF) == AF) {
 			// adjust / auxiliary carry flag = carry of bit 3, used for BCD only
@@ -177,11 +157,7 @@ public abstract class JasminCommand {
 			// MOV AL, 80h; SUB AL, 18h
 			// and that can't be fixed easily because the information just isn't there due to
 			// SUB inverting the second argument and then adding it.
-			if (((p.result >> 4) & 1) != ((((p.a >> 4) & 1) + ((p.b >> 4) & 1)) & 1)) {
-				dataspace.fAuxiliary = true;
-			} else {
-				dataspace.fAuxiliary = false;
-			}
+			dataspace.fAuxiliary = ((p.result >> 4) & 1) != ((((p.a >> 4) & 1) + ((p.b >> 4) & 1)) & 1);
 		}
 	}
 	
@@ -193,62 +169,61 @@ public abstract class JasminCommand {
 	 * @return true if the condition is met
 	 */
 	protected boolean testCC(String cc) {
-		if (cc.equals("O")) {
-			return dataspace.fOverflow;
+		switch (cc) {
+			case "O":
+				return dataspace.fOverflow;
+			case "NO":
+				return !dataspace.fOverflow;
+			case "C":
+			case "B":
+			case "NAE":
+				return dataspace.fCarry;
+			case "NC":
+			case "NB":
+			case "AE":
+				return !dataspace.fCarry;
+			case "E":
+			case "Z":
+				return dataspace.fZero;
+			case "NE":
+			case "NZ":
+				return !dataspace.fZero;
+			case "BE":
+			case "NA":
+				return (dataspace.fCarry || dataspace.fZero);
+			case "NBE":
+			case "A":
+				return !(dataspace.fCarry || dataspace.fZero);
+			case "S":
+				return dataspace.fSign;
+			case "NS":
+				return !dataspace.fSign;
+			case "P":
+			case "PE":
+				return dataspace.fParity;
+			case "NP":
+			case "PO":
+				return !dataspace.fParity;
+			case "L":
+			case "NGE":
+				// "^" = "xor" ( "!=" would work as well)
+				return (dataspace.fSign ^ dataspace.fOverflow);
+			case "NL":
+			case "GE":
+				return dataspace.fSign == dataspace.fOverflow;
+			case "LE":
+			case "NG":
+				return ((dataspace.fSign ^ dataspace.fOverflow) || dataspace.fZero);
+			case "NLE":
+			case "G":
+				return !((dataspace.fSign ^ dataspace.fOverflow) || dataspace.fZero);
+			case "CXZ":
+				return (dataspace.CX.getShortcut() == 0);
+			case "ECXZ":
+				return (dataspace.ECX.getShortcut() == 0);
+			default:
+				return false;
 		}
-		if (cc.equals("NO")) {
-			return !dataspace.fOverflow;
-		}
-		if (cc.equals("C") || cc.equals("B") || cc.equals("NAE")) {
-			return dataspace.fCarry;
-		}
-		if (cc.equals("NC") || cc.equals("NB") || cc.equals("AE")) {
-			return !dataspace.fCarry;
-		}
-		if (cc.equals("E") || cc.equals("Z")) {
-			return dataspace.fZero;
-		}
-		if (cc.equals("NE") || cc.equals("NZ")) {
-			return !dataspace.fZero;
-		}
-		if (cc.equals("BE") || cc.equals("NA")) {
-			return (dataspace.fCarry || dataspace.fZero);
-		}
-		if (cc.equals("NBE") || cc.equals("A")) {
-			return !(dataspace.fCarry || dataspace.fZero);
-		}
-		if (cc.equals("S")) {
-			return dataspace.fSign;
-		}
-		if (cc.equals("NS")) {
-			return !dataspace.fSign;
-		}
-		if (cc.equals("P") || cc.equals("PE")) {
-			return dataspace.fParity;
-		}
-		if (cc.equals("NP") || cc.equals("PO")) {
-			return !dataspace.fParity;
-		}
-		if (cc.equals("L") || cc.equals("NGE")) {
-			return (dataspace.fSign ^ dataspace.fOverflow);
-		} // "^" = "xor" ( "!=" would work as well)
-		if (cc.equals("NL") || cc.equals("GE")) {
-			return !(dataspace.fSign ^ dataspace.fOverflow);
-		}
-		if (cc.equals("LE") || cc.equals("NG")) {
-			return ((dataspace.fSign ^ dataspace.fOverflow) || dataspace.fZero);
-		}
-		if (cc.equals("NLE") || cc.equals("G")) {
-			return !((dataspace.fSign ^ dataspace.fOverflow) || dataspace.fZero);
-		}
-		if (cc.equals("CXZ")) {
-			return (dataspace.CX.getShortcut() == 0);
-		}
-		if (cc.equals("ECXZ")) {
-			return (dataspace.ECX.getShortcut() == 0);
-		}
-		
-		return false;
 	}
 	
 }

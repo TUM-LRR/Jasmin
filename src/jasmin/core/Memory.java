@@ -154,7 +154,7 @@ public class Memory implements Serializable {
 	
 	public void addListener(IListener l, int address) {
 		if (addressedListeners[address - firstIndex] == null) {
-			addressedListeners[address - firstIndex] = new LinkedList<IListener>();
+			addressedListeners[address - firstIndex] = new LinkedList<>();
 		}
 		addressedListeners[address - firstIndex].add(l);
 		System.out.println("memory listener[" + address + "] added: " + l.getClass().getName());

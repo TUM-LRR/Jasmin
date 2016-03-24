@@ -21,12 +21,15 @@ public class Fabs extends FpuCommand {
 	}
 
 	public void execute(Parameters p) {
-		if (p.mnemo.equals("FABS")) {
-			fpu.put(0, Math.abs(fpu.get(0)));
-			
-		} else if (p.mnemo.equals("FCHS")) {
-			fpu.put(0, -fpu.get(0));
-		} 
+		switch (p.mnemo) {
+			case "FABS":
+				fpu.put(0, Math.abs(fpu.get(0)));
+
+				break;
+			case "FCHS":
+				fpu.put(0, -fpu.get(0));
+				break;
+		}
 	}
 
 }
