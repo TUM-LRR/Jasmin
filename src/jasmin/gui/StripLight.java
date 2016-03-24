@@ -14,7 +14,6 @@ import javax.swing.JOptionPane;
  */
 public class StripLight extends javax.swing.JPanel implements IGuiModule, IListener {
 	
-	private static final long serialVersionUID = 1394782929343337868L;
 	private DataSpace data;
 	
 	// hard-coded config

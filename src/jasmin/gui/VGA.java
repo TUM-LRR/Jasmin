@@ -15,8 +15,6 @@ import javax.swing.JOptionPane;
 
 public class VGA extends javax.swing.JPanel implements IGuiModule, IListener {
 	
-	private static final long serialVersionUID = -7941383198012026141L;
-	
 	DataSpace data;
 	
 	private static int MODE_BINARY = 0;

@@ -10,12 +10,7 @@ import java.util.Random;
 import javax.swing.JOptionPane;
 
 public class SevenSegment extends javax.swing.JPanel implements IGuiModule, IListener {
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -7421548992255695887L;
-	
+
 	DataSpace data;
 	
 	// hard-coded config

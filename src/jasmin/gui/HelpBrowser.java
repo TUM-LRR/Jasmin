@@ -20,8 +20,6 @@ import javax.swing.text.html.*;
  */
 public class HelpBrowser extends javax.swing.JPanel {
 	
-	private static final long serialVersionUID = 1611148227929564585L;
-	
 	private MainFrame mframe = null;
 	LinkedList<URL> history;
 	LinkedList<URL> forwardhistory;
@@ -318,7 +316,7 @@ public class HelpBrowser extends javax.swing.JPanel {
 		try {
 			value = Integer.parseInt(dec);
 			mframe.putProperty("offset", value);
-		} catch (Exception ex) {
+		} catch (Exception ignored) {
 			
 		}
 		offsetTextField.setText(mframe.getProperty("offset"));

@@ -70,7 +70,7 @@ public class CommandLoader {
 		this.commands = new Hashtable<>();
 		System.out.println("CommandLoader loading...");
 		URL url = getClass().getResource("../../" + defaultpackage.replace(".", "/"));
-		File file = null;
+		File file;
 		if (url != null) {
 			System.out.println("looks like you are not starting from a jar-package");
 			file = new File(url.getPath());
@@ -128,9 +128,8 @@ public class CommandLoader {
 	 * @return currently always returns 0
 	 */
 	private int loadClass(File file, String[] names) {
-		URL[] url = null;
+		URL[] url = new URL[1];
 		int counter = 0;
-		url = new URL[1];
 		try {
 			url[0] = file.toURI().toURL();
 		} catch (MalformedURLException ignored) {
@@ -206,13 +205,7 @@ public class CommandLoader {
 	 * @return a list of all avaiable command mnemonics
 	 */
 	public String[] getMnemoList() {
-		Enumeration<String> enumeration = commands.keys();
-		String[] result = new String[commands.size()];
-		int i = 0;
-		while (enumeration.hasMoreElements()) {
-			result[i++] = enumeration.nextElement();
-		}
-		return result;
+		return commands.keySet().toArray(new String[commands.size()]);
 	}
 	
 	/**

@@ -86,13 +86,7 @@ public class HelpLoader {
 	 * @return a String array containing all mnemos for which help files exist
 	 */
 	public String[] getMnemoList() {
-		Enumeration<String> enumeration = helpcache.keys();
-		String[] result = new String[helpcache.size()];
-		int i = 0;
-		while (enumeration.hasMoreElements()) {
-			result[i++] = enumeration.nextElement();
-		}
-		return result;
+		return helpcache.keySet().toArray(new String[helpcache.size()]);
 	}
 	
 	/**
@@ -152,7 +146,7 @@ public class HelpLoader {
 		try {
 			System.out.println("+ " + String.valueOf(counter) + "\thelp text(s) from:\t"
 				+ local.getCanonicalPath());
-		} catch (IOException e) {
+		} catch (IOException ignored) {
 		}
 		
 	}
@@ -352,7 +346,7 @@ public class HelpLoader {
 					if (!jar.getCanonicalPath().equals(file.getCanonicalPath())) {
 						searchJarPath(file, paths);
 					}
-				} catch (IOException e) {
+				} catch (IOException ignored) {
 				}
 				searchJarPath(jar, paths);
 			}
@@ -378,7 +372,7 @@ public class HelpLoader {
 				JarEntry je;
 				jis = new JarInputStream(new BufferedInputStream(new FileInputStream(file)));
 				je = jis.getNextJarEntry();
-				
+
 				while (je != null) {
 					if (je.getName().startsWith(helproot)) {
 						String[] name = je.getName().split("/");
@@ -389,8 +383,7 @@ public class HelpLoader {
 					je = jis.getNextJarEntry();
 				}
 				jis.close();
-			} catch (FileNotFoundException e) {
-			} catch (IOException e) {
+			} catch (IOException ignored) {
 			}
 		}
 	}

@@ -22,7 +22,6 @@ import javax.swing.*;
 
 public class Console extends javax.swing.JPanel implements IGuiModule, IListener {
 	
-	private static final long serialVersionUID = 6871247851236376198L;
 	private javax.swing.JTextArea output;
 	private javax.swing.JScrollPane jScrollPane1;
 	private JPopupMenu jPopupMenu;

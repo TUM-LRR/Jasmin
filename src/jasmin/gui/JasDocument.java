@@ -23,7 +23,6 @@ import javax.swing.undo.UndoManager;
  */
 public final class JasDocument extends javax.swing.JPanel implements Runnable {
 	
-	private static final long serialVersionUID = 1L;
 	private String title = "new document";
 	/** The line which is currently executed. */
 	private int markedLine = 0;

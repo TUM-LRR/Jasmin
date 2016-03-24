@@ -920,8 +920,7 @@ public class DataSpace {
 			addressOutOfRange = true;
 			return null;
 		}
-		Address a = new Address(Op.MEM, size, result);
-		return a;
+		return new Address(Op.MEM, size, result);
 	}
 	
 	/**
@@ -1006,23 +1005,11 @@ public class DataSpace {
 	 * @return list of all registered variables
 	 */
 	public String[] getVariableList() {
-		Enumeration<String> enumeration = variables.keys();
-		String[] result = new String[variables.size()];
-		int i = 0;
-		while (enumeration.hasMoreElements()) {
-			result[i++] = enumeration.nextElement();
-		}
-		return result;
+		return variables.keySet().toArray(new String[variables.size()]);
 	}
 	
 	public String[] getConstantList() {
-		Enumeration<String> enumeration = constants.keys();
-		String[] result = new String[constants.size()];
-		int i = 0;
-		while (enumeration.hasMoreElements()) {
-			result[i++] = enumeration.nextElement();
-		}
-		return result;
+		return constants.keySet().toArray(new String[constants.size()]);
 	}
 	
 	/**

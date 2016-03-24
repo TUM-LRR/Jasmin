@@ -20,7 +20,6 @@ import javax.swing.text.*;
  */
 public class SyntaxHighlighter extends DefaultStyledDocument {
 	
-	private static final long serialVersionUID = 1L;
 	private JTextPane editor = null;
 	private JasDocument document = null;
 	private Style normal, command, register, error, label, comment, constant, variable;
@@ -522,7 +521,7 @@ public class SyntaxHighlighter extends DefaultStyledDocument {
 	public String getTextToOffset(int startOffset, int endOffset) {
 		try {
 			return super.getText(startOffset, endOffset - startOffset);
-		} catch (BadLocationException e) {
+		} catch (BadLocationException ignored) {
 		}
 		return "";
 	}
