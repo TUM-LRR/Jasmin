@@ -1,2 +1,10 @@
 <br>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head><title>CMPXCHG.htm</title></head><body><div style="font-family:Helvetica,Arial,sans-serif;font-size:11px;"><strong>Command:</strong> CMPXCHG - Compare and Exchange<br><strong>Arguments:</strong> DEST: general-purpose register or memory location; SRC: general-purpose register<br><strong>Usage:</strong> CMPXCHG DEST, SRC<br><strong>Effects:</strong> if (EAX/AX/AL=DEST) then dest:=src else EAX/AX/AL:=dest; If EAX/AX/AL (according to the size of the arguments) and DEST are equal, SRC is copied to DEST, otherwise DEST is copied to EAX/AX/AL.<br><strong>Flags&nbsp;to&nbsp;be&nbsp;set:</strong> ZF is set if (EAX/AX/AL=DEST). CF, PF, AF, SF, and OF are set according to the results of the comparison.<br><strong>Misc:</strong> Both arguments have to be of the same size.</div></body></html><br>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><title>CMPXCHG.htm</title></head>
+<body>
+<div style="font-family:Helvetica,Arial,sans-serif;font-size:11px;">
+    <strong>Command:</strong> CMPXCHG - Compare and Exchange<br><strong>Arguments:</strong> DEST: general-purpose register or memory location; SRC: general-purpose register<br><strong>Usage:</strong> CMPXCHG DEST, SRC<br><strong>Effects:</strong> if (EAX/AX/AL=DEST) then dest:=src else EAX/AX/AL:=dest; If EAX/AX/AL (according to the size of the arguments) and DEST are equal, SRC is copied to DEST, otherwise DEST is copied to EAX/AX/AL.<br><strong>Flags&nbsp;to&nbsp;be&nbsp;set:</strong> ZF is set if (EAX/AX/AL=DEST). CF, PF, AF, SF, and OF are set according to the results of the comparison.<br><strong>Misc:</strong> Both arguments have to be of the same size.
+</div>
+</body>
+</html><br>

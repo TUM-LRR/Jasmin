@@ -1,17 +1,16 @@
-
-			<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-			<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-			<head>
-			<title>AAA.htm</title>
-			</head>
-			<body>
-			<div style="font-family:Helvetica,Arial,sans-serif;font-size:11px;">
-			<strong>Command:</strong> AAA - ASCII Adjust After Addition<br>
-			<strong>Arguments:</strong> none<br>
-			<strong>Usage:</strong> AAA<br>
-			<strong>Effects:</strong> AAA should be used after a one-byte ADD instruction whose destination was the AL register: by means of examining the value in the low nibble of AL and also the auxiliary carry flag AF, it determines whether the addition has overflowed, and adjusts it (and sets the carry flag) if so. You can add long BCD strings together by doing ADD/AAA on the low digits, then doing ADC/AAA on each subsequent digit.<br>
-			<strong>Flags&nbsp;to&nbsp;be&nbsp;set:</strong> CF=1 when addition has overflowed
-			
-			</body>
-			</html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>AAA.htm</title>
+</head>
+<body>
+<div style="font-family:Helvetica,Arial,sans-serif;font-size:11px;">
+    <strong>Command:</strong> AAA - ASCII Adjust After Addition<br>
+    <strong>Arguments:</strong> none<br>
+    <strong>Usage:</strong> AAA<br>
+    <strong>Effects:</strong> AAA should be used after a one-byte ADD instruction whose destination was the AL register: by means of examining the value in the low nibble of AL and also the auxiliary carry flag AF, it determines whether the addition has overflowed, and adjusts it (and sets the carry flag) if so. You can add long BCD strings together by doing ADD/AAA on the low digits, then doing ADC/AAA on each subsequent digit.<br>
+    <strong>Flags&nbsp;to&nbsp;be&nbsp;set:</strong> CF=1 when addition has overflowed
+</div>
+</body>
+</html>
 			
