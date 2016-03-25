@@ -67,7 +67,7 @@ public class Memory implements Serializable {
 		this.dirtysteps = Integer.MIN_VALUE + 2;
 		this.firstIndex = startIndex;
 		this.addressedListeners = new LinkedList[size];
-		this.globalListeners = new LinkedList<IListener>();
+		this.globalListeners = new LinkedList<>();
 	}
 	
 	// //////////////////////////////////////

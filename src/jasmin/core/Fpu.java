@@ -365,11 +365,7 @@ public class Fpu {
 	 */
 	public static boolean fitsInto(double d, int numberBytes) {
 		long l = ((Double) d).longValue();
-		if (Parser.getOperandSize(l) <= numberBytes) {
-			return true;
-		} else {
-			return false;
-		}
+		return Parser.getOperandSize(l) <= numberBytes;
 	}
 	
 	/**

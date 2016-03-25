@@ -45,12 +45,12 @@ public class SyntaxHighlighter extends DefaultStyledDocument {
 			"font.size", 12)));
 		initStyles();
 		
-		lineInfo = new ArrayList<LineInfo>();
+		lineInfo = new ArrayList<>();
 		lineInfo.add(new LineInfo());
-		labelDefinitions = new HashMap<String, LineInfo>();
-		labelUses = new HashMap<String, HashSet<LineInfo>>();
-		errorLines = new HashSet<LineInfo>();
-		toDoList = new HashSet<LineInfo>();
+		labelDefinitions = new HashMap<>();
+		labelUses = new HashMap<>();
+		errorLines = new HashSet<>();
+		toDoList = new HashSet<>();
 	}
 	
 	private void initStyles() {
@@ -260,15 +260,12 @@ public class SyntaxHighlighter extends DefaultStyledDocument {
 				labelUses.get(label).add(info);
 			}
 		}
-		// this "while" is just an "if" that is breakable :-)
-		while (prNew.label != null) {
-			// check for existing label
-			LineInfo existingDefinition = labelDefinitions.get(prNew.label);
-			if ((existingDefinition != null) && (existingDefinition != info)) {
-				prNew.error = new ParseError(prNew.originalLine, prNew.label, 0,
+		// check for existing label
+		LineInfo existingDefinition = labelDefinitions.get(prNew.label);
+		if ((existingDefinition != null) && (existingDefinition != info)) {
+			prNew.error = new ParseError(prNew.originalLine, prNew.label, 0,
 					"Label already defined in line " + getLineNumberByLineInfo(existingDefinition));
-				break;
-			}
+		} else {
 			// add label definition
 			labelDefinitions.put(prNew.label, info);
 			if (!labelUses.containsKey(prNew.label)) {
@@ -283,7 +280,6 @@ public class SyntaxHighlighter extends DefaultStyledDocument {
 			if (newLabelType == 3) {
 				toDoList.addAll(labelUses.get(prNew.label));
 			}
-			break;
 		}
 		if (prNew.error != null) {
 			errorLines.add(info);

@@ -37,8 +37,8 @@ public class HelpBrowser extends javax.swing.JPanel {
 		initComponents();
 		HtmlPane.setContentType("text/html");
 		HtmlPane.setEditable(false);
-		history = new LinkedList<URL>();
-		forwardhistory = new LinkedList<URL>();
+		history = new LinkedList<>();
+		forwardhistory = new LinkedList<>();
 		HTMLEditorKit editorKit = createEditorKit();
 		HtmlPane.setEditorKit(editorKit);
 		fontNames = java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames();

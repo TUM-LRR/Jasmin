@@ -233,7 +233,7 @@ public class CommandLoader {
 	 * @return an array of files of potential command classes
 	 */
 	private File[] getFiles(File dir, String extension) {
-		ArrayList<File> files = new ArrayList<File>();
+		ArrayList<File> files = new ArrayList<>();
 		getFilesEmbedded(dir, files, extension);
 		File[] filearray = new File[files.size()];
 		for (int i = 0; i < files.size(); i++) {

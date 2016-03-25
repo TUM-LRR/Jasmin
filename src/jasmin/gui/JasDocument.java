@@ -520,10 +520,7 @@ public final class JasDocument extends javax.swing.JPanel implements Runnable {
 	}
 	
 	private boolean isBreakPoint(int lineNumber) {
-		if (lineNumber >= lineNumbers.size()) {
-			return false;
-		}
-		return lineNumbers.get(lineNumber).isBreakPoint();
+		return lineNumber < lineNumbers.size() && lineNumbers.get(lineNumber).isBreakPoint();
 	}
 	
 	/**

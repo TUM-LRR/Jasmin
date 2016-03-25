@@ -77,7 +77,7 @@ public class HelpLoader {
 	 * @return if a context help exists for that mnemo
 	 */
 	public boolean exists(String mnemo) {
-		return helpcache.get(mnemo.toLowerCase()) != null;
+		return helpcache.containsKey(mnemo.toLowerCase());
 	}
 	
 	/**
@@ -94,7 +94,7 @@ public class HelpLoader {
 	 */
 	private void init() {
 		URL home = getClass().getResource("..");
-		File local = null;
+		File local;
 		if (home != null) {
 			System.out.println("looks like you are not starting from a jar-package");
 			local = new File(home.getPath() + "/" + helproot + "/" + language + "/");
@@ -219,7 +219,6 @@ public class HelpLoader {
 	
 	private static String trimEntryName(JarEntry je) {
 		String[] s = je.getName().toLowerCase().replace(".htm", "").split("/");
-		;
 		return s[s.length - 1];
 	}
 	
@@ -231,7 +230,7 @@ public class HelpLoader {
 	 *        the name for the text file
 	 */
 	private void addToCache(File file, String mnemo) {
-		BufferedInputStream fis = null;
+		BufferedInputStream fis;
 		try {
 			fis = new BufferedInputStream(new FileInputStream(file));
 		} catch (FileNotFoundException e) {
@@ -297,8 +296,8 @@ public class HelpLoader {
 	 *        the String to add
 	 */
 	public void addToList(LinkedList<String> paths, String s) {
-		for (int i = 0; i < paths.size(); i++) {
-			if (paths.get(i).equals(s)) {
+		for (String path : paths) {
+			if (path.equals(s)) {
 				return;
 			}
 		}
@@ -311,9 +310,9 @@ public class HelpLoader {
 	 * @return a LinkedList of possible language directories
 	 */
 	public LinkedList<String> getLanguages() {
-		LinkedList<String> paths = new LinkedList<String>();
+		LinkedList<String> paths = new LinkedList<>();
 		URL home = getClass().getResource("..");
-		File local = null;
+		File local;
 		if (home != null) {
 			System.out.println("looks like you are not starting from a jar-package");
 			try {
@@ -385,27 +384,6 @@ public class HelpLoader {
 				jis.close();
 			} catch (IOException ignored) {
 			}
-		}
-	}
-	
-	/**
-	 * tests
-	 * 
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		
-		HelpLoader hl = new HelpLoader("help/en");
-		LinkedList<String> ll = hl.getLanguages();
-		for (int i = 0; i < ll.size(); i++) {
-			System.out.println(ll.get(i));
-			// Enumeration keys = hl.helpcache.keys();
-			// while (keys.hasMoreElements()) {
-			// String key = (String) keys.nextElement();
-			// System.out.println(key);
-			// System.out.println(hl.helpcache.get(key));
-			// }
-			// hl.createHelpText(new CommandLoader(new DataSpace(1),"jasmin.commands", JasminCommand.class));
 		}
 	}
 }

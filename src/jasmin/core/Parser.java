@@ -77,7 +77,7 @@ public class Parser {
 		}
 		
 		// seems to be a command, analyze it
-		ArrayList<FullArgument> arguments = new ArrayList<FullArgument>();
+		ArrayList<FullArgument> arguments = new ArrayList<>();
 		String command = null, argument = "";
 		boolean commaDone = false;
 		int nextSize = -1, size, type, lastType = Op.NULL;
@@ -112,8 +112,6 @@ public class Parser {
 				if (Op.matches(type, Op.SIZEQUALI)) {
 					// if it's a size qualifier, remember its information and we're done
 					nextSize = getOperandSize(token, type);
-				} else if (type == Op.COMMA) {
-					// if it was only a comma, do nothing else
 				} else if (command == null) {
 					// if there was no command so far, the current token will be it
 					command = token;
@@ -680,31 +678,29 @@ public class Parser {
 	 * @return the size of the operand
 	 */
 	public static int getOperandSize(long operand) {
-		int size = -1;
 		if (operand < 0) {
 			operand *= (-1);
 			operand -= 1;
 			if ((operand & 127) == operand) {
-				size = 1;
+				return 1;
 			} else if ((operand & ((1 << 15) - 1)) == operand) {
-				size = 2;
+				return 2;
 			} else if ((operand & ((1 << 31) - 1)) == operand) {
-				size = 4;
+				return 4;
 			} else {
-				operand = 8;
+				return 8;
 			}
 		} else {
 			if ((operand & 255) == operand) {
-				size = 1;
+				return 1;
 			} else if ((operand & 65535) == operand) {
-				size = 2;
+				return 2;
 			} else if ((operand & Long.valueOf("4294967295")) == operand) {
-				size = 4;
+				return 4;
 			} else {
-				size = 8;
+				return 8;
 			}
 		}
-		return size;
 	}
 	
 	/**
