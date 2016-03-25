@@ -11,6 +11,7 @@ import java.awt.event.MouseEvent;
 import java.io.*;
 import java.lang.Thread.State;
 import java.util.*;
+import java.util.List;
 import java.util.concurrent.Semaphore;
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
@@ -28,12 +29,12 @@ public final class JasDocument extends javax.swing.JPanel implements Runnable {
 	private int markedLine = 0;
 	private SyntaxHighlighter highlighter = null;
 	private MemoryTableModel model = null;
-	private final LinkedList<IGuiModule> modules;
+	private final List<IGuiModule> modules;
 	private IGuiModule lastSelected = null;
 	public CommandLoader cmdLoader = null;
 	public DataSpace data = null;
 	public Parser parser = null;
-	private LinkedList<RegisterPanel> registerPanels = null;
+	private List<RegisterPanel> registerPanels = null;
 	private ArrayList<LineNumber> lineNumbers = null;
 	private int lastHeight = 0;
 	private Semaphore lineNumbersUpdating;
@@ -96,7 +97,7 @@ public final class JasDocument extends javax.swing.JPanel implements Runnable {
 		model = new MemoryTableModel(data, this);
 		jTable1.setModel(model);
 		jTable1.setDefaultRenderer(String.class, new MemoryTableRenderer(model));
-		registerPanels = new LinkedList<>();
+		registerPanels = new ArrayList<>();
 		RegisterSet[] regs = data.getRegisterSets();
 		for (RegisterSet reg : regs) {
 			RegisterPanel gp = new RegisterPanel(reg, this);
@@ -113,7 +114,7 @@ public final class JasDocument extends javax.swing.JPanel implements Runnable {
 		jPanel13.add(fpuPanel);
 		
 		// initialisation of GUI output modules. just add any new modules to this list:
-		modules = new LinkedList<>();
+		modules = new ArrayList<>();
 		
 		modules.add(new SevenSegment());
 		modules.add(new StripLight());

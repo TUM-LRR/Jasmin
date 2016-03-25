@@ -35,8 +35,8 @@ public class Registers {
                         dirtyParts[i] = 0;
 		}
 		dirtyTimeStamp = Integer.MIN_VALUE + 2;
-		// addressedListeners = new LinkedList[NUMREG];
-		// globalListeners = new LinkedList<IListener>();
+		// addressedListeners = new ArrayList[NUMREG];
+		// globalListeners = new ArrayList<IListener>();
 	}
 
 	public Address constructAddress(String registerName, Hashtable<String, Address> registerTable) {

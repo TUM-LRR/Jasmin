@@ -112,6 +112,8 @@ public class Parser {
 				if (Op.matches(type, Op.SIZEQUALI)) {
 					// if it's a size qualifier, remember its information and we're done
 					nextSize = getOperandSize(token, type);
+				} else if (type == Op.COMMA) {
+					// if it was only a comma, do nothing else
 				} else if (command == null) {
 					// if there was no command so far, the current token will be it
 					command = token;

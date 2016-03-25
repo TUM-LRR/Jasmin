@@ -1,6 +1,7 @@
 package jasmin.core;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Pattern;
 
 public class Fpu {
@@ -45,7 +46,7 @@ public class Fpu {
 		for (int i = 0; i < numRegisters; i++) {
 			tags[i] = TAGEMPTY;
 		}
-		globalListeners = new LinkedList<>();
+		globalListeners = new ArrayList<>();
 	}
 	
 	/**
@@ -427,7 +428,7 @@ public class Fpu {
 	
 	// ////// LISTENER SUPPORT
 	
-	private LinkedList<IListener> globalListeners;
+	private List<IListener> globalListeners;
 	
 	public void addListener(IListener l) {
 		globalListeners.add(l);

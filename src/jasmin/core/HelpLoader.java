@@ -114,7 +114,7 @@ public class HelpLoader {
 			local = CommandLoader.getLocation();
 			initJar(local);
 		}
-		LinkedList<String> l = getLanguages();
+		List<String> l = getLanguages();
 		for (String aL : l) {
 			System.out.println("language found: " + aL);
 		}
@@ -288,14 +288,14 @@ public class HelpLoader {
 	}
 	
 	/**
-	 * adds to the LinkedList only if the String s has not alreay been added
+	 * adds to the list only if the String s has not alreay been added
 	 * 
 	 * @param paths
-	 *        the LinkedList to add to
+	 *        the list to add to
 	 * @param s
 	 *        the String to add
 	 */
-	public void addToList(LinkedList<String> paths, String s) {
+	public void addToList(List<String> paths, String s) {
 		for (String path : paths) {
 			if (path.equals(s)) {
 				return;
@@ -307,10 +307,10 @@ public class HelpLoader {
 	/**
 	 * scans for possible help directories (languages)
 	 * 
-	 * @return a LinkedList of possible language directories
+	 * @return a list of possible language directories
 	 */
-	public LinkedList<String> getLanguages() {
-		LinkedList<String> paths = new LinkedList<>();
+	public List<String> getLanguages() {
+		List<String> paths = new ArrayList<>();
 		URL home = getClass().getResource("..");
 		File local;
 		if (home != null) {
@@ -360,11 +360,11 @@ public class HelpLoader {
 	 * @param file
 	 *        the jar file
 	 * @param paths
-	 *        the LinkedList to add to
+	 *        the list to add to
 	 * @param helproot
 	 *        the root directory of all help directories
 	 */
-	private void searchJarPath(File file, LinkedList<String> paths) {
+	private void searchJarPath(File file, List<String> paths) {
 		if (file.getName().toLowerCase().endsWith(".jar") && file.isFile()) {
 			try {
 				JarInputStream jis;

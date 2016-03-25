@@ -260,25 +260,27 @@ public class SyntaxHighlighter extends DefaultStyledDocument {
 				labelUses.get(label).add(info);
 			}
 		}
-		// check for existing label
-		LineInfo existingDefinition = labelDefinitions.get(prNew.label);
-		if ((existingDefinition != null) && (existingDefinition != info)) {
-			prNew.error = new ParseError(prNew.originalLine, prNew.label, 0,
-					"Label already defined in line " + getLineNumberByLineInfo(existingDefinition));
-		} else {
-			// add label definition
-			labelDefinitions.put(prNew.label, info);
-			if (!labelUses.containsKey(prNew.label)) {
-				labelUses.put(prNew.label, new HashSet<LineInfo>());
-			}
-			int newLabelType = getLabelType(prNew.label);
-			if (newLabelType != oldLabelType) {
-				// mark lines with errors for re-parsing (maybe the new label solves an error)
-				toDoList.addAll(errorLines);
-			}
-			// If the label is a constant, re-parse all lines using it.
-			if (newLabelType == 3) {
-				toDoList.addAll(labelUses.get(prNew.label));
+		if (prNew.label != null) {
+			// check for existing label
+			LineInfo existingDefinition = labelDefinitions.get(prNew.label);
+			if ((existingDefinition != null) && (existingDefinition != info)) {
+				prNew.error = new ParseError(prNew.originalLine, prNew.label, 0,
+						"Label already defined in line " + getLineNumberByLineInfo(existingDefinition));
+			} else {
+				// add label definition
+				labelDefinitions.put(prNew.label, info);
+				if (!labelUses.containsKey(prNew.label)) {
+					labelUses.put(prNew.label, new HashSet<LineInfo>());
+				}
+				int newLabelType = getLabelType(prNew.label);
+				if (newLabelType != oldLabelType) {
+					// mark lines with errors for re-parsing (maybe the new label solves an error)
+					toDoList.addAll(errorLines);
+				}
+				// If the label is a constant, re-parse all lines using it.
+				if (newLabelType == 3) {
+					toDoList.addAll(labelUses.get(prNew.label));
+				}
 			}
 		}
 		if (prNew.error != null) {
