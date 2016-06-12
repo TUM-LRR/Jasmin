@@ -1,18 +1,18 @@
-
-			<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-			<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-			<head>
-			<title>CMP.htm</title>
-			</head>
-			<body>
-			<div style="font-family:Helvetica,Arial,sans-serif;font-size:11px;">
-			<strong>Command:</strong> CMP - Compare Two Operands<br>
-			<strong>Arguments:</strong> SRC1: Immediate, Register or memory location; SRC2:  Immediate, Register or memory location<br>
-			<strong>Usage:</strong> CMP SRC1, SRC2<br>
-			<strong>Effects:</strong> :=SRC1-SRC2; Flags are set in the same way as the SUB instruction does, but no result is of the substraction is not saved.<br>
-			<strong>Flags&nbsp;to&nbsp;be&nbsp;set:</strong> The OF, SF, ZF, AF, CF, and PF flags are set according to the result.
-			<br><strong>Misc:</strong> Usually the next operation would be a Jcc or CMOVcc to perform a operation according to the result of the comparison.
-Only one memory argument is allowed and both arguments have to be of the same size (8, 16 or 32bit)</div>
-			</body>
-			</html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>CMP.htm</title>
+</head>
+<body>
+<div style="font-family:Helvetica,Arial,sans-serif;font-size:11px;">
+    <strong>Command:</strong> CMP - Compare Two Operands<br>
+    <strong>Arguments:</strong> SRC1: Immediate, Register or memory location; SRC2: Immediate, Register or memory location<br>
+    <strong>Usage:</strong> CMP SRC1, SRC2<br>
+    <strong>Effects:</strong> :=SRC1-SRC2; Flags are set in the same way as the SUB instruction does, but no result is of the substraction is not saved.<br>
+    <strong>Flags&nbsp;to&nbsp;be&nbsp;set:</strong> The OF, SF, ZF, AF, CF, and PF flags are set according to the result.
+    <br><strong>Misc:</strong> Usually the next operation would be a Jcc or CMOVcc to perform a operation according to the result of the comparison.
+    Only one memory argument is allowed and both arguments have to be of the same size (8, 16 or 32bit)
+</div>
+</body>
+</html>
 			

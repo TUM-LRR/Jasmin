@@ -1,17 +1,16 @@
-
-			<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-			<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-			<head>
-			<title>AAM.htm</title>
-			</head>
-			<body>
-			<div style="font-family:Helvetica,Arial,sans-serif;font-size:11px;">
-			<strong>Command:</strong> AAM - ASCII Adjust AX After Multiply<br>
-			<strong>Arguments:</strong> imm: divisor for AL, 10 if not specified<br>
-			<strong>Usage:</strong> AAM | AAM imm<br>
-			<strong>Effects:</strong> AAM is for use after you have multiplied two decimal digits together and left the result in AL: it divides AL by ten and stores the quotient in AH, leaving the remainder in AL. The divisor 10 can be changed by specifying an operand to the instruction: a particularly handy use of this is AAM 16, causing the two nibbles in AL to be separated into AH and AL.<br>
-			<strong>Flags&nbsp;to&nbsp;be&nbsp;set:</strong> none
-			
-			</body>
-			</html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>AAM.htm</title>
+</head>
+<body>
+<div style="font-family:Helvetica,Arial,sans-serif;font-size:11px;">
+    <strong>Command:</strong> AAM - ASCII Adjust AX After Multiply<br>
+    <strong>Arguments:</strong> imm: divisor for AL, 10 if not specified<br>
+    <strong>Usage:</strong> AAM | AAM imm<br>
+    <strong>Effects:</strong> AAM is for use after you have multiplied two decimal digits together and left the result in AL: it divides AL by ten and stores the quotient in AH, leaving the remainder in AL. The divisor 10 can be changed by specifying an operand to the instruction: a particularly handy use of this is AAM 16, causing the two nibbles in AL to be separated into AH and AL.<br>
+    <strong>Flags&nbsp;to&nbsp;be&nbsp;set:</strong> none
+</div>
+</body>
+</html>
 			

@@ -1,7 +1,8 @@
 package jasmin.core;
 
 import java.io.Serializable;
-import java.util.LinkedList;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * replacement for the object Byte which is signed.
@@ -66,8 +67,8 @@ public class Memory implements Serializable {
 		}
 		this.dirtysteps = Integer.MIN_VALUE + 2;
 		this.firstIndex = startIndex;
-		this.addressedListeners = new LinkedList[size];
-		this.globalListeners = new LinkedList<IListener>();
+		this.addressedListeners = new ArrayList[size];
+		this.globalListeners = new ArrayList<>();
 	}
 	
 	// //////////////////////////////////////
@@ -149,12 +150,12 @@ public class Memory implements Serializable {
 	// //////////////////////////////////////
 	// LISTENER SUPPORT
 	
-	private LinkedList<IListener>[] addressedListeners;
-	private LinkedList<IListener> globalListeners;
+	private List<IListener>[] addressedListeners;
+	private List<IListener> globalListeners;
 	
 	public void addListener(IListener l, int address) {
 		if (addressedListeners[address - firstIndex] == null) {
-			addressedListeners[address - firstIndex] = new LinkedList<IListener>();
+			addressedListeners[address - firstIndex] = new ArrayList<>();
 		}
 		addressedListeners[address - firstIndex].add(l);
 		System.out.println("memory listener[" + address + "] added: " + l.getClass().getName());

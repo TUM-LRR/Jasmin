@@ -1,6 +1,7 @@
 package jasmin.core;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Pattern;
 
 public class Fpu {
@@ -45,7 +46,7 @@ public class Fpu {
 		for (int i = 0; i < numRegisters; i++) {
 			tags[i] = TAGEMPTY;
 		}
-		globalListeners = new LinkedList<IListener>();
+		globalListeners = new ArrayList<>();
 	}
 	
 	/**
@@ -365,11 +366,7 @@ public class Fpu {
 	 */
 	public static boolean fitsInto(double d, int numberBytes) {
 		long l = ((Double) d).longValue();
-		if (Parser.getOperandSize(l) <= numberBytes) {
-			return true;
-		} else {
-			return false;
-		}
+		return Parser.getOperandSize(l) <= numberBytes;
 	}
 	
 	/**
@@ -426,17 +423,12 @@ public class Fpu {
 	public static boolean doubleIsDenormal(double d) {
 		long exp = doubleExponent(d);
 		long mant = doubleMantissa(d);
-		if ((exp == 0) && (mant != 0)) {
-			return true;
-		} else {
-			return false;
-		}
-		
+		return (exp == 0) && (mant != 0);
 	}
 	
 	// ////// LISTENER SUPPORT
 	
-	private LinkedList<IListener> globalListeners;
+	private List<IListener> globalListeners;
 	
 	public void addListener(IListener l) {
 		globalListeners.add(l);
@@ -452,42 +444,6 @@ public class Fpu {
 		for (IListener l : globalListeners) {
 			l.notifyChanged(address, newValue);
 		}
-	}
-	
-	/**
-	 * testing only
-	 * 
-	 * @param args
-	 *        arguments
-	 */
-	public static void main(String[] args) {
-		// for (String s : Op.humanNamesArray(Integer.parseInt("00000111111111111010111011101100", 2))) {
-		// System.out.println(s);
-		// }
-		System.out.println(Parser.hex2dec(Parser.unescape(Parser.escape("[0X100000]"))));
-		System.out.println(Parser.hex2dec("[0X100000]"));
-		System.out.println(Parser.hex2dec("[100000H]"));
-		/*double a = -0.0;
-		
-		System.out.println("double a: "+Long.toBinaryString(Double.doubleToRawLongBits(a)));
-		System.out.println("sign: "+doubleSign(a)+" exponent: "+doubleExponent(a)+" mantisse: "+doubleMantissa(a));
-		
-		System.out.println(doubleFromPackedBCD(packedBCDFromDouble(12345)));
-		System.out.println(doubleFromUnsignedByte(unsignedByteFromDouble(-12345.678)));
-		Fpu fpu = new Fpu();
-		fpu.push(1);
-		fpu.push(2);
-		fpu.push(3);
-		for (int i = 0; i<fpu.getNumRegisters(); i++) {
-			System.out.println(i+": "+fpu.getRegisterName(i)+" = "+fpu.getRegisterContent(i,10));
-		}
-		System.out.println(fpu.pop());
-		fpu.fZeroDivide = true;
-		fpu.fStackFault = true;
-		fpu.fC3 = true;
-		System.out.println("FPU top pointer: "+fpu.top);
-		fpu.putStatusWord(fpu.getStatusWord());
-		fpu.getStatusWord();*/
 	}
 	
 }

@@ -8,7 +8,8 @@
 package jasmin.gui;
 
 import jasmin.core.Fpu;
-import java.util.LinkedList;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
 
@@ -17,14 +18,14 @@ import javax.swing.table.TableModel;
  */
 public class FpuStackTableModel implements TableModel {
 	
-	Fpu fpu = null;
-	private LinkedList<TableModelListener> listener = null;
-	JasDocument doc = null;
+	private Fpu fpu = null;
+	private List<TableModelListener> listener = null;
+	private JasDocument doc = null;
 	
 	/** Creates a new instance of FpuStackTableModel */
 	public FpuStackTableModel(Fpu fpu, JasDocument doc) {
 		this.fpu = fpu;
-		listener = new LinkedList<TableModelListener>();
+		listener = new ArrayList<>();
 		this.doc = doc;
 	}
 	

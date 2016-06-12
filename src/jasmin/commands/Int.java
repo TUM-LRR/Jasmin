@@ -69,7 +69,7 @@ public class Int extends jasmin.core.JasminCommand {
 		}
 	}
 	
-	public String readLine(int maxLength) {
+	private String readLine(int maxLength) {
 		String input = javax.swing.JOptionPane.showInputDialog("Input (max. " + maxLength + " characters):");
 		if (input != null) {
 			if (input.length() > maxLength) {

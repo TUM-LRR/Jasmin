@@ -21,20 +21,21 @@ public class Fsin extends FpuCommand {
 	}
 
 	public void execute(Parameters p) {
-		
-		if (p.mnemo.equals("FSIN")) {
-			fpu.put(0, Math.sin(fpu.get(0)));
-			
-		} else if (p.mnemo.equals("FCOS")) {
-			fpu.put(0, Math.cos(fpu.get(0)));
-			
-		} else if (p.mnemo.equals("FSINCOS")) {
-			double a = fpu.get(0);
-			fpu.put(0, Math.sin(a));
-			fpu.push(Math.cos(a));
-			
-		} else if (p.mnemo.equals("FSQRT")) {
-			fpu.put(0, Math.sqrt(fpu.get(0)));
+		switch (p.mnemo) {
+			case "FSIN":
+				fpu.put(0, Math.sin(fpu.get(0)));
+				break;
+			case "FCOS":
+				fpu.put(0, Math.cos(fpu.get(0)));
+				break;
+			case "FSINCOS":
+				double a = fpu.get(0);
+				fpu.put(0, Math.sin(a));
+				fpu.push(Math.cos(a));
+				break;
+			case "FSQRT":
+				fpu.put(0, Math.sqrt(fpu.get(0)));
+				break;
 		}
 
 	}

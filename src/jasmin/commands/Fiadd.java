@@ -25,23 +25,25 @@ public class Fiadd extends FpuCommand {
 		p.normalizeParameters();
 		p.fa = p.getF(0, Fpu.INTEGER);
 		p.fb = p.getF(1, Fpu.INTEGER);
-		if (p.mnemo.equals("FIADD")) {
-			p.fa += p.fb;
-			
-		} else if (p.mnemo.equals("FISUB")) {
-			p.fa -= p.fb;
-			
-		} else if (p.mnemo.equals("FISUBR")) {
-			p.fa = p.fb - p.fa;
-			
-		} else if (p.mnemo.equals("FIMUL")) {
-			p.fa *= p.fb;
-			
-		} else if (p.mnemo.equals("FIDIV")) {
-			p.fa /= p.fb;
-			
-		} else if (p.mnemo.equals("FIDIVR")) {
-			p.fa = p.fb / p.fa;
+		switch (p.mnemo) {
+			case "FIADD":
+				p.fa += p.fb;
+				break;
+			case "FISUB":
+				p.fa -= p.fb;
+				break;
+			case "FISUBR":
+				p.fa = p.fb - p.fa;
+				break;
+			case "FIMUL":
+				p.fa *= p.fb;
+				break;
+			case "FIDIV":
+				p.fa /= p.fb;
+				break;
+			case "FIDIVR":
+				p.fa = p.fb / p.fa;
+				break;
 		}
 		fpu.put(0, p.fa);
 	}

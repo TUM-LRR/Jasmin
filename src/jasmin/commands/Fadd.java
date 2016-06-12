@@ -50,23 +50,25 @@ public class Fadd extends FpuCommand {
 		p.normalizeParameters();
 		p.fa = p.getF(0, Fpu.FLOAT);
 		p.fb = p.getF(1, Fpu.FLOAT);
-		if (p.mnemo.equals("FADD")) {
-			p.fa += p.fb;
-			
-		} else if (p.mnemo.equals("FSUB")) {
-			p.fa -= p.fb;
-			
-		} else if (p.mnemo.equals("FSUBR")) {
-			p.fa = p.fb - p.fa;
-			
-		} else if (p.mnemo.equals("FMUL")) {
-			p.fa *= p.fb;
-			
-		} else if (p.mnemo.equals("FDIV")) {
-			p.fa /= p.fb;
-			
-		} else if (p.mnemo.equals("FDIVR")) {
-			p.fa = p.fb / p.fa;
+		switch (p.mnemo) {
+			case "FADD":
+				p.fa += p.fb;
+				break;
+			case "FSUB":
+				p.fa -= p.fb;
+				break;
+			case "FSUBR":
+				p.fa = p.fb - p.fa;
+				break;
+			case "FMUL":
+				p.fa *= p.fb;
+				break;
+			case "FDIV":
+				p.fa /= p.fb;
+				break;
+			case "FDIVR":
+				p.fa = p.fb / p.fa;
+				break;
 		}
 		
 		p.putF(0, p.fa, Fpu.FLOAT);

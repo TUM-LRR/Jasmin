@@ -16,7 +16,7 @@ import javax.swing.table.TableCellRenderer;
  */
 public class MemoryTableRenderer implements TableCellRenderer {
 	
-	MemoryTableModel model;
+	private MemoryTableModel model;
 	
 	/** Creates a new instance of MemoryTableRenderer */
 	public MemoryTableRenderer(MemoryTableModel model) {

@@ -27,7 +27,7 @@ public class FullArgument {
 		arg = argument;
 		original = aOriginal;
 		startPos = aStart;
-		usedLabels = new HashSet<String>();
+		usedLabels = new HashSet<>();
 		if (Op.matches(aType, Op.LABEL | Op.CONST | Op.VARIABLE)) {
 			usedLabels.add(argument);
 		}

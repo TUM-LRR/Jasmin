@@ -18,6 +18,6 @@ public interface IListener {
 	 * @param newValue
 	 *        the new value of the watched field
 	 */
-	public void notifyChanged(int address, int newValue);
+	void notifyChanged(int address, int newValue);
 	
 }

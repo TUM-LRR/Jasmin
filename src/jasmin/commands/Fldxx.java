@@ -22,27 +22,28 @@ public class Fldxx extends FpuCommand {
 	}
 
 	public void execute(Parameters p) {
-		
-		if (p.mnemo.equals("FLD1")) {				// 1
-			fpu.push(1);
-			
-		} else if (p.mnemo.equals("FLDL2E")) { 		// base-2 log of e
-			fpu.push(Math.log(Math.E)/Math.log(2));
-			
-		} else if (p.mnemo.equals("FLDL2T")) {		// base-2 log of 10
-			fpu.push(Math.log(10)/Math.log(2));
-			
-		} else if (p.mnemo.equals("FLDLG2")) {		// base-10 log of 2
-			fpu.push(Math.log10(2));
-			
-		} else if (p.mnemo.equals("FLDLN2")) {		// base-e log of 2
-			fpu.push(Math.log(2));
-			
-		} else if (p.mnemo.equals("FLDPI")) {		// PI
-			fpu.push(Math.PI);
-			
-		} else if (p.mnemo.equals("FLDZ")) {		// 0
-			fpu.push(0);
+		switch (p.mnemo) {
+			case "FLD1":                // 1
+				fpu.push(1);
+				break;
+			case "FLDL2E":        // base-2 log of e
+				fpu.push(Math.log(Math.E) / Math.log(2));
+				break;
+			case "FLDL2T":        // base-2 log of 10
+				fpu.push(Math.log(10) / Math.log(2));
+				break;
+			case "FLDLG2":        // base-10 log of 2
+				fpu.push(Math.log10(2));
+				break;
+			case "FLDLN2":        // base-e log of 2
+				fpu.push(Math.log(2));
+				break;
+			case "FLDPI":        // PI
+				fpu.push(Math.PI);
+				break;
+			case "FLDZ":        // 0
+				fpu.push(0);
+				break;
 		}
 
 	}

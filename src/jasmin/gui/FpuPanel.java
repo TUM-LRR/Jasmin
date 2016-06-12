@@ -16,8 +16,6 @@ import javax.swing.table.TableCellRenderer;
  */
 public class FpuPanel extends javax.swing.JPanel {
 	
-	private static final long serialVersionUID = -5008641259698677910L;
-	
 	Fpu fpu = null;
 	JasDocument doc = null;
 	

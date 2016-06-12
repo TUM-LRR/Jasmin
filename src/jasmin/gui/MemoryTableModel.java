@@ -20,7 +20,7 @@ import javax.swing.table.TableModel;
 public class MemoryTableModel implements TableModel {
 	
 	private DataSpace data = null;
-	private LinkedList<TableModelListener> listener = null;
+	private List<TableModelListener> listener = null;
 	
 	private boolean descending = false;
 	
@@ -33,7 +33,7 @@ public class MemoryTableModel implements TableModel {
 	/** Creates a new instance of MemoryTableModel */
 	public MemoryTableModel(DataSpace space, JasDocument doc) {
 		this.data = space;
-		listener = new LinkedList<TableModelListener>();
+		listener = new ArrayList<>();
 		this.doc = doc;
 		doHighlight = doc.isHighlightingEnabled();
 	}
@@ -139,17 +139,13 @@ public class MemoryTableModel implements TableModel {
 	}
 	
 	private void fireChangedEvent(int row) {
-		Iterator<TableModelListener> iter = listener.iterator();
-		while (iter.hasNext()) {
-			TableModelListener l = iter.next();
+		for (TableModelListener l : listener) {
 			l.tableChanged((new TableModelEvent(this, row)));
 		}
 	}
 	
 	private void fireChangedEvent() {
-		Iterator<TableModelListener> iter = listener.iterator();
-		while (iter.hasNext()) {
-			TableModelListener l = iter.next();
+		for (TableModelListener l : listener) {
 			l.tableChanged((new TableModelEvent(this)));
 		}
 	}

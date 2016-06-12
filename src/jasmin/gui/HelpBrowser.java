@@ -10,6 +10,7 @@ import jasmin.core.Parser;
 import java.awt.*;
 import java.net.URL;
 import java.util.*;
+import java.util.List;
 import javax.swing.*;
 import javax.swing.event.*;
 import javax.swing.text.*;
@@ -20,11 +21,9 @@ import javax.swing.text.html.*;
  */
 public class HelpBrowser extends javax.swing.JPanel {
 	
-	private static final long serialVersionUID = 1611148227929564585L;
-	
 	private MainFrame mframe = null;
-	LinkedList<URL> history;
-	LinkedList<URL> forwardhistory;
+	List<URL> history;
+	List<URL> forwardhistory;
 	URL currentURL = null;
 	String[] fontNames = null;
 	
@@ -39,8 +38,8 @@ public class HelpBrowser extends javax.swing.JPanel {
 		initComponents();
 		HtmlPane.setContentType("text/html");
 		HtmlPane.setEditable(false);
-		history = new LinkedList<URL>();
-		forwardhistory = new LinkedList<URL>();
+		history = new ArrayList<>();
+		forwardhistory = new ArrayList<>();
 		HTMLEditorKit editorKit = createEditorKit();
 		HtmlPane.setEditorKit(editorKit);
 		fontNames = java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames();
@@ -101,7 +100,7 @@ public class HelpBrowser extends javax.swing.JPanel {
 		int index = 0;
 		while (iter.hasNext()) {
 			
-			String l = iter.next().toString();
+			String l = iter.next();
 			languageModel.addElement(l);
 			if (l.equalsIgnoreCase(mframe.getProperty("language"))) {
 				select = index;
@@ -222,7 +221,7 @@ public class HelpBrowser extends javax.swing.JPanel {
 	}
 	
 	public void back() {
-		URL url = history.removeLast();
+		URL url = history.remove(history.size() - 1);
 		forwardhistory.add(currentURL);
 		try {
 			HtmlPane.setContentType("text/html");
@@ -235,7 +234,7 @@ public class HelpBrowser extends javax.swing.JPanel {
 	}
 	
 	public void forward() {
-		URL url = forwardhistory.removeLast();
+		URL url = forwardhistory.remove(history.size() - 1);
 		history.add(currentURL);
 		try {
 			HtmlPane.setContentType("text/html");
@@ -318,7 +317,7 @@ public class HelpBrowser extends javax.swing.JPanel {
 		try {
 			value = Integer.parseInt(dec);
 			mframe.putProperty("offset", value);
-		} catch (Exception ex) {
+		} catch (Exception ignored) {
 			
 		}
 		offsetTextField.setText(mframe.getProperty("offset"));
@@ -329,7 +328,7 @@ public class HelpBrowser extends javax.swing.JPanel {
 	 *        the Event that triggered this action
 	 */
 	private void memorySizeChooserStateChanged(javax.swing.event.ChangeEvent evt) {// GEN-FIRST:event_memorySizeChooserStateChanged
-		mframe.putProperty("memory", ((Integer) memorySizeChooser.getValue()).intValue());
+		mframe.putProperty("memory", (Integer) memorySizeChooser.getValue());
 	}// GEN-LAST:event_memorySizeChooserStateChanged
 	
 	/**
@@ -337,7 +336,7 @@ public class HelpBrowser extends javax.swing.JPanel {
 	 *        the Event that triggered this action
 	 */
 	private void fontSizeChooserStateChanged(javax.swing.event.ChangeEvent evt) {// GEN-FIRST:event_fontSizeChooserStateChanged
-		mframe.putProperty("font.size", ((Integer) fontSizeChooser.getValue()).intValue());
+		mframe.putProperty("font.size", (Integer) fontSizeChooser.getValue());
 	}// GEN-LAST:event_fontSizeChooserStateChanged
 	
 	/**
