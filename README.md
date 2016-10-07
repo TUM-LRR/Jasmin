@@ -1,11 +1,11 @@
 # Jasmin
 
-The Java Assembler Interpreter has been developed by 2nd term students for the [Chair of Computer Architecture](http://www.lrr.in.tum.de "LRR") at the [Technical University of Munich](http://www.tum.de "TUM"). It is designed as a learning tool for x86 assembler. While not implementing all the functionality of a modern Intel Processor, its tutorials allow you to try and understand the basic commands and structures of assembler code.
+The Java Assembler Interpreter has been developed by 2nd term students for the [Chair of Computer Architecture](http://www.lrr.in.tum.de "LRR") at the [Technische Universität München](http://www.tum.de "TUM"). It is designed as a learning tool for x86 assembler. While not implementing all the functionality of a modern Intel Processor, its tutorials allow you to try and understand the basic commands and structures of assembler code.
 
 
 # Download
 
-* [JAR v1.5.8](https://github.com/TUM-LRR/Jasmin/releases/download/v1.5.8/Jasmin-1.5.8.jar "v.1.5.8")
+* [JAR v1.5.9](https://github.com/TUM-LRR/Jasmin/releases/download/v1.5.9/Jasmin-1.5.9.jar "v.1.5.9")
 
 
 # Contact
@@ -40,7 +40,7 @@ Please use the issue tracker for bug reporting. You can reach the current mainta
 
 > Jasmin - Java Assembler Interpreter
 > Copyright (C) 2006-2016 
-> Chair of Computer Architecture at Technical University of Munich
+> Chair of Computer Architecture at Technische Universität München
 > 
 > This program is free software; you can redistribute it and/or modify
 > it under the terms of the GNU General Public License as published by
