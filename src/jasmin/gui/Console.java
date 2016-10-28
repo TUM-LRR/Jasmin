@@ -22,7 +22,6 @@ import javax.swing.*;
 
 public class Console extends javax.swing.JPanel implements IGuiModule, IListener {
 	
-	private static final long serialVersionUID = 6871247851236376198L;
 	private javax.swing.JTextArea output;
 	private javax.swing.JScrollPane jScrollPane1;
 	private JPopupMenu jPopupMenu;
@@ -94,7 +93,7 @@ public class Console extends javax.swing.JPanel implements IGuiModule, IListener
 				}
 			}
 		});
-		
+
 		jScrollPane1 = new javax.swing.JScrollPane();
 		setLayout(new java.awt.BorderLayout());
 		jScrollPane1.setViewportView(output);
@@ -156,7 +155,7 @@ public class Console extends javax.swing.JPanel implements IGuiModule, IListener
 		int address_temp = 0;
 		if (newAddress != null) {
 			try {
-				address_temp = new Integer(Parser.hex2dec(newAddress.toUpperCase())).intValue();
+				address_temp = new Integer(Parser.hex2dec(newAddress.toUpperCase()));
 			} catch (Exception ex) {
 				JOptionPane.showMessageDialog(null, "The entered value was not valid!");
 			}

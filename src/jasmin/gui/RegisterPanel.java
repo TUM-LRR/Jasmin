@@ -15,7 +15,6 @@ import javax.swing.JTextField;
  */
 public class RegisterPanel extends javax.swing.JPanel {
 	
-	private static final long serialVersionUID = 1L;
 	private RegisterSet register = null;
 	private DataSpace data = null;
 	

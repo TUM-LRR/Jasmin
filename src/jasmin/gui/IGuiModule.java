@@ -28,7 +28,7 @@ public interface IGuiModule {
 	 * @param activated
 	 *        whether the module is now active (true) or hidden (false)
 	 */
-	public void setActivated(boolean activated);
+	void setActivated(boolean activated);
 	
 	/**
 	 * This method is called when the GUI thinks that the module should update its output, usually after the internal
@@ -36,21 +36,21 @@ public interface IGuiModule {
 	 * Note that if the module is registered as a memory listener by itself and determines its update actions that way,
 	 * it might be a good idea to do nothing in this method.
 	 */
-	public void updateAll();
+	void updateAll();
 	
 	/**
 	 * This method is called when Jasmin is reset by the user, i.e. all registers and memory are cleared. <br />
 	 * Note that memory listeners are NOT notified in the event of a memory reset, but this method will be called, so
 	 * any action that is necessary upon a reset should be placed here.
 	 */
-	public void clear();
+	void clear();
 	
 	/**
 	 * Using this method, the module should return the label that is to be shown on the tab activating the module
 	 * 
 	 * @return a label for this module's tab
 	 */
-	public String getTabLabel();
+	String getTabLabel();
 	
 	/**
 	 * This method will be called right after the constructor of this module is called to pass the associated DataSpace.
@@ -60,6 +60,6 @@ public interface IGuiModule {
 	 * @param dsp
 	 *        the DataSpace
 	 */
-	public void setDataSpace(DataSpace dsp);
+	void setDataSpace(DataSpace dsp);
 	
 }

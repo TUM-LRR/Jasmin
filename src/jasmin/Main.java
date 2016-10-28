@@ -13,9 +13,10 @@ import jasmin.gui.MainFrame;
  * @author kai
  */
 public class Main {
-	
-	/** Creates a new instance of Main */
-	public Main() {
+
+	/* Prevent instance creation */
+	private Main() {
+		throw new AssertionError("Cannot instantiate Main");
 	}
 	
 	/**
@@ -26,17 +27,6 @@ public class Main {
 		System.setProperty("swing.aatext", "true");
 		MainFrame frame = new MainFrame();
 		frame.setVisible(true);
-		
-		// System.out.println(System.getProperties());
-		// System.out.println(System.getProperty("java.class.path"));
-		//
-		// System.out.println(new File(System.getProperty("java.class.path")));
-		// System.out.println(new File(System.getProperty("java.class.path")).getParentFile());
-		//
-		// System.out.println(new File("."));
-		//
-		// System.out.println(new File("./"));
-		
 	}
 	
 }

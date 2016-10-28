@@ -209,13 +209,13 @@ public class DataSpace {
 	 *        the address of the first byte of memory
 	 */
 	private void initMem(int size, int startAddress) {
-		variables = new Hashtable<String, Integer>();
-		constants = new Hashtable<String, Long>();
+		variables = new Hashtable<>();
+		constants = new Hashtable<>();
 		MEMSIZE = (size + 3) - ((size + 3) % 4);
 		memory = new Memory(MEMSIZE, startAddress);
 		memAddressStart = startAddress;
 		nextReservableAddress = startAddress;
-		memInfo = new TreeMap<Integer, MemCellInfo>();
+		memInfo = new TreeMap<>();
 	}
 	
 	/**
@@ -223,9 +223,9 @@ public class DataSpace {
 	 * SmallArguments referring to the registers
 	 */
 	private void initRegisters() {
-		regtable = new Hashtable<String, Address>();
+		regtable = new Hashtable<>();
 		reg = new Registers();
-		regInfo = new TreeMap<Integer, MemCellInfo>();
+		regInfo = new TreeMap<>();
 		EAX = reg.constructAddress("EAX", regtable);
 		AX = reg.constructAddress("AX", regtable);
 		AH = reg.constructAddress("AH", regtable);
@@ -408,7 +408,7 @@ public class DataSpace {
 			reg.set(address, value);
 		} else if ((address.type & Op.MEM) != 0) {
 			if ((address.address < memAddressStart)
-				|| ((address.address + address.size) > (MEMSIZE + memAddressStart))) {
+					|| ((address.address + address.size) > (MEMSIZE + memAddressStart))) {
 				addressOutOfRange = true;
 				return;
 			}
@@ -419,10 +419,7 @@ public class DataSpace {
 				memory.set(address.address + i, bytebuffer); // write the byte
 				value = value >> 8; // shift to another byte (with more significance)
 			}
-		} else {
-			return;
 		}
-		
 	}
 	
 	/**
@@ -642,7 +639,7 @@ public class DataSpace {
 	 */
 	private void clearMem() {
 		memory.reset();
-		memInfo = new TreeMap<Integer, MemCellInfo>();
+		memInfo = new TreeMap<>();
 		nextReservableAddress = memAddressStart;
 		variables.clear();
 		constants.clear();
@@ -691,12 +688,10 @@ public class DataSpace {
 	/**
 	 * @param a
 	 *        an Argument referring to a register or memory cell about which information is to be retrieved
-	 * @param writeAccess
-	 *        pass true to create the MemCellInfo object if necessary
 	 * @return the MemCellInfo object associated with the memory cell with the specified index
 	 */
 	public MemCellInfo memInfo(Address a) {
-		Integer index = new Integer(a.address);
+		Integer index = a.address;
 		if (Op.matches(a.type, Op.MEM)) {
 			return memInfo.get(index);
 		} else if (Op.matches(a.type, Op.REG)) {
@@ -706,7 +701,7 @@ public class DataSpace {
 	}
 	
 	private void memInfoPut(Address a, MemCellInfo info) {
-		Integer index = new Integer(a.address);
+		Integer index = a.address;
 		if (Op.matches(a.type, Op.MEM)) {
 			if ((a.address >= (MEMSIZE + memAddressStart)) || (a.address < memAddressStart)) {
 				return;
@@ -718,7 +713,7 @@ public class DataSpace {
 	}
 	
 	private void memInfoDelete(Address a) {
-		Integer index = new Integer(a.address);
+		Integer index = a.address;
 		if (Op.matches(a.type, Op.MEM)) {
 			if ((a.address >= (MEMSIZE + memAddressStart)) || (a.address < memAddressStart)) {
 				return;
@@ -802,7 +797,6 @@ public class DataSpace {
 		}
 		if ((a.type & Op.FPUREG) != 0) {
 			fpu.put(a, value);
-			return;
 		}
 	}
 	
@@ -926,8 +920,7 @@ public class DataSpace {
 			addressOutOfRange = true;
 			return null;
 		}
-		Address a = new Address(Op.MEM, size, result);
-		return a;
+		return new Address(Op.MEM, size, result);
 	}
 	
 	/**
@@ -1012,23 +1005,11 @@ public class DataSpace {
 	 * @return list of all registered variables
 	 */
 	public String[] getVariableList() {
-		Enumeration<String> enumeration = variables.keys();
-		String[] result = new String[variables.size()];
-		int i = 0;
-		while (enumeration.hasMoreElements()) {
-			result[i++] = enumeration.nextElement();
-		}
-		return result;
+		return variables.keySet().toArray(new String[variables.size()]);
 	}
 	
 	public String[] getConstantList() {
-		Enumeration<String> enumeration = constants.keys();
-		String[] result = new String[constants.size()];
-		int i = 0;
-		while (enumeration.hasMoreElements()) {
-			result[i++] = enumeration.nextElement();
-		}
-		return result;
+		return constants.keySet().toArray(new String[constants.size()]);
 	}
 	
 	/**

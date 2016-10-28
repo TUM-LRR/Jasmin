@@ -34,11 +34,7 @@ public class Parameters {
 	private static FullArgument noArgument = new FullArgument("", "", 0, Op.NULL, -1, false, null);
 	
 	public FullArgument argument(int argumentIndex) {
-		if (argumentIndex < numArguments) {
-			return argument[argumentIndex];
-		} else {
-			return noArgument;
-		}
+		return argumentIndex < numArguments ? argument[argumentIndex] : noArgument;
 	}
 	
 	public ParseError consistentSizes() {

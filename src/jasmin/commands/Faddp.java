@@ -27,23 +27,25 @@ public class Faddp extends FpuCommand {
 		p.normalizePopParameters();
 		p.fa = p.getF(0, Fpu.FLOAT);
 		p.fb = p.getF(1, Fpu.FLOAT);
-		if (p.mnemo.equals("FADDP")) {
-			p.fa += p.fb;
-			
-		} else if (p.mnemo.equals("FSUBP")) {
-			p.fa -= p.fb;
-			
-		} else if (p.mnemo.equals("FSUBRP")) {
-			p.fa = p.fb - p.fa;
-			
-		} else if (p.mnemo.equals("FMULP")) {
-			p.fa *= p.fb;
-			
-		} else if (p.mnemo.equals("FDIVP")) {
-			p.fa /= p.fb;
-			
-		} else if (p.mnemo.equals("FDIVRP")) {
-			p.fa = p.fb / p.fa;
+		switch (p.mnemo) {
+			case "FADDP":
+				p.fa += p.fb;
+				break;
+			case "FSUBP":
+				p.fa -= p.fb;
+				break;
+			case "FSUBRP":
+				p.fa = p.fb - p.fa;
+				break;
+			case "FMULP":
+				p.fa *= p.fb;
+				break;
+			case "FDIVP":
+				p.fa /= p.fb;
+				break;
+			case "FDIVRP":
+				p.fa = p.fb / p.fa;
+				break;
 		}
 		p.putF(0, p.fa, Fpu.FLOAT);
 		fpu.pop();

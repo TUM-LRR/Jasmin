@@ -21,7 +21,7 @@ import javax.swing.undo.UndoableEdit;
 
 public class NoStyleUndo implements UndoableEdit {
     
-    DefaultDocumentEvent dde=null;
+    private DefaultDocumentEvent dde=null;
     
     
     public NoStyleUndo(DefaultDocumentEvent dde) {

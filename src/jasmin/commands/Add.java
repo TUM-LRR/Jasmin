@@ -27,17 +27,24 @@ public class Add extends JasminCommand {
 	
 	public void execute(Parameters p) {
 		p.prepareAB();
-		
-		if (p.mnemo.equals("ADD")) {
-			p.result = p.a + p.b;
-		} else if (p.mnemo.equals("ADC")) {
-			p.result = p.a + p.b + (dataspace.fCarry ? 1 : 0);
-		} else if (p.mnemo.equals("SUB") || p.mnemo.equals("CMP")) {
-			p.b = 0 - p.b; // this is necessary for setFlags() to work correctly
-			p.result = p.a + p.b;
-		} else if (p.mnemo.equals("SBB")) {
-			p.b = 0 - p.b;
-			p.result = p.a + p.b - (dataspace.fCarry ? 1 : 0);
+
+		switch (p.mnemo) {
+			case "ADD":
+				p.result = p.a + p.b;
+				break;
+			case "ADC":
+				p.result = p.a + p.b + (dataspace.fCarry ? 1 : 0);
+				break;
+			case "SUB":
+			case "CMP":
+				p.b = 0 - p.b; // this is necessary for setFlags() to work correctly
+
+				p.result = p.a + p.b;
+				break;
+			case "SBB":
+				p.b = 0 - p.b;
+				p.result = p.a + p.b - (dataspace.fCarry ? 1 : 0);
+				break;
 		}
 		
 		setFlags(p, OF + SF + ZF + AF + CF + PF);

@@ -27,11 +27,8 @@ public class Jmp extends JasminCommand {
 		return e;
 	}
 	
-	public boolean testCondition(String command) {
-		if (command.equals("JMP")) {
-			return true;
-		}
-		return testCC(command.substring(1));
+	private boolean testCondition(String command) {
+		return command.equals("JMP") || testCC(command.substring(1));
 	}
 	
 	@Override

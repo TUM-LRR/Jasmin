@@ -77,7 +77,7 @@ public class Parser {
 		}
 		
 		// seems to be a command, analyze it
-		ArrayList<FullArgument> arguments = new ArrayList<FullArgument>();
+		ArrayList<FullArgument> arguments = new ArrayList<>();
 		String command = null, argument = "";
 		boolean commaDone = false;
 		int nextSize = -1, size, type, lastType = Op.NULL;
@@ -149,10 +149,7 @@ public class Parser {
 					arguments.add(new FullArgument(argument, token, tokenStartPos, type, size, sizeExplicit,
 						dataspace));
 					sizeExplicit = false;
-					commaDone = false;
-					if (type == Op.FPUQUALI) {
-						commaDone = true;
-					}
+					commaDone = type == Op.FPUQUALI;
 					// if the first token was a prefix and the current argument is actually
 					// the command, no comma is required afterwards
 					if (commandLoader.commandExists(argument)) {
@@ -179,7 +176,7 @@ public class Parser {
 		}
 		
 		// check whether the command exists
-		if (commandLoader.commandExists(command) == false) {
+		if (!commandLoader.commandExists(command)) {
 			result.mnemo = null;
 			result.error = new ParseError(string, command, argstartcommand, "Unknown command");
 			return result;
@@ -213,15 +210,15 @@ public class Parser {
 		// check for >1 memory access
 		if (!cmd.overrideMaxMemAccess(command)) {
 			int numMemoryAccesses = 0;
-			for (int i = 0; i < arguments.size(); i++) {
-				if ((arguments.get(i).address.type & Op.MEM) != 0) {
+			for (FullArgument a : arguments) {
+				if ((a.address.type & Op.MEM) != 0) {
 					numMemoryAccesses++;
 				}
 				if (numMemoryAccesses > 1) {
-					result.error = new ParseError(string, arguments.get(i), "Only one memory access allowed.");
+					result.error = new ParseError(string, a, "Only one memory access allowed.");
 					return result;
 				}
-				
+
 			}
 		}
 		
@@ -231,15 +228,15 @@ public class Parser {
 		if (lastLabel != null) {
 			param.label = lastLabel;
 		}
-		for (int i = 0; i < arguments.size(); i++) {
-			result.usedLabels.addAll(arguments.get(i).usedLabels);
+		for (FullArgument a : arguments) {
+			result.usedLabels.addAll(a.usedLabels);
 		}
-		
-		for (int i = 0; i < arguments.size(); i++) {
+
+		for (FullArgument a : arguments) {
 			// check validity of the arguments
-			String errorMsg = isValidOperand(arguments.get(i), false);
+			String errorMsg = isValidOperand(a, false);
 			if (errorMsg != null) {
-				result.error = new ParseError(string, arguments.get(i), errorMsg);
+				result.error = new ParseError(string, a, errorMsg);
 				return result;
 			}
 		}
@@ -368,7 +365,7 @@ public class Parser {
 			if (pOctQ.matcher(s).find()) {
 				s = replaceNumber(s, pOctQ, 8, 0, 1);
 			}
-		} catch (NumberFormatException e) {
+		} catch (NumberFormatException ignored) {
 		}
 		return s;
 	}
@@ -493,7 +490,7 @@ public class Parser {
 		s = s.toUpperCase();
 		String label = getRawLabelString(s);
 		if (label != null) {
-			if ((label.indexOf(" ") != -1) || (label.indexOf("\t") != -1) || (label.indexOf("'") != -1)) {
+			if ((label.contains(" ")) || (label.contains("\t")) || (label.contains("'"))) {
 				return null;
 			}
 			int labeltype = getOperandType(label);
@@ -683,31 +680,29 @@ public class Parser {
 	 * @return the size of the operand
 	 */
 	public static int getOperandSize(long operand) {
-		int size = -1;
 		if (operand < 0) {
 			operand *= (-1);
 			operand -= 1;
 			if ((operand & 127) == operand) {
-				size = 1;
+				return 1;
 			} else if ((operand & ((1 << 15) - 1)) == operand) {
-				size = 2;
+				return 2;
 			} else if ((operand & ((1 << 31) - 1)) == operand) {
-				size = 4;
+				return 4;
 			} else {
-				operand = 8;
+				return 8;
 			}
 		} else {
 			if ((operand & 255) == operand) {
-				size = 1;
+				return 1;
 			} else if ((operand & 65535) == operand) {
-				size = 2;
+				return 2;
 			} else if ((operand & Long.valueOf("4294967295")) == operand) {
-				size = 4;
+				return 4;
 			} else {
-				size = 8;
+				return 8;
 			}
 		}
-		return size;
 	}
 	
 	/**

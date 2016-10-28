@@ -23,14 +23,17 @@ public class And extends JasminCommand {
 
 	public void execute(Parameters p) {
 		p.prepareAB();
-		if (p.mnemo.equals("AND") || p.mnemo.equals("TEST")) {
-			p.result = p.a & p.b;
-		}
-		if (p.mnemo.equals("OR")) {
-			p.result = p.a | p.b;
-		}
-		if (p.mnemo.equals("XOR")) {
-			p.result = p.a ^ p.b;
+		switch (p.mnemo) {
+			case "AND":
+			case "TEST":
+				p.result = p.a & p.b;
+				break;
+			case "OR":
+				p.result = p.a | p.b;
+				break;
+			case "XOR":
+				p.result = p.a ^ p.b;
+				break;
 		}
 		setFlags(p, SF + ZF + PF);
 		dataspace.fOverflow = false;

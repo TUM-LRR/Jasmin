@@ -1,26 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>INT.htm</title>
+</head>
+<body>
+<div style="font-family:Helvetica,Arial,sans-serif;font-size:11px;">
+    <strong>Command:</strong> Sends a software interrupt<br>
+    <strong>Arguments:</strong> TYPE: An immediate number from 0-255 defining the type of interrupt<br>
+    <strong>Usage:</strong> INT TYPE<br>
+    <strong>Effects:</strong> INT sends an interrupt.
 
-			<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-			<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-			<head>
-			<title>INT.htm</title>
-			</head>
-			<body>
-			<div style="font-family:Helvetica,Arial,sans-serif;font-size:11px;">
-			<strong>Command:</strong> Sends a software interrupt<br>
-			<strong>Arguments:</strong> TYPE: An immediate number from 0-255 defining the type of interrupt<br>
-			<strong>Usage:</strong> INT TYPE<br>
-			<strong>Effects:</strong> INT sends an interrupt.
-			
-Interrupts are usually handled by the Operating System.
+    Interrupts are usually handled by the Operating System.
 
-Currently Jasmin implements a small part of the DOS-Interrupt 0x21, which may be used to interactively read a string 
-supplied by the user into memory. AH has to be set to 0x0A and a memory location must be provided in DX. The first byte there 
-must be set to determine the maximum buffer length. The next byte will be set by the interrupt handler, indicating how many bytes have been read. 
-After that a string of bytes of that length follows. Finally it is terminated by a NULL-string.
+    Currently Jasmin implements a small part of the DOS-Interrupt 0x21, which may be used to interactively read a string
+    supplied by the user into memory. AH has to be set to 0x0A and a memory location must be provided in DX. The first byte there
+    must be set to determine the maximum buffer length. The next byte will be set by the interrupt handler, indicating how many bytes have been read.
+    After that a string of bytes of that length follows. Finally it is terminated by a NULL-string.
 
-<br>
-			<strong>Flags&nbsp;to&nbsp;be&nbsp;set:</strong> none
-			
-			</body>
-			</html>
+    <br>
+    <strong>Flags&nbsp;to&nbsp;be&nbsp;set:</strong> none
+</div>
+</body>
+</html>
 			

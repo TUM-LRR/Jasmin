@@ -14,7 +14,6 @@ import javax.swing.JOptionPane;
  */
 public class StripLight extends javax.swing.JPanel implements IGuiModule, IListener {
 	
-	private static final long serialVersionUID = 1394782929343337868L;
 	private DataSpace data;
 	
 	// hard-coded config
@@ -183,7 +182,7 @@ public class StripLight extends javax.swing.JPanel implements IGuiModule, IListe
 		int address_temp = 0;
 		if (newAddress != null) {
 			try {
-				address_temp = new Integer(Parser.hex2dec(newAddress.toUpperCase())).intValue();
+				address_temp = new Integer(Parser.hex2dec(newAddress.toUpperCase()));
 			} catch (Exception ex) {
 				JOptionPane.showMessageDialog(null, "The entered value was not valid!");
 			}
@@ -207,7 +206,7 @@ public class StripLight extends javax.swing.JPanel implements IGuiModule, IListe
 		int digits_temp = 0;
 		if (newDigits != null) {
 			try {
-				digits_temp = new Integer(newDigits).intValue();
+				digits_temp = new Integer(newDigits);
 			} catch (Exception ex) {
 				JOptionPane.showMessageDialog(null, "The entered value was not valid!");
 			}

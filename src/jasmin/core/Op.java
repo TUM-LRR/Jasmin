@@ -8,97 +8,96 @@ import java.util.ArrayList;
 
 public class Op {
 	
-	public static final int ERROR = Integer.parseInt("00000000000000000000000000000001", 2);
-	public static final int NULL = Integer.parseInt("00000000000000000000000000000010", 2);
+	public static final int ERROR = 0b1;
+	public static final int NULL = 0b10;
 	
-	public static final int R8 = Integer.parseInt("00000000000000000000000000000100", 2);
-	public static final int R16 = Integer.parseInt("00000000000000000000000000001000", 2);
-	public static final int R32 = Integer.parseInt("00000000000000000000000000010000", 2);
-	public static final int R64 = Integer.parseInt("00000000000000000000000000100000", 2);
-	public static final int REG = Integer.parseInt("00000000000000000000000000111100", 2);
+	public static final int R8 = 0b100;
+	public static final int R16 = 0b1000;
+	public static final int R32 = 0b10000;
+	public static final int R64 = 0b100000;
+	public static final int REG = 0b111100;
 	
-	public static final int M8 = Integer.parseInt("00000000000000000000000001000000", 2);
-	public static final int M16 = Integer.parseInt("00000000000000000000000010000000", 2);
-	public static final int M32 = Integer.parseInt("00000000000000000000000100000000", 2);
-	public static final int M64 = Integer.parseInt("00000000000000000000001000000000", 2);
-	public static final int MU = Integer.parseInt("00000000000000000000010000000000", 2);
-	public static final int MEM = Integer.parseInt("00000000000000000000011111000000", 2);
+	public static final int M8 = 0b1000000;
+	public static final int M16 = 0b10000000;
+	public static final int M32 = 0b100000000;
+	public static final int M64 = 0b1000000000;
+	public static final int MU = 0b10000000000;
+	public static final int MEM = 0b11111000000;
 	
-	public static final int I8 = Integer.parseInt("00000000000000000000100000000000", 2);
-	public static final int I16 = Integer.parseInt("00000000000000000001000000000000", 2);
-	public static final int I32 = Integer.parseInt("00000000000000000010000000000000", 2);
-	public static final int I64 = Integer.parseInt("00000000000000000100000000000000", 2);
-	public static final int IMM = Integer.parseInt("00000000000000000111100000000000", 2);
+	public static final int I8 = 0b100000000000;
+	public static final int I16 = 0b1000000000000;
+	public static final int I32 = 0b10000000000000;
+	public static final int I64 = 0b100000000000000;
+	public static final int IMM = 0b111100000000000;
 	
-	public static final int CHARS = Integer.parseInt("00000000000000001000000000000000", 2);
-	public static final int STRING = Integer.parseInt("00000000000000010000000000000000", 2);
-	public static final int LABEL = Integer.parseInt("00000000000000100000000000000000", 2);
-	public static final int VARIABLE = Integer.parseInt("00000000000001000000000000000000", 2);
-	public static final int SIZEQUALI = Integer.parseInt("00000000000010000000000000000000", 2);
-	public static final int COMMA = Integer.parseInt("00000000000100000000000000000000", 2);
-	public static final int PREFIX = Integer.parseInt("00000000001000000000000000000000", 2);
-	public static final int FPUREG = Integer.parseInt("00000000110000000000000000000000", 2);
-	public static final int FPUST0 = Integer.parseInt("00000000100000000000000000000000", 2);
-	public static final int FPUQUALI = Integer.parseInt("00000001000000000000000000000000", 2);
+	public static final int CHARS = 0b1000000000000000;
+	public static final int STRING = 0b10000000000000000;
+	public static final int LABEL = 0b100000000000000000;
+	public static final int VARIABLE = 0b1000000000000000000;
+	public static final int SIZEQUALI = 0b10000000000000000000;
+	public static final int COMMA = 0b100000000000000000000;
+	public static final int PREFIX = 0b1000000000000000000000;
+	public static final int FPUREG = 0b110000000000000000000000;
+	public static final int FPUST0 = 0b100000000000000000000000;
+	public static final int FPUQUALI = 0b1000000000000000000000000;
 	
-	public static final int FLOAT = Integer.parseInt("00000010000000000000000000000000", 2);
-	public static final int CONST = Integer.parseInt("00000100000000000000000000000000", 2);
+	public static final int FLOAT = 0b10000000000000000000000000;
+	public static final int CONST = 0b100000000000000000000000000;
 	
-	public static final int PARAM = Integer.parseInt("00000110110001111111111111111100", 2);
-	
-	public static final int getDefinition(int type, int size) {
-		if (type == MEM) {
-			switch (size) {
-			case 1:
-				return M8;
-			case 2:
-				return M16;
-			case 4:
-				return M32;
-			case 8:
-				return M64;
-			case -1:
-				return MU;
-			default:
-				return ERROR;
-			}
-		}
-		if (type == REG) {
-			switch (size) {
-			case 1:
-				return R8;
-			case 2:
-				return R16;
-			case 4:
-				return R32;
-			case 8:
-				return R64;
-			default:
-				return ERROR;
-			}
-		}
-		if (type == IMM) {
-			switch (size) {
-			case 1:
-				return I8;
-			case 2:
-				return I16;
-			case 4:
-				return I32;
-			case 8:
-				return I64;
-			default:
-				return ERROR;
-			}
+	public static final int PARAM = 0b110110001111111111111111100;
+
+	public static int getDefinition(int type, int size) {
+		switch (type) {
+			case MEM:
+				switch (size) {
+					case 1:
+						return M8;
+					case 2:
+						return M16;
+					case 4:
+						return M32;
+					case 8:
+						return M64;
+					case -1:
+						return MU;
+					default:
+						return ERROR;
+				}
+			case REG:
+				switch (size) {
+					case 1:
+						return R8;
+					case 2:
+						return R16;
+					case 4:
+						return R32;
+					case 8:
+						return R64;
+					default:
+						return ERROR;
+				}
+			case IMM:
+				switch (size) {
+					case 1:
+						return I8;
+					case 2:
+						return I16;
+					case 4:
+						return I32;
+					case 8:
+						return I64;
+					default:
+						return ERROR;
+				}
 		}
 		return ERROR;
 	}
 	
-	public static final boolean matches(int opA, int opB) {
+	public static boolean matches(int opA, int opB) {
 		return ((opA & opB) != 0);
 	}
 	
-	public static final boolean sameSize(int opA, int opB) {
+	public static boolean sameSize(int opA, int opB) {
 		if (((opA == R8) || (opA == M8) || (opA == I8) || (opA == MU)) &&
 				((opB == R8) || (opB == M8) || (opB == I8) || (opB == MU))) {
 			return true;
@@ -118,71 +117,72 @@ public class Op {
 		return false;
 	}
 	
-	public static final String humanName(int op) {
-		if (op == M8) {
-			return "an 8-bit memory location";
-		} else if (op == M16) {
-			return "a 16-bit memory location";
-		} else if (op == M32) {
-			return "a 32-bit memory location";
-		} else if (op == M64) {
-			return "a 64-bit memory location";
-		} else if (op == MU) {
-			return "a memory location of undefined size";
-		} else if (op == MEM) {
-			return "a memory location";
-		} else if (op == R8) {
-			return "an 8-bit register";
-		} else if (op == R16) {
-			return "a 16-bit register";
-		} else if (op == R32) {
-			return "a 32-bit register";
-		} else if (op == R64) {
-			return "a 64-bit register";
-		} else if (op == REG) {
-			return "a register";
-		} else if (op == I8) {
-			return "an 8-bit immediate";
-		} else if (op == I16) {
-			return "a 16-bit immediate";
-		} else if (op == I32) {
-			return "a 32-bit immediate";
-		} else if (op == I64) {
-			return "a 64-bit immediate";
-		} else if (op == IMM) {
-			return "an immediate";
-		} else if (op == LABEL) {
-			return "a label";
-		} else if (op == VARIABLE) {
-			return "a variable";
-		} else if (op == CONST) {
-			return "a constant";
-		} else if (op == SIZEQUALI) {
-			return "a size qualifier";
-		} else if (op == PREFIX) {
-			return "a prefix";
-		} else if (op == CHARS) {
-			return "a short string";
-		} else if (op == STRING) {
-			return "a string";
-		} else if (op == FPUREG) {
-			return "an FPU register";
-		} else if (op == FPUST0) {
-			return "ST0";
-		} else if (op == FPUQUALI) {
-			return "an FPU qualifier";
-		} else if (op == NULL) {
-			return "empty";
-		} else if (op == ERROR) {
-			return "ERROR!";
-		} else if (op == FLOAT) {
-			return "a floating-point constant";
+	public static String humanName(int op) {
+		switch (op) {
+			case M8:
+				return "an 8-bit memory location";
+			case M16:
+				return "a 16-bit memory location";
+			case M32:
+				return "a 32-bit memory location";
+			case M64:
+				return "a 64-bit memory location";
+			case MU:
+				return "a memory location of undefined size";
+			case MEM:
+				return "a memory location";
+			case R8:
+				return "an 8-bit register";
+			case R16:
+				return "a 16-bit register";
+			case R32:
+				return "a 32-bit register";
+			case R64:
+				return "a 64-bit register";
+			case REG:
+				return "a register";
+			case I8:
+				return "an 8-bit immediate";
+			case I16:
+				return "a 16-bit immediate";
+			case I32:
+				return "a 32-bit immediate";
+			case I64:
+				return "a 64-bit immediate";
+			case IMM:
+				return "an immediate";
+			case LABEL:
+				return "a label";
+			case VARIABLE:
+				return "a variable";
+			case CONST:
+				return "a constant";
+			case SIZEQUALI:
+				return "a size qualifier";
+			case PREFIX:
+				return "a prefix";
+			case CHARS:
+				return "a short string";
+			case STRING:
+				return "a string";
+			case FPUREG:
+				return "an FPU register";
+			case FPUST0:
+				return "ST0";
+			case FPUQUALI:
+				return "an FPU qualifier";
+			case NULL:
+				return "empty";
+			case ERROR:
+				return "ERROR!";
+			case FLOAT:
+				return "a floating-point constant";
 		}
 		return "no human name defined for type " + op;
 	}
 	
-	public static final String[] humanNamesArray(int ops) {
-		ArrayList<String> list = new ArrayList<String>();
+	public static String[] humanNamesArray(int ops) {
+		ArrayList<String> list = new ArrayList<>();
 		String reg = "";
 		String or;
 		boolean done;
@@ -354,7 +354,7 @@ public class Op {
 	 *        the desired size of the output Strings
 	 * @return an array of Strings into which the input String was split
 	 */
-	public static final String[] splitLongString(String longString, int chunksize) {
+	public static String[] splitLongString(String longString, int chunksize) {
 		longString = longString.substring(1, longString.length() - 1);
 		int chunks = (longString.length() / chunksize) + (longString.length() % chunksize == 0 ? 0 : 1);
 		String[] result = new String[chunks];

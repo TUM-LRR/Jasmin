@@ -21,12 +21,16 @@ public class DB extends PseudoCommand {
 	@Override
 	public ParseError validate(Parameters p) {
 		ParseError e;
-		if (p.mnemo.equals("DD")) {
-			e = p.validateAll(Op.IMM | Op.CHARS | Op.STRING | Op.FLOAT | Op.NULL | Op.LABEL | Op.CONST);
-		} else if (p.mnemo.equals("DQ")) {
-			e = p.validateAll(Op.FLOAT | Op.NULL | Op.LABEL);
-		} else {
-			e = p.validateAll(Op.IMM | Op.CHARS | Op.STRING | Op.NULL | Op.LABEL | Op.CONST);
+		switch (p.mnemo) {
+			case "DD":
+				e = p.validateAll(Op.IMM | Op.CHARS | Op.STRING | Op.FLOAT | Op.NULL | Op.LABEL | Op.CONST);
+				break;
+			case "DQ":
+				e = p.validateAll(Op.FLOAT | Op.NULL | Op.LABEL);
+				break;
+			default:
+				e = p.validateAll(Op.IMM | Op.CHARS | Op.STRING | Op.NULL | Op.LABEL | Op.CONST);
+				break;
 		}
 		if (e != null) {
 			return e;

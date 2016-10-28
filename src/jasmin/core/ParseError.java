@@ -39,8 +39,7 @@ public class ParseError {
 	 * @param errorMessage
 	 */
 	private void setValues(String line, String errorString, int searchStartPosition, String errorMessage) {
-		int start = line.indexOf(errorString, searchStartPosition);
-		startPos = start;
+		startPos = line.indexOf(errorString, searchStartPosition);
 		length = errorString.length();
 		errorMsg = errorMessage;
 	}

@@ -28,11 +28,8 @@ public class Mov extends JasminCommand {
 		return null;
 	}
 	
-	public boolean testCondition(String command) {
-		if (command.equals("MOV")) {
-			return true;
-		}
-		return testCC(command.substring(4));
+	private boolean testCondition(String command) {
+		return command.equals("MOV") || testCC(command.substring(4));
 	}
 	
 	public void execute(Parameters p) {

@@ -16,7 +16,7 @@ public class Bswap extends JasminCommand {
 	}
 
 	public void execute(Parameters p) {
-		long dest = 0;
+		long dest;
 		long source = p.get(0);
 		dest = ((source & 0x000000FF) << 24)
 			| ((source & 0x0000FF00) <<  8)
@@ -24,6 +24,5 @@ public class Bswap extends JasminCommand {
 			| ((source & 0xFF000000) >> 24);
 		p.put(0, dest, null);
 	}
-
 
 }

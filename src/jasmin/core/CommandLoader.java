@@ -38,8 +38,7 @@ public class CommandLoader {
 	 */
 	static String classPath() {
 		String classPath = System.getProperty("java.class.path");
-		String ret = classPath.split(File.pathSeparator)[0];
-		return ret;
+		return classPath.split(File.pathSeparator)[0];
 	}
 	
 	/**
@@ -68,10 +67,10 @@ public class CommandLoader {
 		this.dataspace = newdataspace;
 		this.type = type;
 		this.defaultpackage = defaultpackage;
-		this.commands = new Hashtable<String, Object>();
+		this.commands = new Hashtable<>();
 		System.out.println("CommandLoader loading...");
 		URL url = getClass().getResource("../../" + defaultpackage.replace(".", "/"));
-		File file = null;
+		File file;
 		if (url != null) {
 			System.out.println("looks like you are not starting from a jar-package");
 			file = new File(url.getPath());
@@ -129,12 +128,11 @@ public class CommandLoader {
 	 * @return currently always returns 0
 	 */
 	private int loadClass(File file, String[] names) {
-		URL[] url = null;
+		URL[] url = new URL[1];
 		int counter = 0;
-		url = new URL[1];
 		try {
 			url[0] = file.toURI().toURL();
-		} catch (MalformedURLException e) {
+		} catch (MalformedURLException ignored) {
 		}
 		
 		URLClassLoader loader = new URLClassLoader(url);
@@ -177,7 +175,7 @@ public class CommandLoader {
 	 * @return an array of strings which are potential command classes
 	 */
 	private String[] getJarEntries(File file) {
-		ArrayList<String> entries = new ArrayList<String>();
+		ArrayList<String> entries = new ArrayList<>();
 		String packagename = defaultpackage.replace(".", "/") + "/";
 		try {
 			JarInputStream jis = new JarInputStream(new BufferedInputStream(new FileInputStream(file)));
@@ -207,20 +205,14 @@ public class CommandLoader {
 	 * @return a list of all avaiable command mnemonics
 	 */
 	public String[] getMnemoList() {
-		Enumeration<String> enumeration = commands.keys();
-		String[] result = new String[commands.size()];
-		int i = 0;
-		while (enumeration.hasMoreElements()) {
-			result[i++] = enumeration.nextElement();
-		}
-		return result;
+		return commands.keySet().toArray(new String[commands.size()]);
 	}
 	
 	/**
 	 * checks if a mnemo exist
 	 */
 	public boolean commandExists(String mnemo) {
-		return (commands.get(mnemo) == null) ? false : true;
+		return commands.get(mnemo) != null;
 	}
 	
 	/**
@@ -241,7 +233,7 @@ public class CommandLoader {
 	 * @return an array of files of potential command classes
 	 */
 	private File[] getFiles(File dir, String extension) {
-		ArrayList<File> files = new ArrayList<File>();
+		ArrayList<File> files = new ArrayList<>();
 		getFilesEmbedded(dir, files, extension);
 		File[] filearray = new File[files.size()];
 		for (int i = 0; i < files.size(); i++) {
