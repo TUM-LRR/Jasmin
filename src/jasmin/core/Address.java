@@ -14,7 +14,7 @@ public class Address {
 	public boolean dynamic = false;
 	
 	// special stuff for registers
-	public long shortcut;
+	public LongWrapper shortcut;
 	public int rshift;
 	public long mask;
 
@@ -57,7 +57,7 @@ public class Address {
 	}
 	
 	public long getShortcut() {
-		return (shortcut & mask) >> rshift;
+		return (shortcut.value & mask) >> rshift;
 	}
 	
 }
