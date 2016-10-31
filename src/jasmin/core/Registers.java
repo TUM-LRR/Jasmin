@@ -12,7 +12,7 @@ public class Registers {
 
 	private int NUMREG = 9; // A, B, C, D, SI, DI, SP, BP, IP
 
-	private long[] reg;
+	private LongWrapper[] reg;
 
 	/**
 	 * the dirty tag / works like a time stamp
@@ -27,12 +27,13 @@ public class Registers {
 
 	// @SuppressWarnings("unchecked")
 	public Registers() {
-		reg = new long[9];
+		reg = new LongWrapper[9];
 		dirty = new int[NUMREG];
-                dirtyParts = new int[NUMREG];
+		dirtyParts = new int[NUMREG];
 		for (int i = 0; i < NUMREG; i++) {
+			reg[i] = new LongWrapper();
 			dirty[i] = Integer.MIN_VALUE;
-                        dirtyParts[i] = 0;
+			dirtyParts[i] = 0;
 		}
 		dirtyTimeStamp = Integer.MIN_VALUE + 2;
 		// addressedListeners = new ArrayList[NUMREG];
@@ -129,7 +130,7 @@ public class Registers {
 
                 // Set the value
 		value <<= address.rshift;
-		address.shortcut = (address.shortcut & ~address.mask) | (value & address.mask);
+		address.shortcut.value = (address.shortcut.value & ~address.mask) | (value & address.mask);
 
                 // Set the "time" of last change
 		this.dirty[address.address] = dirtyTimeStamp;
@@ -160,7 +161,7 @@ public class Registers {
 	 */
 	public void reset() {
 		for (int i = 0; i < NUMREG; i++) {
-			reg[i] = 0L;
+			reg[i].value = 0L;
 		}
 		clearDirty();
 	}
