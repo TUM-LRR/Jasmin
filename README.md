@@ -5,7 +5,7 @@ The Java Assembler Interpreter has been developed by 2nd term students for the [
 
 # Download
 
-* [JAR v1.5.10](https://github.com/TUM-LRR/Jasmin/releases/download/v1.5.10/Jasmin-1.5.10.jar "v.1.5.10")
+* [JAR v1.5.11](https://github.com/TUM-LRR/Jasmin/releases/download/v1.5.11/Jasmin-1.5.11.jar "v.1.5.11")
 
 
 # Contact
