@@ -82,6 +82,25 @@ public class Parser {
 		boolean commaDone = false;
 		int nextSize = -1, size, type, lastType = Op.NULL;
 		boolean sizeExplicit = false;
+
+                /*
+                * before splitting the string into tokens, remove spaces in "expressions" between square brackets
+                * in order to avoid certain false positives like: 
+                * - "A comma must only be placed after a parameter" (occurs e.g with "mov [eax + 1], ...") 
+                * - "You must place a comma between any two parameters" (occurs e.g with "mov [ ebx +1], ...")
+                * - "Invalid expression" (occurs e.g. with mov eax, [ebx + 1]" or  "mov eax, [ ebx]"
+                */                                   
+                StringBuffer sb = new StringBuffer();
+                Pattern pt = Pattern.compile("\\[.*\\]");
+                Matcher mt = pt.matcher(s);
+
+                while(mt.find()) {
+                    // remove all spaces/tabs between brackets to avoid the false positives outlined above 
+                    mt.appendReplacement(sb, mt.group(0).replaceAll("[ \t]", ""));
+                }
+                mt.appendTail(sb);
+                s = sb.toString(); 
+
 		String[] tokens = s.split("[ \t]"); // split the string into "words"/tokens
 		for (String token : tokens) { // and look at any ...
 			if (!token.equals("")) { // ... non-empty word
