@@ -94,7 +94,7 @@ public class Lods extends JasminCommand {
 			return;
 		} else if (p.mnemo.startsWith("LODS")) {
 			dest = dataspace.getMatchingRegister(dataspace.EAX, p.size);
-			src = p.get(dataspace.ESI);
+			src = p.get(new Address(Op.MEM, p.size, (int) dataspace.ESI.getShortcut()));
 			increaseDecreaseRegister(dataspace.ESI, p.size);
 		} else if (p.mnemo.startsWith("STOS")) {
 			dest = new Address(Op.MEM, p.size, (int) dataspace.EDI.getShortcut());
