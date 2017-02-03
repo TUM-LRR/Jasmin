@@ -39,7 +39,7 @@ Please use the issue tracker for bug reporting. You can reach the current mainta
 # License
 
 > Jasmin - Java Assembler Interpreter
-> Copyright (C) 2006-2016 
+> Copyright (C) 2006-2017 
 > Chair of Computer Architecture at Technische Universität München
 > 
 > This program is free software; you can redistribute it and/or modify
