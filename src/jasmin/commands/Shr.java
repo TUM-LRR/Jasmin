@@ -34,8 +34,12 @@ public class Shr extends JasminCommand {
 			p.result = p.a << p.b;
 			p.put(0, p.result, null);
 			setFlags(p, CF + SF + ZF + PF);
-			if ((p.b == 1) && Op.matches(p.type(1), Op.IMM | Op.CONST)) {
-				dataspace.fOverflow = (dataspace.fCarry == getBit(p.result, p.size(0) * 8 - 1));
+			if (p.b == 1) {
+				if (dataspace.fCarry == getBit(p.result, p.size(0) * 8 - 1)) {
+					dataspace.fOverflow = false;
+				} else {
+					dataspace.fOverflow = true;
+				}
 			}
 		} else {
 			if (p.mnemo.equals("SHR")) {
