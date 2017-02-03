@@ -8,11 +8,13 @@
     <strong>Command:</strong> SAR- Shift arithmetic right<br>
     <strong>Arguments:</strong> OP: register or memory location; QUANTITY: immediate<br>
     <strong>Usage:</strong> SAR OP, QUANTITY<br>
-    <strong>Effects:</strong> Shifts all bits of OP right QUANTITY times and adds doubles the bit at the beginning.<br>
-    <strong>Flags&nbsp;to&nbsp;be&nbsp;set:</strong> OF, SF, ZF, PF, CF
-    <br><strong>Misc:</strong> Carry flag contains bit that was shifted out last.
-    Corresponds to signed division by 2 QUANTITY times
+    <strong>Effects:</strong> Shifts all bits of OP right QUANTITY times and fills up with the most significant bit of the input.<br>
+    <strong>Flags&nbsp;to&nbsp;be&nbsp;set:</strong> <i>OF</i>, SF, ZF, PF, CF
+    <br><strong>Misc:</strong>
+    Carry flag contains bit that was shifted out last.<br>
+    Overflow flag is only affected with 1-bit shifts and is set to 0.
+    If QUANTITY isn't 1, the overflow flag's state is undefined!<br>
+    Corresponds to a signed division by 2 QUANTITY times while rounding the quotient toward negative infinity.
 </div>
 </body>
 </html>
-			

@@ -8,11 +8,13 @@
     <strong>Command:</strong> SHR- Shift logical right<br>
     <strong>Arguments:</strong> OP: register or memory location; QUANTITY: immediate<br>
     <strong>Usage:</strong> SHR OP, QUANTITY<br>
-    <strong>Effects:</strong> Shifts all bits of OP right QUANTITY times and adds a 0 at the beginning.<br>
-    <strong>Flags&nbsp;to&nbsp;be&nbsp;set:</strong> OF, SF, ZF, PF, CF
-    <br><strong>Misc:</strong> Carry flag contains bit that was shifted out last.
-    Corresponds to a unsigned division by 2 QUANTITY times
+    <strong>Effects:</strong> Shifts all bits of OP right QUANTITY times and fills up with 0.<br>
+    <strong>Flags&nbsp;to&nbsp;be&nbsp;set:</strong> <i>OF</i>, SF, ZF, PF, CF
+    <br><strong>Misc:</strong>
+    Carry flag contains bit that was shifted out last.<br>
+    Overflow flag is only affected with 1-bit shifts and is set to the most-significant bit of the input.
+    If QUANTITY isn't 1, the overflow flag's state is undefined!<br>
+    Corresponds to a unsigned division by 2 QUANTITY times.
 </div>
 </body>
 </html>
-			
