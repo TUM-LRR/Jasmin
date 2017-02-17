@@ -1,0 +1,11 @@
+install: make
+language: java
+dist: precise
+script: make && make test
+deploy:
+  provider: releases
+  api_key:
+    secure: AMJ+m6GDJOkoqTa8whGvw48AgX6LXIjMmkeMaOBC04kP9qn26a1VVbBwydOEYpWahXBzKH2nwle0qSfBTD5KfQyF2vBpUOQul6gJ/KMxg1bYBY7lgDkZ7XSIipfoyV5cW18Shv262wZbNhenXoVsa/av7fgMey2XaEiv9nugjKfcC1B7zvUE4bvOY8AMNY1CbIl7TM1H/t6h0Kiuo9uFk6BiTS4JCw+FRjMlh1VGbLnfOZIA1mPfxiDlhemGf3q+JT1GY2+b63TXka2ksAhqnbCBjJfiWiLdN4FBv6CZwEqbmlpLLKlb6UGAWbwB9L8Ocn4aa48mDrLDNQNMI4RbLk0XqMGeTSgA9eaTLy4wIaImX6RHAzqb6x+rEwEaftNxoxeGNCWxpnCug5DHea+sVlA/nNOuwnEuiTgtE40U7QYyV2W89R2fx4Kqr6bdPLditb+ReQRNdFW6Gu3TtLxjP0OhibqAOGjL/R4hcBMFUwKaE75kzdiz/PygqG9ndGba17j0ce3qsoQuQaalu3ZNgHfgSm0fgavN0ddMCaizsbqFKGBPzAYCX1ntCgZqhp5R1zP7Mq1iwVKECNu6H7+VgzeMcvrx3/uGRDGwt5CK2Y1k291C3KClzboRZ8u5qACkUMuz/f42fbapPbPEi3nY51he/UhL4X9/t7R+BCiBNvg=
+  file: bin/jasmin.jar
+  on:
+    repo: hbirler/Jasmin
