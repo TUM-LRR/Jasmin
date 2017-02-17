@@ -25,39 +25,47 @@ public class Shr extends JasminCommand {
 	
 	@Override
 	public void execute(Parameters p) {
+		p.a = p.get(0);
 		p.b = p.get(1);
+
 		if (p.b <= 0) {
 			return;
 		}
+
 		if (p.mnemo.endsWith("L")) {
-			p.a = p.get(0);
 			p.result = p.a << p.b;
 			p.put(0, p.result, null);
 			setFlags(p, CF + SF + ZF + PF);
-			if ((p.b == 1) && Op.matches(p.type(1), Op.IMM | Op.CONST)) {
-				dataspace.fOverflow = (dataspace.fCarry == getBit(p.result, p.size(0) * 8 - 1));
+			if (p.b == 1) {
+				if (dataspace.fCarry == getBit(p.result, p.size(0) * 8 - 1)) {
+					dataspace.fOverflow = false;
+				} else {
+					dataspace.fOverflow = true;
+				}
 			}
 		} else {
 			if (p.mnemo.equals("SHR")) {
-				p.a = p.get(0);
 				if (p.b == 1) {
 					dataspace.fOverflow = getBit(p.a, p.size(0) * 8 - 1);
 				}
 			} else { // SAR
 				p.signed = true;
+				p.a = p.get(0);
+
 				if (p.b == 1) {
 					dataspace.fOverflow = false;
 				}
 			}
-			p.a = p.get(0);
+
 			p.result = p.a >> p.b;
+			p.put(0, p.result, null);
+			setFlags(p, SF + ZF + PF);
+
 			if (p.b < p.size(0) * 4) {
 				dataspace.fCarry = getBit(p.a, p.b - 1);
 			} else {
 				dataspace.fCarry = p.a < 0;
 			}
-			p.put(0, p.result, null);
-			setFlags(p, SF + ZF + PF);
 		}
 	}
 	
