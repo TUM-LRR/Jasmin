@@ -30,6 +30,7 @@ public class MainFrame extends javax.swing.JFrame {
 	public MainFrame() {
 		File propfile = new File(System.getProperty("user.home") + File.separator + ".jasmin");
 		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 			properties = new Properties();
 			
 			if (!propfile.exists()) {
