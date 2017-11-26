@@ -5,6 +5,7 @@
 package jasmin.commands;
 
 import jasmin.core.*;
+import jasmin.gui.JasDocument;
 
 /**
  * @author Jakob Kummerow
@@ -26,7 +27,7 @@ public class JasminSleep extends JasminCommand {
 	}
 	
 	@Override
-	public void execute(Parameters p) {
+	public void execute(JasDocument jasDocument, Parameters p) {
 		try {
 			Thread.sleep(p.get(0));
 		} catch (InterruptedException e) {

@@ -1,6 +1,7 @@
 package jasmin.commands;
 
 import jasmin.core.*;
+import jasmin.gui.JasDocument;
 
 /**
  * @author Yang Guo
@@ -28,7 +29,7 @@ public class Bsf extends JasminCommand {
 		return p.validate(2, Op.NULL);
 	}
 	
-	public void execute(Parameters p) {
+	public void execute(JasDocument jasDocument, Parameters p) {
 		long word = p.get(1);
 		dataspace.fZero = (word == 0);
 		if (dataspace.fZero) {

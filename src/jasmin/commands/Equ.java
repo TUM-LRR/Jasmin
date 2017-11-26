@@ -1,6 +1,7 @@
 package jasmin.commands;
 
 import jasmin.core.*;
+import jasmin.gui.JasDocument;
 
 public class Equ extends PreprocCommand {
 	
@@ -19,12 +20,12 @@ public class Equ extends PreprocCommand {
 		if (e != null) {
 			return e;
 		}
-		execute(p);
+		execute(null, p);
 		return null;
 	}
 	
 	@Override
-	public void execute(Parameters p) {
+	public void execute(JasDocument jasDocument, Parameters p) {
 		dataspace.setConstantValue(p.label, p.get(0));
 	}
 	

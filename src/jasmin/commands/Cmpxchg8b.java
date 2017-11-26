@@ -1,6 +1,7 @@
 package jasmin.commands;
 
 import jasmin.core.*;
+import jasmin.gui.JasDocument;
 
 public class Cmpxchg8b extends JasminCommand {
 	
@@ -24,7 +25,7 @@ public class Cmpxchg8b extends JasminCommand {
 		return p.validate(1, Op.NULL);
 	}
 	
-	public void execute(Parameters p) {
+	public void execute(JasDocument jasDocument, Parameters p) {
 		p.argument(0).address.size = 8;
 		p.b = p.get(0);
 		if (p.b == ((dataspace.EDX.getShortcut() << 32) | dataspace.EAX.getShortcut())) {

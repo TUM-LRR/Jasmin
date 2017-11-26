@@ -1,6 +1,7 @@
 package jasmin.commands;
 
 import jasmin.core.*;
+import jasmin.gui.JasDocument;
 
 /**
  * @author Yang Guo
@@ -16,7 +17,7 @@ public class Aaa extends JasminCommand {
 		return p.validate(0, Op.NULL);
 	}
 	
-	public void execute(Parameters p) {
+	public void execute(JasDocument jasDocument, Parameters p) {
 		long al = p.get(dataspace.AL);
 		switch (p.mnemo) {
 			case "AAA":

@@ -29,8 +29,8 @@ public final class JasDocument extends javax.swing.JPanel implements Runnable {
 	private int markedLine = 0;
 	private SyntaxHighlighter highlighter = null;
 	private MemoryTableModel model = null;
-	private final List<IGuiModule> modules;
 	private IGuiModule lastSelected = null;
+	public final List<IGuiModule> modules;
 	public CommandLoader cmdLoader = null;
 	public DataSpace data = null;
 	public Parser parser = null;
@@ -617,7 +617,7 @@ public final class JasDocument extends javax.swing.JPanel implements Runnable {
 	}
 	
 	public void executeLineNumber(int lineNumber, boolean cached) {
-		ParseError error = highlighter.executeLine(lineNumber, cached);
+		ParseError error = highlighter.executeLine(this, lineNumber, cached);
 		if (error != null) {
 			ErrorLabel.setText(error.errorMsg);
 			pauseProgram();

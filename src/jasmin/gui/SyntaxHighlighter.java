@@ -393,13 +393,15 @@ public class SyntaxHighlighter extends DefaultStyledDocument {
 	/**
 	 * Executes the line with the given number, parsing it first if necessary.
 	 * 
+	 *
+	 * @param jasDocument
 	 * @param lineNumber
 	 * @param cached
 	 * @return a ParseError describing the result of the execution (or previous parsing)
 	 */
-	public ParseError executeLine(int lineNumber, boolean cached) {
+	public ParseError executeLine(JasDocument jasDocument, int lineNumber, boolean cached) {
 		if (cached && document.cachedLineDone[lineNumber]) {
-			return document.parser.execute(null, null, lineNumber);
+			return document.parser.execute(jasDocument, null, null, lineNumber);
 		}
 		if (toDoList.contains(lineInfo.get(lineNumber))) {
 			parseLine(lineNumber);
@@ -409,7 +411,7 @@ public class SyntaxHighlighter extends DefaultStyledDocument {
 		if (cached) {
 			document.cachedLineDone[lineNumber] = true;
 		}
-		return document.parser.execute(line, lastLabel, (cached ? lineNumber : -1));
+		return document.parser.execute(jasDocument, line, lastLabel, (cached ? lineNumber : -1));
 	}
 	
 	// ///////////////////////////////////////// Highlighting

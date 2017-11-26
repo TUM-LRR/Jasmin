@@ -4,6 +4,7 @@
 package jasmin.commands;
 
 import jasmin.core.*;
+import jasmin.gui.JasDocument;
 
 
 /**
@@ -20,7 +21,7 @@ public class Fsin extends FpuCommand {
 		return p.validate(0, Op.NULL);
 	}
 
-	public void execute(Parameters p) {
+	public void execute(JasDocument jasDocument, Parameters p) {
 		switch (p.mnemo) {
 			case "FSIN":
 				fpu.put(0, Math.sin(fpu.get(0)));

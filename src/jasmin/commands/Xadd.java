@@ -1,6 +1,7 @@
 package jasmin.commands;
 
 import jasmin.core.*;
+import jasmin.gui.JasDocument;
 
 public class Xadd extends JasminCommand {
 	
@@ -20,7 +21,7 @@ public class Xadd extends JasminCommand {
 		return p.validate(1, Op.REG);
 	}
 	
-	public void execute(Parameters p) {
+	public void execute(JasDocument jasDocument, Parameters p) {
 		p.prepareAB();
 		p.result = p.a + p.b;
 		setFlags(p, OF + SF + ZF + AF + CF + PF);

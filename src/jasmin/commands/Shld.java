@@ -1,6 +1,7 @@
 package jasmin.commands;
 
 import jasmin.core.*;
+import jasmin.gui.JasDocument;
 
 public class Shld extends JasminCommand {
 	
@@ -26,7 +27,7 @@ public class Shld extends JasminCommand {
 			"Size mismatch");
 	}
 	
-	public void execute(Parameters p) {
+	public void execute(JasDocument jasDocument, Parameters p) {
 		if (((p.b = (p.get(2))) == 0) || (p.b >= (p.size(0) * 8))) {
 			return;
 		}

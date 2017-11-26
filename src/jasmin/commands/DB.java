@@ -1,6 +1,7 @@
 package jasmin.commands;
 
 import jasmin.core.*;
+import jasmin.gui.JasDocument;
 
 /**
  * @author Jakob Kummerow
@@ -40,7 +41,7 @@ public class DB extends PseudoCommand {
 	}
 	
 	@Override
-	public void execute(Parameters p) {
+	public void execute(JasDocument jasDocument, Parameters p) {
 		
 		for (int i = 0; i < p.numArguments; i++) {
 			Address address = dataspace.malloc(p.size, 1);

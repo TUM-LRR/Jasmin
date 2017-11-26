@@ -1,6 +1,7 @@
 package jasmin.commands;
 
 import jasmin.core.*;
+import jasmin.gui.JasDocument;
 
 /**
  * @author Yang Guo
@@ -19,7 +20,7 @@ public class PushF extends jasmin.core.JasminCommand {
 	}
 	
 	@Override
-	public void execute(Parameters p) {
+	public void execute(JasDocument jasDocument, Parameters p) {
 		long word = 2;
 		int size = 2;
 		if (p.mnemo.endsWith("D")) {

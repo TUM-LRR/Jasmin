@@ -1,6 +1,7 @@
 package jasmin.commands;
 
 import jasmin.core.*;
+import jasmin.gui.JasDocument;
 
 /**
  * @author Yang Guo
@@ -29,7 +30,7 @@ public class Pop extends JasminCommand {
 		return e;
 	}
 	
-	public void execute(Parameters p) {
+	public void execute(JasDocument jasDocument, Parameters p) {
 		p.pop(p.argument(0).address);
 	}
 	

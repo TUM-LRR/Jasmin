@@ -1,6 +1,7 @@
 package jasmin.commands;
 
 import jasmin.core.*;
+import jasmin.gui.JasDocument;
 
 public class Lea extends JasminCommand {
 
@@ -16,7 +17,7 @@ public class Lea extends JasminCommand {
 		return p.validate(2, Op.NULL);
 	}
 
-	public void execute(Parameters p) {
+	public void execute(JasDocument jasDocument, Parameters p) {
 		p.put(0, p.argument(1).cAddress.calculateEffectiveAddress(true), null);
 	}
 

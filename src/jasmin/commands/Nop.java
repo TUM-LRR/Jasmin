@@ -1,6 +1,7 @@
 package jasmin.commands;
 
 import jasmin.core.*;
+import jasmin.gui.JasDocument;
 
 public class Nop extends jasmin.core.JasminCommand {
 	
@@ -16,7 +17,7 @@ public class Nop extends jasmin.core.JasminCommand {
 	
 	@SuppressWarnings("unused")
 	@Override
-	public void execute(Parameters p) {
+	public void execute(JasDocument jasDocument, Parameters p) {
 	}
 	
 }

@@ -17,6 +17,7 @@
 package jasmin.commands;
 
 import jasmin.core.*;
+import jasmin.gui.JasDocument;
 
 public class Int extends jasmin.core.JasminCommand {
 	
@@ -32,7 +33,7 @@ public class Int extends jasmin.core.JasminCommand {
 		return p.validate(1, Op.NULL);
 	}
 	
-	public void execute(Parameters p) {
+	public void execute(JasDocument jasDocument, Parameters p) {
 		int id = (int) p.get(0);
 		switch (id) {
 		case 0x21:

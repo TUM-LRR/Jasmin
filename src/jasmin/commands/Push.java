@@ -1,6 +1,7 @@
 package jasmin.commands;
 
 import jasmin.core.*;
+import jasmin.gui.JasDocument;
 
 /**
  * @author Yang Guo, Jakob Kummerow
@@ -36,7 +37,7 @@ public class Push extends JasminCommand {
 	}
 	
 	@Override
-	public void execute(Parameters p) {
+	public void execute(JasDocument jasDocument, Parameters p) {
 		p.argument(0).address.size = p.size;
 		p.push(p.argument(0).address);
 	}

@@ -4,6 +4,7 @@
 package jasmin.commands;
 
 import jasmin.core.*;
+import jasmin.gui.JasDocument;
 
 
 /**
@@ -20,7 +21,7 @@ public class Fabs extends FpuCommand {
 		return p.validate(0, Op.NULL);
 	}
 
-	public void execute(Parameters p) {
+	public void execute(JasDocument jasDocument, Parameters p) {
 		switch (p.mnemo) {
 			case "FABS":
 				fpu.put(0, Math.abs(fpu.get(0)));
