@@ -1,6 +1,7 @@
 package jasmin.commands;
 
 import jasmin.core.*;
+import jasmin.gui.JasDocument;
 
 /**
  * @author Jakob Kummerow
@@ -30,7 +31,7 @@ public class Fild extends FpuCommand {
 		return e;
 	}
 	
-	public void execute(Parameters p) {
+	public void execute(JasDocument jasDocument, Parameters p) {
 		if (p.mnemo.equals("FILD")) {
 			double d = p.getF(0, Fpu.INTEGER);
 			fpu.push(d);

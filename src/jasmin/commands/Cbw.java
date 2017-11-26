@@ -1,6 +1,7 @@
 package jasmin.commands;
 
 import jasmin.core.*;
+import jasmin.gui.JasDocument;
 
 /**
  * @author Jakob Kummerow
@@ -20,7 +21,7 @@ public class Cbw extends JasminCommand {
 		return true;
 	}
 
-	public void execute(Parameters p) {
+	public void execute(JasDocument jasDocument, Parameters p) {
 		switch (p.mnemo) {
 			case "CBW":
 				p.put(dataspace.AX, p.get(dataspace.AL), null);

@@ -1,6 +1,7 @@
 package jasmin.commands;
 
 import jasmin.core.*;
+import jasmin.gui.JasDocument;
 
 
 public class Bswap extends JasminCommand {
@@ -15,7 +16,7 @@ public class Bswap extends JasminCommand {
 		return p.validate(1, Op.NULL);
 	}
 
-	public void execute(Parameters p) {
+	public void execute(JasDocument jasDocument, Parameters p) {
 		long dest;
 		long source = p.get(0);
 		dest = ((source & 0x000000FF) << 24)

@@ -1,6 +1,7 @@
 package jasmin.commands;
 
 import jasmin.core.*;
+import jasmin.gui.JasDocument;
 
 public class Inc extends JasminCommand {
 	
@@ -16,7 +17,7 @@ public class Inc extends JasminCommand {
 		return p.validate(1, Op.NULL);
 	}
 	
-	public void execute(Parameters p) {
+	public void execute(JasDocument jasDocument, Parameters p) {
 		p.a = p.get(0);
 
 		switch (p.mnemo) {

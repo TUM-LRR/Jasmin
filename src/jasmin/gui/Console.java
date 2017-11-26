@@ -198,7 +198,7 @@ public class Console extends javax.swing.JPanel implements IGuiModule, IListener
 		
 	}
 	
-	private void setMode(int newMode) {
+	public void setMode(int newMode) {
 		if (mode == newMode) {
 			return;
 		}

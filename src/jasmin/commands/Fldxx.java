@@ -4,6 +4,7 @@
 package jasmin.commands;
 
 import jasmin.core.*;
+import jasmin.gui.JasDocument;
 
 
 /**
@@ -21,7 +22,7 @@ public class Fldxx extends FpuCommand {
 		return p.validate(0, Op.NULL);
 	}
 
-	public void execute(Parameters p) {
+	public void execute(JasDocument jasDocument, Parameters p) {
 		switch (p.mnemo) {
 			case "FLD1":                // 1
 				fpu.push(1);

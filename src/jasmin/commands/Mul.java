@@ -1,6 +1,7 @@
 package jasmin.commands;
 
 import jasmin.core.*;
+import jasmin.gui.JasDocument;
 
 /**
  * @author Yang Guo
@@ -20,7 +21,7 @@ public class Mul extends jasmin.core.JasminCommand {
 		return p.validate(1, Op.NULL);
 	}
 	
-	public void execute(Parameters p) {
+	public void execute(JasDocument jasDocument, Parameters p) {
 		p.a = p.get(0);
 		if (p.size == 1) {
 			long al = dataspace.AL.getShortcut();

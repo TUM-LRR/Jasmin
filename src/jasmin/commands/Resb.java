@@ -1,6 +1,7 @@
 package jasmin.commands;
 
 import jasmin.core.*;
+import jasmin.gui.JasDocument;
 
 /**
  * @author Yang Guo
@@ -28,7 +29,7 @@ public class Resb extends PseudoCommand {
 	}
 	
 	@Override
-	public void execute(Parameters p) {
+	public void execute(JasDocument jasDocument, Parameters p) {
 		int size = getOperationSize(p.mnemo);
 		Address a = dataspace.malloc(size, (int) p.get(0));
 		if (p.label != null) {

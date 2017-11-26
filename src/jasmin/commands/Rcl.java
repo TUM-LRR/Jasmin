@@ -1,6 +1,7 @@
 package jasmin.commands;
 
 import jasmin.core.*;
+import jasmin.gui.JasDocument;
 
 public class Rcl extends JasminCommand {
 	
@@ -21,7 +22,7 @@ public class Rcl extends JasminCommand {
 		return p.validate(2, Op.NULL);
 	}
 	
-	public void execute(Parameters p) {
+	public void execute(JasDocument jasDocument, Parameters p) {
 		if ((p.b = p.get(1)) == 0) {
 			return;
 		}

@@ -1,6 +1,7 @@
 package jasmin.commands;
 
 import jasmin.core.*;
+import jasmin.gui.JasDocument;
 
 public class Setcc extends JasminCommand {
 
@@ -18,7 +19,7 @@ public class Setcc extends JasminCommand {
 		return p.validate(1, Op.NULL);
 	}
 
-	public void execute(Parameters p) {
+	public void execute(JasDocument jasDocument, Parameters p) {
 		if (testCC(p.mnemo.substring(3))) {
 			p.put(0, 1, null);
 		} else {

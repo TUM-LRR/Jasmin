@@ -1,6 +1,7 @@
 package jasmin.commands;
 
 import jasmin.core.*;
+import jasmin.gui.JasDocument;
 
 /**
  * @author Yang Guo
@@ -32,7 +33,7 @@ public class Jmp extends JasminCommand {
 	}
 	
 	@Override
-	public void execute(Parameters p) {
+	public void execute(JasDocument jasDocument, Parameters p) {
 		p.a = p.get(0);
 		if (testCondition(p.mnemo)) {
 			dataspace.setInstructionPointer((int) p.a);

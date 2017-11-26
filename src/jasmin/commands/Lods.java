@@ -1,6 +1,7 @@
 package jasmin.commands;
 
 import jasmin.core.*;
+import jasmin.gui.JasDocument;
 
 /**
  * @author Yang Guo, Jakob Kummerow
@@ -122,7 +123,7 @@ public class Lods extends JasminCommand {
 	}
 	
 	@Override
-	public void execute(Parameters p) {
+	public void execute(JasDocument jasDocument, Parameters p) {
 		if (p.type(0) == Op.PREFIX) {
 			p.size = p.size(1);
 			if (dataspace.ECX.getShortcut() != 0) {

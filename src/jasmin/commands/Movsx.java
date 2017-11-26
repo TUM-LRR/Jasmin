@@ -1,6 +1,7 @@
 package jasmin.commands;
 
 import jasmin.core.*;
+import jasmin.gui.JasDocument;
 
 /**
  * @author Jakob Kummerow
@@ -28,7 +29,7 @@ public class Movsx extends JasminCommand {
 		return p.validate(2, Op.NULL);
 	}
 
-	public void execute(Parameters p) {
+	public void execute(JasDocument jasDocument, Parameters p) {
 		p.put(0, p.get(1), null);
 	}
 

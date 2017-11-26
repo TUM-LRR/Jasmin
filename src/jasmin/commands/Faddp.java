@@ -1,6 +1,7 @@
 package jasmin.commands;
 
 import jasmin.core.*;
+import jasmin.gui.JasDocument;
 
 /**
  * @author Jakob Kummerow
@@ -23,7 +24,7 @@ public class Faddp extends FpuCommand {
 		return e;
 	}
 	
-	public void execute(Parameters p) {
+	public void execute(JasDocument jasDocument, Parameters p) {
 		p.normalizePopParameters();
 		p.fa = p.getF(0, Fpu.FLOAT);
 		p.fb = p.getF(1, Fpu.FLOAT);

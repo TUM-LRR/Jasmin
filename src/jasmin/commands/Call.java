@@ -1,6 +1,7 @@
 package jasmin.commands;
 
 import jasmin.core.*;
+import jasmin.gui.JasDocument;
 
 /**
  * @author Yang Guo
@@ -21,7 +22,7 @@ public class Call extends JasminCommand {
 		return e;
 	}
 	
-	public void execute(Parameters p) {
+	public void execute(JasDocument jasDocument, Parameters p) {
 		p.a = p.get(0);
 		p.push(dataspace.EIP);
 		dataspace.setInstructionPointer((int) p.a);

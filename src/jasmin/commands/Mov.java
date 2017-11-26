@@ -1,6 +1,7 @@
 package jasmin.commands;
 
 import jasmin.core.*;
+import jasmin.gui.JasDocument;
 
 /**
  * @author Yang Guo
@@ -32,7 +33,7 @@ public class Mov extends JasminCommand {
 		return command.equals("MOV") || testCC(command.substring(4));
 	}
 	
-	public void execute(Parameters p) {
+	public void execute(JasDocument jasDocument, Parameters p) {
 		if (testCondition(p.mnemo)) {
 			if (p.type(1) == Op.LABEL) {
 				p.put(0, p.get(1), new MemCellInfo(p.argument(1)));

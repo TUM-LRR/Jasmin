@@ -294,6 +294,7 @@ public class Parameters {
 	
 	public ParseError validate(int operandNumber, int allowedTypes) {
 		boolean matched = false;
+		int type = type(operandNumber);
 		if (Op.matches(type(operandNumber), allowedTypes)) {
 			matched = true;
 		}

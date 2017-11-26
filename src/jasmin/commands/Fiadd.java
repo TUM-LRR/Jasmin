@@ -1,6 +1,7 @@
 package jasmin.commands;
 
 import jasmin.core.*;
+import jasmin.gui.JasDocument;
 
 /**
  * @author Jakob Kummerow
@@ -21,7 +22,7 @@ public class Fiadd extends FpuCommand {
 		return e;
 	}
 
-	public void execute(Parameters p) {
+	public void execute(JasDocument jasDocument, Parameters p) {
 		p.normalizeParameters();
 		p.fa = p.getF(0, Fpu.INTEGER);
 		p.fb = p.getF(1, Fpu.INTEGER);

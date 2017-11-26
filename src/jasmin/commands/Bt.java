@@ -1,6 +1,7 @@
 package jasmin.commands;
 
 import jasmin.core.*;
+import jasmin.gui.JasDocument;
 
 /**
  * @author Yang Guo
@@ -40,7 +41,7 @@ public class Bt extends JasminCommand {
 	}
 	
 	@Override
-	public void execute(Parameters p) {
+	public void execute(JasDocument jasDocument, Parameters p) {
 		long offset = p.get(1);
 		Address a = p.argument(0).address.clone();
 		if (Op.matches(p.type(0), Op.REG)) {

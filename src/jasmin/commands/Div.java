@@ -2,6 +2,7 @@ package jasmin.commands;
 
 import jasmin.core.*;
 
+import jasmin.gui.JasDocument;
 import java.math.BigInteger;
 
 public class Div extends jasmin.core.JasminCommand {
@@ -21,7 +22,7 @@ public class Div extends jasmin.core.JasminCommand {
 	}
 	
 	@Override
-	public void execute(Parameters p) {
+	public void execute(JasDocument jasDocument, Parameters p) {
 		if (p.mnemo.equals("IDIV")) {
 			p.signed = true;
 		}

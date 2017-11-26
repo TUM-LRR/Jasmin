@@ -272,18 +272,19 @@ public class Parser {
 		
 		// preprocessing commands are executed right now
 		if (cmd instanceof PreprocCommand) {
-			cmd.execute(param);
+			cmd.execute(null, param);
 		}
 		return result;
 	}
 	
-	public ParseError execute(String line, String lastLabel, int lineNumber) {
+	public ParseError execute(JasDocument jasDocument, String line, String lastLabel,
+			int lineNumber) {
 		// cached execution
 		if ((lineNumber != -1) && cached[lineNumber]) {
 			JasminCommand command = commandCache[lineNumber];
 			if (command != null) {
 				Parameters p = paramCache[lineNumber];
-				command.execute(p);
+				command.execute(jasDocument, p);
 				if (dataspace.addressOutOfRange()) {
 					dataspace.clearAddressOutOfRange();
 					return new ParseError("", "", 0,
@@ -320,7 +321,7 @@ public class Parser {
 		}
 		
 		// execute now
-		parseResult.command.execute(parseResult.param);
+		parseResult.command.execute(jasDocument, parseResult.param);
 		// if the command was a pseudo command, update the address its variable refers to
 		if (lineNumber == -1) {
 			dataspace.updateDirty();

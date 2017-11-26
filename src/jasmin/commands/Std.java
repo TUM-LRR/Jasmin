@@ -1,6 +1,7 @@
 package jasmin.commands;
 
 import jasmin.core.*;
+import jasmin.gui.JasDocument;
 
 /**
  * @author Jakob Kummerow
@@ -16,7 +17,7 @@ public class Std extends JasminCommand {
 		return p.validate(0, Op.NULL);
 	}
 
-	public void execute(Parameters p) {
+	public void execute(JasDocument jasDocument, Parameters p) {
 		switch (p.mnemo) {
 			case "STD":
 				dataspace.fDirection = true;

@@ -1,6 +1,7 @@
 package jasmin.commands;
 
 import jasmin.core.*;
+import jasmin.gui.JasDocument;
 
 public class Shr extends JasminCommand {
 	
@@ -24,7 +25,7 @@ public class Shr extends JasminCommand {
 	}
 	
 	@Override
-	public void execute(Parameters p) {
+	public void execute(JasDocument jasDocument, Parameters p) {
 		p.a = p.get(0);
 		p.b = p.get(1);
 

@@ -1,5 +1,7 @@
 package jasmin.core;
 
+import jasmin.gui.JasDocument;
+
 /**
  * The super class for all commands.
  * 
@@ -79,12 +81,12 @@ public abstract class JasminCommand {
 	abstract public ParseError validate(Parameters p);
 	
 	/**
-	 * [to be implemented] the execution of the command
-	 * 
+	 * the execution of the command
+	 *
+	 * @param jasDocument context (WARNING: PreprocCommand will get null)
 	 * @param p
-	 *        the parameters
 	 */
-	abstract public void execute(Parameters p);
+	abstract public void execute(JasDocument jasDocument, Parameters p);
 	
 	protected DataSpace dataspace;
 	

@@ -1,6 +1,7 @@
 package jasmin.commands;
 
 import jasmin.core.*;
+import jasmin.gui.JasDocument;
 
 public class Loop extends JasminCommand {
 	
@@ -24,7 +25,7 @@ public class Loop extends JasminCommand {
 	}
 	
 	@Override
-	public void execute(Parameters p) {
+	public void execute(JasDocument jasDocument, Parameters p) {
 		p.a = p.get(0);
 		long ecx = dataspace.ECX.getShortcut() - 1;
 		p.put(dataspace.ECX, ecx, null);

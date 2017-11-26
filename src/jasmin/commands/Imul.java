@@ -1,6 +1,7 @@
 package jasmin.commands;
 
 import jasmin.core.*;
+import jasmin.gui.JasDocument;
 
 public class Imul extends JasminCommand {
 	
@@ -53,7 +54,7 @@ public class Imul extends JasminCommand {
 	}
 	
 	@Override
-	public void execute(Parameters p) {
+	public void execute(JasDocument jasDocument, Parameters p) {
 		if (p.validate(2, Op.NULL) == null) {
 			if (p.validate(1, Op.NULL) == null) {
 				ex1(p);
