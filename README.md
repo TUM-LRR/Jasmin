@@ -1,3 +1,10 @@
+# Developed by students for students
+
+Jasmin was developed by students as an x86 Assembler learning tool for students. If you're a student and like to contribute to Jasmin and therefore also to support your peer students, please contact this year's "Zentraluebungsleitung" to get access to Jasmin. We also appreciate contributions via pull request.
+
+Jasmin is not mandatory to successfully attend the course. Although its source code is available in the TUM-LRR group on GitHUB, this is only provided as a service for students to easily access Jasmin.
+
+
 # Jasmin
 
 The Java Assembler Interpreter has been developed by 2nd term students for the [Chair of Computer Architecture](http://www.lrr.in.tum.de "LRR") at the [Technische Universität München](http://www.tum.de "TUM"). It is designed as a learning tool for x86 assembler. While not implementing all the functionality of a modern Intel Processor, its tutorials allow you to try and understand the basic commands and structures of assembler code.
@@ -17,7 +24,7 @@ Please use the issue tracker for bug reporting. You can reach the current mainta
 
 ## Current Maintainer
 
-* Marcel Meyer
+* [There is currently no official maintainer]
 
 ## Initial Development
 
