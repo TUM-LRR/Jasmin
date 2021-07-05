@@ -712,11 +712,11 @@ public class Parser {
 				return 8;
 			}
 		} else {
-			if ((operand & 255) == operand) {
+			if ((operand & 0xFF) == operand) {
 				return 1;
-			} else if ((operand & 65535) == operand) {
+			} else if ((operand & 0xFFFF) == operand) {
 				return 2;
-			} else if ((operand & Long.valueOf("4294967295")) == operand) {
+			} else if ((operand & 0xFFFFFFFFL) == operand) {
 				return 4;
 			} else {
 				return 8;

@@ -412,7 +412,7 @@ public class DataSpace {
 				addressOutOfRange = true;
 				return;
 			}
-			long mask = 255; // bitmask to filter 8 bits
+			long mask = 0xFF; // bitmask to filter 8 bits
 			int bytebuffer = 0; // somewhere to save the 8 bits
 			for (int i = 0; i < address.size; i++) {
 				bytebuffer = (int) (value & mask); // masking
@@ -468,7 +468,7 @@ public class DataSpace {
 	 */
 	public long getUnsignedMemory(int address, int size) {
 		long result = 0;
-		long bitmask = 255;
+		long bitmask = 0xFFL;
 		for (int i = 0; i < size; i++) {
 			result = result | ((bitmask & memory.get(address + i)) << (8 * i));
 		}
