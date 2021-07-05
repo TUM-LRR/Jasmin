@@ -164,7 +164,7 @@ public class RegisterPanel extends javax.swing.JPanel {
 			}
 		}
 		String dec = Parser.hex2dec(s);
-		return Long.valueOf(dec);
+		return Long.parseLong(dec);
 	}
 	
 	private void edit(JTextField field, int index) {

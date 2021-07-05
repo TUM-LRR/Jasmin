@@ -874,7 +874,7 @@ public class DataSpace {
 	
 	private long getInitial(String src, int type, int size, boolean signed) {
 		if ((type & Op.IMM) != 0) {
-			long value = Long.valueOf(src);
+			long value = Long.parseLong(src);
 			if (signed) {
 				return value;
 			} else {
@@ -1035,11 +1035,7 @@ public class DataSpace {
 	public void addMemoryListener(IListener l) {
 		memory.addListener(l);
 	}
-	
-	/*public void addRegisterListener(IListener l) {
-		reg.addListener(l);
-	}*/
-	
+
 	public void removeMemoryListener(IListener l, int address) {
 		memory.removeListener(l, address);
 	}
@@ -1047,8 +1043,5 @@ public class DataSpace {
 	public void removeMemoryListener(IListener l) {
 		memory.removeListener(l);
 	}
-	
-	/*public void removeRegisterListener(IListener l) {
-		reg.removeListener(l);
-	}*/
+
 }

@@ -513,9 +513,6 @@ public class Parser {
 				return null;
 			}
 			int labeltype = getOperandType(label);
-			//if (commandLoader.commandExists(label)) {
-			//	return null;
-			//}
 			if (Op.matches(labeltype, Op.ERROR | Op.LABEL | Op.VARIABLE | Op.CONST)) {
 				return label;
 			}
@@ -596,7 +593,7 @@ public class Parser {
 			} catch (NumberFormatException e) {
 				return Op.ERROR;
 			}
-			return Op.getDefinition(Op.IMM, getOperandSize(Long.valueOf(operand)));
+			return Op.getDefinition(Op.IMM, getOperandSize(Long.parseLong(operand)));
 		}
 		// floating-point constant
 		if (pFloat.matcher(operand).matches()) {

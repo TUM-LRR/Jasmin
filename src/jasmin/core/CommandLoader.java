@@ -163,7 +163,7 @@ public class CommandLoader {
 				System.out.println("illegal access of " + name);
 			}
 		}
-		System.out.println("+ " + String.valueOf(counter) + "\tcommand(s) from:\t" + url[0]);
+		System.out.println("+ " + counter + "\tcommand(s) from:\t" + url[0]);
 		return 0;
 	}
 	

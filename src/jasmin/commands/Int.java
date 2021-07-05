@@ -34,10 +34,8 @@ public class Int extends jasmin.core.JasminCommand {
 	
 	public void execute(Parameters p) {
 		int id = (int) p.get(0);
-		switch (id) {
-		case 0x21:
+		if (id == 0x21) {
 			handleDOSInterrupt(p);
-			break;
 		}
 	}
 	

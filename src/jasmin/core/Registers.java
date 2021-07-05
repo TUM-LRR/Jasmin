@@ -36,9 +36,7 @@ public class Registers {
 			dirtyParts[i] = 0;
 		}
 		dirtyTimeStamp = Integer.MIN_VALUE + 2;
-		// addressedListeners = new ArrayList[NUMREG];
-		// globalListeners = new ArrayList<IListener>();
-	}
+    }
 
 	public Address constructAddress(String registerName, Hashtable<String, Address> registerTable) {
 		// if the register address exists already, return it
