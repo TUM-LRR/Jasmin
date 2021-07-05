@@ -28,8 +28,8 @@ public class SevenSegment extends javax.swing.JPanel implements IGuiModule, ILis
 	private int len, wid, distanceBetween;
 	private int colormode;
 	
-	private static int COLOR_BLUE = 0;
-	private static int COLOR_JASMIN = 1;
+	private static final int COLOR_BLUE = 0;
+	private static final int COLOR_JASMIN = 1;
 	
 	private PolygonObject[] polys;
 	

@@ -30,8 +30,8 @@ public class Console extends javax.swing.JPanel implements IGuiModule, IListener
 	DataSpace data;
 	private Address address = new Address(Op.MEM, 1, 0);
 	
-	private static int MODE_ARRAY = 0;
-	private static int MODE_PIPE = 1;
+	private static final int MODE_ARRAY = 0;
+	private static final int MODE_PIPE = 1;
 	private int mode = -1;
 	
 	private boolean visible = false;

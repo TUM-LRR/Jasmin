@@ -10,7 +10,7 @@ import java.util.Hashtable;
  */
 public class Registers {
 
-	private int NUMREG = 9; // A, B, C, D, SI, DI, SP, BP, IP
+	private final int NUMREG = 9; // A, B, C, D, SI, DI, SP, BP, IP
 
 	private LongWrapper[] reg;
 

@@ -17,10 +17,10 @@ public class StripLight extends javax.swing.JPanel implements IGuiModule, IListe
 	private DataSpace data;
 	
 	// hard-coded config
-	private static int DISTANCE = 5;
-	private static int BORDER = 20;
-	private static int BAR_WIDTH = 7;
-	private static int BAR_HEIGHT = 20;
+	private static final int DISTANCE = 5;
+	private static final int BORDER = 20;
+	private static final int BAR_WIDTH = 7;
+	private static final int BAR_HEIGHT = 20;
 	
 	// dynamic config
 	private int bars = 16;
