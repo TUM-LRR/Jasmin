@@ -962,9 +962,7 @@ public class DataSpace {
 	
 	public void setConstantValue(String label, long value) {
 		constants.put(label, value);
-		if (variables.containsKey(label)) {
-			variables.remove(label);
-		}
+		variables.remove(label);
 	}
 	
 	/**

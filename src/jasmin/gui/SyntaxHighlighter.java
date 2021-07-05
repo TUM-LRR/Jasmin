@@ -366,9 +366,7 @@ public class SyntaxHighlighter extends DefaultStyledDocument {
 		if (info.pr.error != null) {
 			errorLines.remove(info);
 		}
-		if (toDoList.contains(info)) {
-			toDoList.remove(info);
-		}
+		toDoList.remove(info);
 	}
 	
 	/**
