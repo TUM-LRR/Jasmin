@@ -155,7 +155,7 @@ public class Console extends javax.swing.JPanel implements IGuiModule, IListener
 		int address_temp = 0;
 		if (newAddress != null) {
 			try {
-				address_temp = new Integer(Parser.hex2dec(newAddress.toUpperCase()));
+				address_temp = Integer.parseInt(Parser.hex2dec(newAddress.toUpperCase()));
 			} catch (Exception ex) {
 				JOptionPane.showMessageDialog(null, "The entered value was not valid!");
 			}
