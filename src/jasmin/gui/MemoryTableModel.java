@@ -24,9 +24,9 @@ public class MemoryTableModel implements TableModel {
 	
 	private boolean descending = false;
 	
-	public static byte BYTE = 1;
-	public static byte WORD = 2;
-	public static byte DWORD = 4;
+	public static final byte BYTE = 1;
+	public static final byte WORD = 2;
+	public static final byte DWORD = 4;
 	private byte mode = DWORD;
 	private JasDocument doc = null;
 	
@@ -93,9 +93,7 @@ public class MemoryTableModel implements TableModel {
 	public Address getPointingRegister(int row) {
 		int index = getRowIndex(row) + data.getMemAddressStart();
 		for (RegisterSet rs : data.getRegisterSets()) {
-			
 			if ((int) rs.aE.getShortcut() == index) {
-				
 				return rs.aE;
 			}
 		}
@@ -206,15 +204,7 @@ public class MemoryTableModel implements TableModel {
 	 * @see #setValueAt
 	 */
 	public boolean isCellEditable(int rowIndex, int columnIndex) {
-		switch (columnIndex) {
-		case 1:
-			return true;
-		case 2:
-			return true;
-		case 3:
-			return true;
-		}
-		return false;
+		return (columnIndex == 1 || columnIndex == 2 || columnIndex == 3);
 	}
 	
 	/**
@@ -260,7 +250,6 @@ public class MemoryTableModel implements TableModel {
 	 * @see #getColumnCount
 	 */
 	public int getRowCount() {
-		
 		return data.getMEMSIZE() / mode;
 	}
 	
