@@ -144,7 +144,7 @@ public class HelpLoader {
 			}
 		}
 		try {
-			System.out.println("+ " + String.valueOf(counter) + "\thelp text(s) from:\t"
+			System.out.println("+ " + counter + "\thelp text(s) from:\t"
 				+ local.getCanonicalPath());
 		} catch (IOException ignored) {
 		}
@@ -189,7 +189,7 @@ public class HelpLoader {
 				}
 				jis.close();
 				
-				System.out.println("+ " + String.valueOf(counter) + "\thelp text(s) from:\t"
+				System.out.println("+ " + counter + "\thelp text(s) from:\t"
 					+ file.getCanonicalPath());
 			} catch (IOException ignored) {
 			}

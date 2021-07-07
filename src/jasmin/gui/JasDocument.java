@@ -480,7 +480,7 @@ public final class JasDocument extends javax.swing.JPanel implements Runnable {
 				} catch (Exception ex) {
 					updateExecutionMark();
 					scrollToExecutionMark();
-					ErrorLabel.setText(ex.toString() + "");
+					ErrorLabel.setText(ex.toString());
 					ex.printStackTrace();
 					break;
 				}

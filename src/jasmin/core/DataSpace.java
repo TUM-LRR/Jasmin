@@ -412,7 +412,7 @@ public class DataSpace {
 				addressOutOfRange = true;
 				return;
 			}
-			long mask = 255; // bitmask to filter 8 bits
+			long mask = 0xFF; // bitmask to filter 8 bits
 			int bytebuffer = 0; // somewhere to save the 8 bits
 			for (int i = 0; i < address.size; i++) {
 				bytebuffer = (int) (value & mask); // masking
@@ -468,7 +468,7 @@ public class DataSpace {
 	 */
 	public long getUnsignedMemory(int address, int size) {
 		long result = 0;
-		long bitmask = 255;
+		long bitmask = 0xFFL;
 		for (int i = 0; i < size; i++) {
 			result = result | ((bitmask & memory.get(address + i)) << (8 * i));
 		}
@@ -874,7 +874,7 @@ public class DataSpace {
 	
 	private long getInitial(String src, int type, int size, boolean signed) {
 		if ((type & Op.IMM) != 0) {
-			long value = Long.valueOf(src);
+			long value = Long.parseLong(src);
 			if (signed) {
 				return value;
 			} else {
@@ -962,9 +962,7 @@ public class DataSpace {
 	
 	public void setConstantValue(String label, long value) {
 		constants.put(label, value);
-		if (variables.containsKey(label)) {
-			variables.remove(label);
-		}
+		variables.remove(label);
 	}
 	
 	/**
@@ -1037,11 +1035,7 @@ public class DataSpace {
 	public void addMemoryListener(IListener l) {
 		memory.addListener(l);
 	}
-	
-	/*public void addRegisterListener(IListener l) {
-		reg.addListener(l);
-	}*/
-	
+
 	public void removeMemoryListener(IListener l, int address) {
 		memory.removeListener(l, address);
 	}
@@ -1049,8 +1043,5 @@ public class DataSpace {
 	public void removeMemoryListener(IListener l) {
 		memory.removeListener(l);
 	}
-	
-	/*public void removeRegisterListener(IListener l) {
-		reg.removeListener(l);
-	}*/
+
 }

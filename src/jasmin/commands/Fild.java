@@ -36,7 +36,7 @@ public class Fild extends FpuCommand {
 			fpu.push(d);
 			return;
 		}
-		Double d = 0.0;
+		double d = 0.0;
 		if (p.mnemo.equals("FIST")) {
 			d = fpu.get(0);
 		}

@@ -28,8 +28,8 @@ public class SevenSegment extends javax.swing.JPanel implements IGuiModule, ILis
 	private int len, wid, distanceBetween;
 	private int colormode;
 	
-	private static int COLOR_BLUE = 0;
-	private static int COLOR_JASMIN = 1;
+	private static final int COLOR_BLUE = 0;
+	private static final int COLOR_JASMIN = 1;
 	
 	private PolygonObject[] polys;
 	
@@ -260,7 +260,7 @@ public class SevenSegment extends javax.swing.JPanel implements IGuiModule, ILis
 		int address_temp = 0;
 		if (newAddress != null) {
 			try {
-				address_temp = new Integer(Parser.hex2dec(newAddress.toUpperCase()));
+				address_temp = Integer.parseInt(Parser.hex2dec(newAddress.toUpperCase()));
 			} catch (Exception ex) {
 				JOptionPane.showMessageDialog(null, "The entered value was not valid!");
 			}
@@ -285,7 +285,7 @@ public class SevenSegment extends javax.swing.JPanel implements IGuiModule, ILis
 		int digits_temp = 0;
 		if (newDigits != null) {
 			try {
-				digits_temp = new Integer(newDigits);
+				digits_temp = Integer.parseInt(newDigits);
 			} catch (Exception ex) {
 				JOptionPane.showMessageDialog(null, "The entered value was not valid!");
 			}

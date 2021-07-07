@@ -17,10 +17,10 @@ public class StripLight extends javax.swing.JPanel implements IGuiModule, IListe
 	private DataSpace data;
 	
 	// hard-coded config
-	private static int DISTANCE = 5;
-	private static int BORDER = 20;
-	private static int BAR_WIDTH = 7;
-	private static int BAR_HEIGHT = 20;
+	private static final int DISTANCE = 5;
+	private static final int BORDER = 20;
+	private static final int BAR_WIDTH = 7;
+	private static final int BAR_HEIGHT = 20;
 	
 	// dynamic config
 	private int bars = 16;
@@ -182,7 +182,7 @@ public class StripLight extends javax.swing.JPanel implements IGuiModule, IListe
 		int address_temp = 0;
 		if (newAddress != null) {
 			try {
-				address_temp = new Integer(Parser.hex2dec(newAddress.toUpperCase()));
+				address_temp = Integer.parseInt(Parser.hex2dec(newAddress.toUpperCase()));
 			} catch (Exception ex) {
 				JOptionPane.showMessageDialog(null, "The entered value was not valid!");
 			}
@@ -206,7 +206,7 @@ public class StripLight extends javax.swing.JPanel implements IGuiModule, IListe
 		int digits_temp = 0;
 		if (newDigits != null) {
 			try {
-				digits_temp = new Integer(newDigits);
+				digits_temp = Integer.parseInt(newDigits);
 			} catch (Exception ex) {
 				JOptionPane.showMessageDialog(null, "The entered value was not valid!");
 			}

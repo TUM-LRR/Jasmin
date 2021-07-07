@@ -35,7 +35,7 @@ public class MainFrame extends javax.swing.JFrame {
 			
 			if (!propfile.exists()) {
 				if (!propfile.createNewFile()) {
-					JOptionPane.showMessageDialog(this, "Could not create:" + propfile.toString());
+					JOptionPane.showMessageDialog(this, "Could not create:" + propfile);
 					System.exit(1);
 				}
 
@@ -48,8 +48,8 @@ public class MainFrame extends javax.swing.JFrame {
 				properties.load(new FileInputStream(propfile));
 			}
 		} catch (Exception ex) {
-			JOptionPane.showMessageDialog(this, "Could not open:" + propfile.toString() + "\n"
-				+ ex.toString());
+			JOptionPane.showMessageDialog(this, "Could not open:" + propfile + "\n"
+				+ ex);
 			System.exit(1);
 		}
 		
